@@ -29,36 +29,6 @@ internal sealed class KeycloakRolesClaimsTransformation(
 
         userRoles = [.. userRoles.Select(x => x.Trim().ToLowerInvariant()).OrderBy(x => x)];
 
-        // var roleKey = string.Join("|", userRoles);
-        // var rolesHash = ComputeHash(roleKey);
-
-        // var permissions = await cache.GetOrSetAsync<List<string>>(
-        //     key: CacheKey.ForPermissions(tenantId, rolesHash),
-        //     factory: async (ctx, cancellationToken) =>
-        //     {
-        //         var permissions = await permissionRepository.GetUserPermissionsAsync(
-        //             userRoles,
-        //             cancellationToken);
-
-        //         if (permissions.Count == 0)
-        //         {
-        //             ctx.Options.SetFrom(_cacheForUserPermissionsEmpty);
-        //         }
-        //         else
-        //         {
-        //             ctx.Options.SetFrom(_cacheForUserPermissions);
-        //         }
-
-        //         return [.. permissions];
-        //     },
-        //     tags: [CacheTag.UserPermissions]);
-
-        // if (permissions.Count == 0)
-        // {
-        //     logger.LogWarning("AUTHENTICATION_FAILED. User={userId} doesn't have permissions.", userId);
-        //     return principal;
-        // }
-
         var roles = userRoles.Select(r => new Claim(ClaimTypes.Role, r));
 
         claimsIdentity.AddClaims(roles);

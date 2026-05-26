@@ -93,9 +93,9 @@ public static class Extensions
             ?? new ClaimsPrincipal()
         );
 
-        // builder.Services
-        //     .AddKeycloakTokenIntrospection()
-        //     .AddKeycloakServices();
+        builder.Services
+            .AddKeycloakTokenIntrospection()
+            .AddKeycloakServices();
     }
 
     public static void AddApplicationMiddlewares(this WebApplication app)
@@ -127,7 +127,7 @@ public static class Extensions
 
         app.UseAuthorization();
 
-        // app.UseKeycloakTokenIntrospection();
+        app.UseKeycloakTokenIntrospection();
 
         app.UseApplicationAuthLogEnricher();
 
