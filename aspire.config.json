@@ -1,0 +1,5 @@
+{
+  "appHost": {
+    "path": "src/Aspire/Sogetec.AppHost/Sogetec.AppHost.csproj"
+  }
+}

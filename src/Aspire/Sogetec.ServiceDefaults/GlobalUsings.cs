@@ -1,0 +1,16 @@
+global using System.Diagnostics;
+global using System.Globalization;
+global using System.Threading.RateLimiting;
+global using Microsoft.AspNetCore.Builder;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.AspNetCore.RateLimiting;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Diagnostics.HealthChecks;
+global using Microsoft.Extensions.Hosting;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Options;
+global using OpenTelemetry;
+global using OpenTelemetry.Metrics;
+global using OpenTelemetry.Trace;
+global using Sogetec.Chassis.OpenTelemetry;
+global using Sogetec.Chassis.Utilities;
