@@ -46,7 +46,7 @@ var api = builder
 // ------------------------------------------------------------
 
 var spa = builder
-    .AddViteApp(Services.SPA, "../../Clients/apps/frontend")
+    .AddViteApp(Services.SPA, "../../Clients/Apps/frontend")
     .WithOtlpExporter()
     .WithHttpsEndpoint(port: 3000, env: "PORT")
     .WithExternalHttpEndpoints()
@@ -59,7 +59,7 @@ var spa = builder
     .WithFriendlyUrls();
 
 var admin = builder
-    .AddViteApp(Services.SPA, "../../Clients/apps/admin")
+    .AddViteApp(Services.SPA, "../../Clients/Apps/admin")
     .WithOtlpExporter()
     .WithHttpsEndpoint(port: 3001, env: "PORT")
     .WithExternalHttpEndpoints()
