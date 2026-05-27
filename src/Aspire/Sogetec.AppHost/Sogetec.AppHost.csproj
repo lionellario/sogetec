@@ -1,0 +1,22 @@
+﻿<Project Sdk="Aspire.AppHost.Sdk/13.3.5">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <UserSecretsId>b0dab410-c306-4895-8859-77c0323cad79</UserSecretsId>
+    <NoWarn>ASPIREINTERACTION001;ASPIREPIPELINES001;ASPIRECOMPUTE003;ASPIRECERTIFICATES001;NU1603</NoWarn>
+  </PropertyGroup>
+  <ItemGroup Label="Aspire">
+    <PackageReference Include="Aspire.Hosting.Docker" />
+    <PackageReference Include="Aspire.Hosting.Yarp" />
+    <PackageReference Include="Aspire.Hosting.PostgreSQL" />
+    <PackageReference Include="Aspire.Hosting.Redis" />
+    <PackageReference Include="Aspire.Hosting.JavaScript" />
+    <PackageReference Include="Aspire.Hosting.Keycloak" />
+    <PackageReference Include="Scalar.Aspire" />
+  </ItemGroup>
+  <ItemGroup Label="Services">
+    <ProjectReference Include="..\..\Api\Api.csproj" />
+  </ItemGroup>
+  <ItemGroup Label="Integration">
+    <ProjectReference Include="..\..\BuildingBlocks\Sogetec.Constants\Sogetec.Constants.csproj" IsAspireProjectResource="false" />
+  </ItemGroup>
+</Project>

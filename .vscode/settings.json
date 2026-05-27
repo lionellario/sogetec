@@ -1,0 +1,16 @@
+{
+  "files.eol": "\n",
+  "dotnet.defaultSolution": "Sogetec.slnx",
+  "dotnet.automaticallyCreateSolutionInWorkspace": false,
+  "dotnet.automaticallySyncWithActiveItem": true,
+  "dotnet.testWindow.useTestingPlatformProtocol": true,
+  "xml.format.maxLineWidth": 240,
+  "[csharp]": {
+    "editor.defaultFormatter": "ms-dotnettools.csharp"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml",
+    "editor.tabSize": 2,
+    "files.trimTrailingWhitespace": true
+  }
+}

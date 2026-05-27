@@ -1,0 +1,10 @@
+﻿global using System.Security.Claims;
+global using System.Text.Json;
+global using System.Text.Json.Serialization;
+global using Microsoft.Extensions.DependencyInjection.Extensions;
+global using Scalar.AspNetCore;
+global using Sogetec.Chassis.Endpoints;
+global using Sogetec.Chassis.Exceptions;
+global using Sogetec.Chassis.Security.Keycloak;
+global using Sogetec.Chassis.Security.SessionProvider;
+global using Sogetec.ServiceDefaults;

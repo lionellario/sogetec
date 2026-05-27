@@ -1,0 +1,44 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <ItemGroup Label="FluentValidation">
+    <PackageReference Include="FluentValidation" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" />
+  </ItemGroup>
+  <ItemGroup Label="EntityFrameworkCore">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" />
+    <PackageReference Include="EFCore.NamingConventions" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" />
+    <PackageReference Include="OpenTelemetry.Instrumentation.StackExchangeRedis" />
+  </ItemGroup>
+  <ItemGroup Label="Identity">
+    <PackageReference Include="Microsoft.IdentityModel.Tokens" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" />
+    <PackageReference Include="Aspire.Keycloak.Authentication" />
+  </ItemGroup>
+  <ItemGroup Label="Aspire">
+    <PackageReference Include="Aspire.StackExchange.Redis.DistributedCaching" />
+    <PackageReference Include="Aspire.StackExchange.Redis.OutputCaching" />
+  </ItemGroup>
+  <ItemGroup Label="API">
+  </ItemGroup>
+  <ItemGroup Label="Mediator">
+    <PackageReference Include="Mediator.Abstractions" />
+  </ItemGroup>
+  <ItemGroup Label="Integration">
+    <PackageReference Include="Scrutor" />
+  </ItemGroup>
+  <ItemGroup Label="Logging">
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics.Middleware" />
+    <PackageReference Include="Serilog.AspNetCore" />
+    <PackageReference Include="Serilog.Enrichers.Environment" />
+    <PackageReference Include="Serilog.Enrichers.Process" />
+    <PackageReference Include="Serilog.Enrichers.Thread" />
+    <PackageReference Include="Serilog.Exceptions" />
+    <PackageReference Include="Serilog.Sinks.OpenTelemetry" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="../Sogetec.Constants/Sogetec.Constants.csproj" />
+    <ProjectReference Include="../Sogetec.SharedKernel/Sogetec.SharedKernel.csproj" />
+  </ItemGroup>
+</Project>
