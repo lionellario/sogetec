@@ -12,7 +12,7 @@ internal sealed class ApplicationEnricherMiddleware() : IMiddleware
             return;
         }
 
-        var userId = context.User.GetAuthenticatedUserId();
+        var userId = context.User.FindFirstValue(CustomClaimType.UserId) ?? "anonymous";
         using (LogContext.PushProperty("UserId", userId))
         {
             await next(context);

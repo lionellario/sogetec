@@ -52,21 +52,21 @@ var spa = builder
     .WithExternalHttpEndpoints()
     .WithHttpsDeveloperCertificate()
     .WithReference(api)
-    .WithEnvironment("VITE_SAVYRIS_API_HTTPS", api.GetEndpoint(Uri.UriSchemeHttps))
-    .WithEnvironment("VITE_SAVYRIS_API_HTTP", api.GetEndpoint(Uri.UriSchemeHttp))
+    .WithEnvironment("VITE_SOGETEC_API_HTTPS", api.GetEndpoint(Uri.UriSchemeHttps))
+    .WithEnvironment("VITE_SOGETEC_API_HTTP", api.GetEndpoint(Uri.UriSchemeHttp))
     .WaitFor(api)
     .WithKeycloak(keycloak)
     .WithFriendlyUrls();
 
 var admin = builder
-    .AddViteApp(Services.SPA, "../../Clients/Apps/admin")
+    .AddViteApp(Services.ADMIN, "../../Clients/Apps/admin")
     .WithOtlpExporter()
     .WithHttpsEndpoint(port: 3001, env: "PORT")
     .WithExternalHttpEndpoints()
     .WithHttpsDeveloperCertificate()
     .WithReference(api)
-    .WithEnvironment("VITE_SAVYRIS_API_HTTPS", api.GetEndpoint(Uri.UriSchemeHttps))
-    .WithEnvironment("VITE_SAVYRIS_API_HTTP", api.GetEndpoint(Uri.UriSchemeHttp))
+    .WithEnvironment("VITE_SOGETEC_API_HTTPS", api.GetEndpoint(Uri.UriSchemeHttps))
+    .WithEnvironment("VITE_SOGETEC_API_HTTP", api.GetEndpoint(Uri.UriSchemeHttp))
     .WaitFor(api)
     .WithKeycloak(keycloak)
     .WithFriendlyUrls();

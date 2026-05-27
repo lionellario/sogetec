@@ -1,0 +1,17 @@
+{
+  "recommendations": [
+    "microsoft-aspire.aspire-vscode",
+    "ms-dotnettools.csharp",
+    "devkit.csharp-extension-pack",
+    "EditorConfig.EditorConfig",
+    "Gruntfuggly.todo-tree",
+    "OneDarkTheme.vscode-one-dark-theme",
+    "MaterialTheme.vscode-material-theme",
+    "mhutchie.git-graph",
+    "donjayamanne.githistory",
+    "github.vscode-github-actions",
+    "eamodio.gitlens",
+    "redhat.vscode-xml",
+    "esbenp.prettier-vscode"
+  ]
+}

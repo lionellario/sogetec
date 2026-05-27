@@ -123,16 +123,10 @@ internal static partial class KeycloakExtensions
     {
         private IResourceBuilder<KeycloakResource> WithSampleRealmImport(string realmName, string displayName)
         {
-            var password = builder
-                            .ApplicationBuilder
-                            .AddParameter("kc-password", true)
-                            .WithGeneratedDefault(new() { MinLength = 32, Special = false });
             builder
                 .WithRealmImport($"{BaseContainerPath}/Realms")
                 .WithEnvironment(RealmName, realmName)
-                .WithEnvironment(RealmDisplayName, displayName)
-                .WithEnvironment(AdminUserName, "kc-admin-user@Sogetec")
-                .WithEnvironment(AdminUserPassword, password);
+                .WithEnvironment(RealmDisplayName, displayName);
 
             return builder;
         }

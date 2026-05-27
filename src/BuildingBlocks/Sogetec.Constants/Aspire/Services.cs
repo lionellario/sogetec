@@ -2,8 +2,9 @@
 
 public static class Services
 {
-    public const string WebApi = "Sogetec-api";
-    public const string SPA = "Sogetec-spa";
+    public const string WebApi = "sogetec-api";
+    public const string SPA = "sogetec-frontend";
+    public const string ADMIN = "sogetec-admin";
     public const string Gateway = "gateway";
 
 

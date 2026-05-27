@@ -1,13 +1,14 @@
 using Microsoft.EntityFrameworkCore;
-using Sogetec.Chassis.EF;
 
 namespace Api.Modules.Data.Context;
 
-public class SogetecDbContext(
-    DbContextOptions<SogetecDbContext> Options,
-    ISessionDataProvider SessionProvider)
-  : BaseDbContext(Options, SessionProvider)
+public class SogetecDbContext(DbContextOptions<SogetecDbContext> Options) : DbContext(Options)
 {
+    public override int SaveChanges()
+    {
+        throw new NotImplementedException();
+    }
+
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(typeof(SogetecDbContext).Assembly);
