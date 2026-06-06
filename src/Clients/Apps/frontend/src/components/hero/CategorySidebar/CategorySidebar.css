@@ -1,0 +1,171 @@
+.category-sidebar {
+  background: white;
+  border-radius: 10px 10px 0 0;
+  flex-basis: 300px;
+  margin: 0;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.sidebar-title {
+  height: 49px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 20px;
+  background: #335f4a;
+  color: white;
+  font-weight: 600;
+  gap: 10px;
+}
+
+.arrow-down {
+  font-size: 15px;
+  margin-inline: 12px;
+  transition: transform 0.2s;
+}
+
+.sidebar-title.active .arrow-down {
+  transform: rotate(180deg);
+}
+
+.sidebar-menu {
+  position: absolute;
+  display: flex;
+  gap: 5px;
+  z-index: 1000;
+  background: transparent;
+}
+
+.sidebar-list {
+  width: 300px;
+  padding: 12px;
+  background-color: #ffffff;
+  border: 1px solid #eef1f6;
+  border-top: 0;
+  border-radius: 0 0 16px 16px;
+  box-shadow: 0px 8px 32px -4px rgba(103, 111, 123, 0.1);
+}
+
+.sidebar-title span {
+  margin-bottom: 1px;
+}
+
+.sidebar-title-text {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.category-item {
+  height: 49px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-inline: 20px;
+  color: #4b5563;
+  font-size: 14px;
+  border-radius: 16px;
+  transition: 0.2s;
+}
+
+.category-item:hover,
+.category-item.selected {
+  background-color: #f8f9fa;
+  color: #0066cc;
+}
+
+.arrow-right {
+  font-size: 14px;
+  color: #777777;
+}
+
+.category-item:hover .arrow-right,
+.category-item.selected .arrow-right {
+  color: #0066cc;
+}
+
+.mega-box {
+  position: relative;
+  top: 5px;
+  display: flex;
+  width: 650px;
+  padding: 24px;
+  background-color: white;
+  border: 1px solid #eef1f6;
+  border-radius: 16px;
+  box-shadow: 0px 8px 32px -4px rgba(103, 111, 123, 0.1);
+}
+
+/* The Invisible Hover Bridge:
+  This covers the gap area purely for mouse tracking so the panel does not close 
+  while the cursor is traveling from the sidebar to the mega-box.
+*/
+.mega-box::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: calc(-1 * 14px - 2px); /* Reaches backward across the gap */
+  width: calc(14px + 4px);
+  height: 100%;
+  background: transparent; /* Remains completely invisible to the eye */
+  z-index: 1;
+}
+
+/* Dynamic Grid for columns */
+.mega-columns-container {
+  flex: 1;
+  display: flex;
+  gap: 24px;
+}
+
+.mega-column {
+  flex: 1;
+  min-width: 160px;
+}
+
+.column-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333333;
+  margin-top: 0;
+  margin-bottom: 12px;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 6px;
+}
+
+.column-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.column-links li {
+  margin-bottom: 8px;
+}
+
+.column-links a {
+  text-decoration: none;
+  color: #777777;
+  font-size: 13px;
+  transition: color 0.15s;
+}
+
+.column-links a:hover {
+  color: #0066cc;
+}
+
+/* Image Column */
+.mega-image-column {
+  width: 200px;
+  margin-left: 24px;
+  display: flex;
+  align-items: flex-start;
+}
+
+.mega-menu-image {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 4px;
+}

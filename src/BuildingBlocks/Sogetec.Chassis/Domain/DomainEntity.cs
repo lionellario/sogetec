@@ -17,9 +17,4 @@ public abstract class Entity : HasDomainEvents
 public abstract class DomainEntity : Entity
 {
     public Guid LastModifiedBy { get; set; }
-
-    protected DomainEntity()
-    {
-        Id = Guid.CreateVersion7();
-    }
 }

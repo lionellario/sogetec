@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Light Controls",
+    "parent": null
+  },
+  {
+    "name": "Light Bulbs",
+    "parent": null
+  },
+  {
+    "name": "Wiring Devices and Light Controls",
+    "parent": null
+  },
+  {
+    "name": "Outlets",
+    "parent": "Wiring Devices and Light Controls"
+  },
+  {
+    "name": "Protection Devices",
+    "parent": "Wiring Devices and Light Controls"
+  },
+  {
+    "name": "Light Switches",
+    "parent": "Wiring Devices and Light Controls"
+  },
+  {
+    "name": "Cable",
+    "parent": null
+  },
+  {
+    "name": "Fire Safety",
+    "parent": null
+  },
+  {
+    "name": "Electrical Tool",
+    "parent": null
+  },
+  {
+    "name": "Electrical Testers",
+    "parent": "Electrical Tool"
+  },
+  {
+    "name": "Wire Connectors",
+    "parent": "Electrical Tool"
+  }
+]

@@ -17,9 +17,31 @@ public static class AuthorizationExtensions
         /// <returns>The same <see cref="IHostApplicationBuilder" /> instance for fluent configuration.</returns>
         public IHostApplicationBuilder AddDefaultAuthorization()
         {
-            builder.Services.AddAuthorization();
-            builder.Services.AddScoped<IAuthorizationHandler, AuthorizationHandler>();
-            builder.Services.AddSingleton<IAuthorizationPolicyProvider, PermissionAuthorizationPolicyProvider>();
+            builder.Services
+                .AddAuthorizationBuilder()
+                .AddPolicy(
+                    Authorize.Policies.Admin,
+                    policy =>
+                    {
+                        policy
+                            .RequireAuthenticatedUser()
+                            .RequireRole(Authorize.Roles.Admin);
+                    }
+                )
+                .AddPolicy(
+                    Authorize.Policies.User,
+                    policy =>
+                    {
+                        policy
+                            .RequireAuthenticatedUser()
+                            .RequireRole(Authorize.Roles.User);
+                    }
+                )
+                .SetDefaultPolicy(
+                    new AuthorizationPolicyBuilder()
+                        .RequireAuthenticatedUser()
+                        .Build()
+                );
             return builder;
         }
     }

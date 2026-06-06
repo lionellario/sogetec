@@ -1,0 +1,4 @@
+pyyaml
+ruff
+Faker
+python-slugify

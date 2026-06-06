@@ -1,5 +1,3 @@
-using Sogetec.Constants.Aspire;
-
 namespace Sogetec.AppHost.Extensions.Security;
 
 internal static partial class KeycloakExtensions
