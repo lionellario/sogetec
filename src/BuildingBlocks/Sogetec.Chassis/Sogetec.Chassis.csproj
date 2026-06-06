@@ -27,6 +27,7 @@
   </ItemGroup>
   <ItemGroup Label="Integration">
     <PackageReference Include="Scrutor" />
+    <PackageReference Include="Slugify.Core" />
   </ItemGroup>
   <ItemGroup Label="Logging">
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.Middleware" />

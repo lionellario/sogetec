@@ -1,9 +1,9 @@
-using Microsoft.EntityFrameworkCore;
-
 namespace Api.Modules.Data.Context;
 
 public class SogetecDbContext(DbContextOptions<SogetecDbContext> Options) : DbContext(Options)
 {
+    public IQueryable<Category> Categories => Set<Category>();
+
     public override int SaveChanges()
     {
         throw new NotImplementedException();

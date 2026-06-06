@@ -1,6 +1,4 @@
-﻿using Api.Modules.Data.Context;
-using FluentValidation;
-using Microsoft.EntityFrameworkCore.Diagnostics;
+﻿using Microsoft.EntityFrameworkCore.Diagnostics;
 using Serilog;
 using Sogetec.Chassis.Caching;
 using Sogetec.Chassis.CQRS;

@@ -57,3 +57,6 @@ nunit-*.xml
 ## Mediator source generators
 Generated
 *.lscache
+
+# Python
+.pyvenv/

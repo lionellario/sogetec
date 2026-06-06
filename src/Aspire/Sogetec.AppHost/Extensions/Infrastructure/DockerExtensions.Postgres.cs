@@ -18,7 +18,12 @@ internal static partial class DockerExtensions
                 var postgres = builder
                     .AddPostgres(name)
                     .WithIconName("SogetecDatabase")
-                    .WithPgAdmin()
+                    .WithPgAdmin(o =>
+                    {
+                        o.WithImagePullPolicy(ImagePullPolicy.Always)
+                        .WithHostPort(5050)
+                        .WithLifetime(ContainerLifetime.Persistent);
+                    })
                     .WithImageTag("18.3")
                     .WithImagePullPolicy(ImagePullPolicy.Always)
                     .WithLifetime(ContainerLifetime.Persistent)
@@ -51,7 +56,7 @@ internal static partial class DockerExtensions
 
                 return new ApplicationDatabases
                 {
-                    Sogetec = postgresBuilder.AddDatabase(Components.DatabaseName.Sogetec),
+                    Sogetec = postgresBuilder.AddDatabase(Components.DatabaseName.Sogetec)
                 };
             }
 
