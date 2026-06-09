@@ -1,0 +1,764 @@
+/* ==========================================================
+   ABOUT US PAGE - SOGETEC SARL
+   ========================================================== */
+
+:root {
+  --primary: #f97316;
+  --primary-dark: #ea580c;
+
+  --secondary: #0f172a;
+  --secondary-light: #1e293b;
+
+  --accent: #2563eb;
+
+  --background: #ffffff;
+  --surface: #f8fafc;
+  --surface-dark: #111827;
+
+  --border: #e2e8f0;
+
+  --text: #0f172a;
+  --text-light: #64748b;
+  --text-muted: #94a3b8;
+
+  --success: #22c55e;
+
+  --container-width: 1280px;
+
+  --radius-sm: 8px;
+  --radius: 16px;
+  --radius-lg: 24px;
+
+  --shadow-sm: 0 4px 12px rgba(15, 23, 42, 0.08);
+  --shadow-md: 0 10px 30px rgba(15, 23, 42, 0.12);
+  --shadow-lg: 0 20px 60px rgba(15, 23, 42, 0.15);
+
+  --transition: all 0.3s ease;
+}
+
+/* ==========================================================
+   RESET
+   ========================================================== */
+
+.about-page *,
+.about-page *::before,
+.about-page *::after {
+  box-sizing: border-box;
+}
+
+.about-page {
+  background: var(--background);
+  color: var(--text);
+  overflow-x: hidden;
+}
+
+/* ==========================================================
+   GLOBAL
+   ========================================================== */
+
+.container {
+  width: min(100% - 48px, var(--container-width));
+  margin-inline: auto;
+}
+
+.section {
+  padding: 96px 0;
+}
+
+.section-light {
+  background: var(--surface);
+}
+
+.section-dark {
+  background: var(--secondary);
+  color: white;
+}
+
+.section-header {
+  text-align: center;
+  max-width: 850px;
+  margin: 0 auto 64px;
+}
+
+.section-header h2 {
+  margin: 16px 0;
+}
+
+.section-header p {
+  color: inherit;
+  opacity: 0.85;
+}
+
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 8px 16px;
+
+  border-radius: 999px;
+
+  background: rgba(249, 115, 22, 0.1);
+  color: var(--primary);
+
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.section-tag.light {
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  margin: 0;
+  line-height: 1.15;
+  font-weight: 800;
+}
+
+h1 {
+  font-size: clamp(3rem, 6vw, 5.5rem);
+}
+
+h2 {
+  font-size: clamp(2rem, 4vw, 3.5rem);
+}
+
+h3 {
+  font-size: 1.25rem;
+}
+
+p {
+  line-height: 1.8;
+  color: var(--text-light);
+}
+
+/* ==========================================================
+   BUTTONS
+   ========================================================== */
+
+.btn-primary,
+.btn-secondary {
+  border: none;
+  cursor: pointer;
+  transition: var(--transition);
+
+  font-size: 1rem;
+  font-weight: 700;
+
+  padding: 16px 30px;
+  border-radius: 12px;
+}
+
+.btn-primary {
+  background: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: var(--primary-dark);
+  transform: translateY(-3px);
+}
+
+.btn-secondary {
+  background: transparent;
+  color: white;
+
+  border: 2px solid rgba(255, 255, 255, 0.3);
+}
+
+.btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ==========================================================
+   HERO
+   ========================================================== */
+
+.hero-section {
+  position: relative;
+
+  min-height: 90vh;
+
+  display: flex;
+  align-items: center;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(135deg, rgba(15, 23, 42, 0.92), rgba(15, 23, 42, 0.8)),
+    url("/images/about/hero-banner.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(
+    circle at top right,
+    rgba(249, 115, 22, 0.25),
+    transparent 40%
+  );
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+
+  max-width: 900px;
+
+  color: white;
+}
+
+.hero-badge {
+  display: inline-flex;
+
+  margin-bottom: 24px;
+
+  padding: 10px 18px;
+
+  border-radius: 999px;
+
+  background: rgba(255, 255, 255, 0.08);
+
+  backdrop-filter: blur(12px);
+
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+
+.hero-content h1 {
+  margin-bottom: 24px;
+}
+
+.hero-content h1 span {
+  color: var(--primary);
+}
+
+.hero-content p {
+  color: rgba(255, 255, 255, 0.85);
+
+  font-size: 1.15rem;
+
+  max-width: 800px;
+
+  margin-bottom: 40px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ==========================================================
+   TWO COLUMN
+   ========================================================== */
+
+.two-column {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 72px;
+  align-items: center;
+}
+
+.reverse-mobile {
+}
+
+.image-card {
+  overflow: hidden;
+
+  border-radius: var(--radius-lg);
+
+  box-shadow: var(--shadow-lg);
+}
+
+.image-card img {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition: transform 0.6s ease;
+}
+
+.image-card:hover img {
+  transform: scale(1.05);
+}
+
+/* ==========================================================
+   EXPERTISE
+   ========================================================== */
+
+.expertise-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 24px;
+}
+
+.expertise-card {
+  background: rgba(255, 255, 255, 0.04);
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+
+  border-radius: var(--radius);
+
+  padding: 32px;
+
+  transition: var(--transition);
+}
+
+.expertise-card:hover {
+  transform: translateY(-8px);
+
+  border-color: rgba(249, 115, 22, 0.4);
+}
+
+.expertise-icon {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.expertise-card h3 {
+  margin-bottom: 12px;
+}
+
+.expertise-card p {
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ==========================================================
+   FEATURES
+   ========================================================== */
+
+.feature-list {
+  margin: 32px 0 0;
+  padding: 0;
+
+  list-style: none;
+
+  display: grid;
+  gap: 14px;
+}
+
+.feature-list li {
+  position: relative;
+
+  padding-left: 32px;
+
+  color: var(--text-light);
+}
+
+.feature-list li::before {
+  content: "✓";
+
+  position: absolute;
+  left: 0;
+  top: 0;
+
+  color: var(--success);
+
+  font-weight: 700;
+}
+
+/* ==========================================================
+   INDUSTRIES
+   ========================================================== */
+
+.industries-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 20px;
+}
+
+.industry-card {
+  padding: 28px;
+
+  text-align: center;
+
+  background: white;
+
+  border-radius: var(--radius);
+
+  border: 1px solid var(--border);
+
+  font-weight: 700;
+
+  transition: var(--transition);
+
+  box-shadow: var(--shadow-sm);
+}
+
+.industry-card:hover {
+  transform: translateY(-5px);
+
+  border-color: var(--primary);
+
+  box-shadow: var(--shadow-md);
+}
+
+/* ==========================================================
+   WHY US
+   ========================================================== */
+
+.advantages-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 24px;
+}
+
+.advantage-card {
+  background: white;
+
+  padding: 32px;
+
+  border-radius: var(--radius);
+
+  border: 1px solid var(--border);
+
+  transition: var(--transition);
+}
+
+.advantage-card:hover {
+  transform: translateY(-6px);
+
+  box-shadow: var(--shadow-md);
+}
+
+.advantage-card h3 {
+  margin-bottom: 12px;
+}
+
+/* ==========================================================
+   STATS
+   ========================================================== */
+
+.stats-section {
+  background: var(--secondary);
+
+  padding: 90px 0;
+}
+
+.stats-grid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 24px;
+}
+
+.stats-card {
+  text-align: center;
+
+  padding: 40px 20px;
+
+  border-radius: var(--radius);
+
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.stats-card h3 {
+  font-size: 3rem;
+  color: var(--primary);
+}
+
+.stats-card p {
+  margin-top: 10px;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+/* ==========================================================
+   TIMELINE
+   ========================================================== */
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  max-width: 1000px;
+
+  margin: 0 auto;
+}
+
+.timeline-item {
+  display: flex;
+  align-items: center;
+  gap: 32px;
+
+  padding: 32px;
+
+  border-radius: var(--radius);
+
+  background: white;
+
+  border: 1px solid var(--border);
+
+  box-shadow: var(--shadow-sm);
+}
+
+.timeline-number {
+  min-width: 90px;
+  height: 90px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+
+  background: var(--primary);
+
+  color: white;
+
+  font-weight: 800;
+  font-size: 1.5rem;
+}
+
+.timeline-content h3 {
+  margin-bottom: 10px;
+}
+
+/* ==========================================================
+   CTA
+   ========================================================== */
+
+.cta-section {
+  position: relative;
+
+  padding: 140px 0;
+
+  overflow: hidden;
+
+  background:
+    linear-gradient(rgba(15, 23, 42, 0.85), rgba(15, 23, 42, 0.85)),
+    url("/images/about/cta-banner.jpg");
+
+  background-size: cover;
+  background-position: center;
+}
+
+.cta-overlay {
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(
+    circle at center,
+    rgba(249, 115, 22, 0.25),
+    transparent 55%
+  );
+}
+
+.cta-content {
+  position: relative;
+  z-index: 2;
+
+  text-align: center;
+
+  max-width: 900px;
+
+  color: white;
+}
+
+.cta-content h2 {
+  margin-bottom: 24px;
+}
+
+.cta-content p {
+  margin-bottom: 36px;
+
+  color: rgba(255, 255, 255, 0.85);
+}
+
+/* ==========================================================
+   CONTACT
+   ========================================================== */
+
+.contact-section {
+  background: white;
+}
+
+.contact-card {
+  background: var(--surface);
+
+  border-radius: var(--radius-lg);
+
+  padding: 48px;
+
+  border: 1px solid var(--border);
+
+  box-shadow: var(--shadow-sm);
+}
+
+.contact-card h3 {
+  margin-bottom: 36px;
+}
+
+.contact-grid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 40px;
+}
+
+.contact-grid strong {
+  display: block;
+
+  margin-bottom: 12px;
+
+  color: var(--secondary);
+}
+
+.contact-grid p {
+  margin: 0;
+}
+
+/* ==========================================================
+   ANIMATIONS
+   ========================================================== */
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section,
+.hero-content,
+.stats-card,
+.timeline-item,
+.advantage-card,
+.expertise-card,
+.industry-card {
+  animation: fadeUp 0.7s ease both;
+}
+
+/* ==========================================================
+   RESPONSIVE
+   ========================================================== */
+
+@media (max-width: 1200px) {
+  .expertise-grid,
+  .advantages-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .industries-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .two-column {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .timeline-item {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .reverse-mobile .image-card {
+    order: -1;
+  }
+}
+
+@media (max-width: 768px) {
+  .section {
+    padding: 72px 0;
+  }
+
+  .container {
+    width: min(100% - 32px, var(--container-width));
+  }
+
+  .hero-section {
+    min-height: auto;
+    padding: 120px 0 100px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+  }
+
+  .expertise-grid,
+  .advantages-grid,
+  .industries-grid,
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stats-card h3 {
+    font-size: 2.5rem;
+  }
+
+  .contact-card {
+    padding: 32px 24px;
+  }
+
+  .timeline-item {
+    padding: 24px;
+  }
+
+  .timeline-number {
+    width: 72px;
+    height: 72px;
+    min-width: 72px;
+
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .hero-content p {
+    font-size: 1rem;
+  }
+
+  .section-header {
+    margin-bottom: 48px;
+  }
+
+  .expertise-card,
+  .advantage-card,
+  .industry-card {
+    padding: 24px;
+  }
+}

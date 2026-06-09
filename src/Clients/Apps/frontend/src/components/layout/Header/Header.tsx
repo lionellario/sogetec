@@ -25,7 +25,7 @@ export default function Header({ darkMode, onToggleTheme }: Props) {
         <div className="hd-top">
           <div className="header__logo">
             <img
-              src="/src/assets/imgs/sogetec_icon_png_white_600_879.png"
+              src="/src/assets/images/sogetec_icon_png_white_600_879.png"
               alt="Logo"
             />
             <span> Sogetec</span>

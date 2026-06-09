@@ -9,11 +9,12 @@
 
   --color-secondary: #06b6d4;
   --color-accent: #f97316;
+  --color-green: #214a36;
+  --color-yellow: #f59e0b;
 
   /* ----------------------------------------------------------
        Semantic Colors
   ---------------------------------------------------------- */
-
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-error: #ef4444;
@@ -41,7 +42,7 @@
        Text Colors
     ---------------------------------------------------------- */
 
-  --color-text: #0f172a;
+  --color-text: #181d25;
   --color-text-secondary: #475569;
   --color-text-muted: #64748b;
   --color-text-disabled: #94a3b8;
