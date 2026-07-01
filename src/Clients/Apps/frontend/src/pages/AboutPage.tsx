@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import Container from "../components/layout/Container";
+import { IMG_SRC } from "../lib/Constant";
 import "./AboutPage.css";
 
 type StatCounterProps = {
@@ -186,7 +187,6 @@ const AboutUsPage: React.FC = () => {
 
   return (
     <div className="about-page">
-      {/* HERO */}
       <section className="banner-land-section">
         <Container>
           <div className="banner-land-content">
@@ -205,16 +205,14 @@ const AboutUsPage: React.FC = () => {
 
             <div className="banner-land-actions">
               <button className="btn-primary">Read more</button>
-
               <button className="btn-secondary">Browse Catalog</button>
             </div>
           </div>
         </Container>
       </section>
-      {/* OVERVIEW */}
-      <section className="section">
+      <section className="overview-section">
         <Container>
-          <div className="two-column">
+          <div className="overview-two-column">
             <div>
               <h2>Who We Are</h2>
 
@@ -238,9 +236,9 @@ const AboutUsPage: React.FC = () => {
               </p>
             </div>
 
-            <div className="image-card">
+            <div className="overview-image-card">
               <img
-                src="/images/about/company-overview.jpg"
+                src={`${IMG_SRC}/sogetec_field_engineer.jpg`}
                 alt="Electrical engineers"
               />
             </div>

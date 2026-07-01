@@ -13,7 +13,7 @@
   align-items: center;
   justify-content: space-between;
   padding-inline: 20px;
-  background: #335f4a;
+  background: var(--color-light-green);
   color: white;
   font-weight: 600;
   gap: 10px;
