@@ -212,10 +212,11 @@ const AboutUsPage: React.FC = () => {
       </section>
       <section className="overview-section">
         <Container>
-          <div className="overview-two-column">
-            <div>
+          <div className="overview-card">
+            <div className="overview-text-card">
+              <span className="overview-section-tag">ABOUT SOGETEC</span>
               <h2>Who We Are</h2>
-
+              <br />
               <p>
                 Sogetec SARL is a Cameroonian company headquartered in Douala,
                 specializing in electrical solutions for residential,
@@ -241,6 +242,173 @@ const AboutUsPage: React.FC = () => {
                 src={`${IMG_SRC}/sogetec_field_engineer.jpg`}
                 alt="Electrical engineers"
               />
+            </div>
+          </div>
+        </Container>
+      </section>
+      <section className="overview-section overview-section-light">
+        <Container>
+          <div className="overview-card">
+            <div className="overview-image-card">
+              <img
+                src={`${IMG_SRC}/sogetec_magasin_est.png`}
+                alt="Electrical engineers"
+              />
+            </div>
+            <div className="overview-text-card">
+              <span className="overview-section-tag">SALES</span>
+              <h2>Electrical Products & Equipment</h2>
+              <p>
+                We distribute and supply premium electrical products for
+                buildings, industries, infrastructure projects and renewable
+                energy systems.
+              </p>
+
+              <ul className="feature-list">
+                <li>Electrical Cables</li>
+                <li>Circuit Breakers</li>
+                <li>Switchgear Equipment</li>
+                <li>Power Distribution Systems</li>
+                <li>Control Panel Components</li>
+                <li>Industrial Electrical Equipment</li>
+                <li>Building Electrical Equipment</li>
+                <li>Street Lighting Solutions</li>
+                <li>Renewable Energy Equipment</li>
+                <li>Monitoring Equipment</li>
+              </ul>
+
+              <br />
+              <h2>Ours Partners</h2>
+              <div className="overview-partners-list">
+                <img
+                  src={`${IMG_SRC}/logo/3m-innovation.jpg`}
+                  alt="3M Innovation"
+                />
+                <img src={`${IMG_SRC}/logo/abb-logo-33px.svg`} alt="ABB" />
+                <img src={`${IMG_SRC}/logo/alvarion.jpg`} alt="Alvarion" />
+                <img src={`${IMG_SRC}/logo/bosch.jpg`} alt="BOSCH" />
+                <img src={`${IMG_SRC}/logo/espa.jpg`} alt="ESPA" />
+                <img src={`${IMG_SRC}/logo/legrand.jpg`} alt="LEGRAND" />
+                <img
+                  src={`${IMG_SRC}/logo/logo-dfelectric-light.png`}
+                  alt="DF Electric"
+                />
+                <img
+                  src={`${IMG_SRC}/logo/merlin-gerin.jpg`}
+                  alt="MERLIN GERIN"
+                />
+                <img src={`${IMG_SRC}/logo/osram.jpg`} alt="OSRAM" />
+                <img src={`${IMG_SRC}/logo/philips-logo.jpg`} alt="PHILIPS" />
+                <img
+                  src={`${IMG_SRC}/logo/schneider.jpg`}
+                  alt="SCHNEIDER Electrics"
+                />
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+      <section className="overview-section">
+        <Container>
+          <div className="overview-card">
+            <div className="overview-text-card">
+              <span className="overview-section-tag">FIELD SERVICES</span>
+              <h2>Professional Electrical Works</h2>
+              <p>
+                Our team of experienced specialists supports clients in
+                planning, installing, maintaining and optimizing electrical
+                systems across multiple sectors.
+              </p>
+
+              <ul className="feature-list">
+                <li>High Voltage Installations</li>
+                <li>Low Voltage Installations</li>
+                <li>Industrial Electrical Projects</li>
+                <li>Commercial Electrical Projects</li>
+                <li>Preventive Maintenance</li>
+                <li>Corrective Maintenance</li>
+                <li>Electrical Compliance Audits</li>
+                <li>Fire Detection Systems</li>
+                <li>Monitoring & Diagnostics</li>
+                <li>Technical Troubleshooting</li>
+              </ul>
+            </div>
+
+            <div className="overview-image-card">
+              <img
+                src={`${IMG_SRC}/sogetec_field_work.jpg`}
+                alt="Electrical engineers"
+              />
+            </div>
+          </div>
+        </Container>
+      </section>
+      <section className="overview-section overview-section-light">
+        <Container>
+          <div className="overview-card">
+            <div className="overview-text-card">
+              <span className="overview-section-tag">WHY CHOOSE US</span>
+              <br /> <br />
+              <div className="overview-advantages-grid">
+                {advantages.map((item) => (
+                  <div key={item.title} className="overview-advantage-card">
+                    <h3>{item.title}</h3>
+
+                    <p>{item.description}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Container>
+      </section>
+      <section className="overview-section">
+        <Container>
+          <div className="overview-card">
+            <div className="overview-text-card">
+              <span className="overview-section-tag">CONTACT US</span>
+              <h2>Need Reliable Electrical Solutions?</h2>
+              <p>
+                Whether you need electrical products, domestic & industrial
+                installations, maintenance services, and monitoring solutions,
+                our team is ready to support your project.
+              </p>
+              <br />
+              <br />
+              <div className="banner-land-actions">
+                <button className="btn-primary">Contact Our Team</button>
+              </div>
+              <br />
+              <br />
+              <div className="overview-contact-card">
+                <h3>SOGETEC SARL</h3>
+                <div className="overview-contact-grid">
+                  <div>
+                    <strong>Address</strong>
+                    <p>
+                      Bessengue, Cinema Eden
+                      <br />
+                      Douala, Littoral
+                      <br />
+                      B.P. 11058, Cameroon
+                    </p>
+                  </div>
+
+                  <div>
+                    <strong>Phone</strong>
+                    <p>+237 696 139 122</p>
+                  </div>
+
+                  <div>
+                    <strong>Specialties</strong>
+                    <p>
+                      Electricity, Power Systems, Control Panels, Maintenance,
+                      Monitoring, Renewable Energy, Electrical Networks and
+                      Industrial Solutions.
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         </Container>
