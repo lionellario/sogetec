@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router";
 import Header from "./components/layout/Header/Header";
-import AboutPage from "./pages/AboutPage";
+import AboutUsPage from "./pages/AboutPage";
+import AboutPage1 from "./pages/AboutPage1";
 import ContactPage from "./pages/ContactPage";
 import HomePage from "./pages/HomePage";
+import "./styles/App.css";
 
 export default function App() {
   const [darkMode, setDarkMode] = useState(false);
@@ -20,8 +22,10 @@ export default function App() {
       />
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/about" element={<AboutPage />} />
+        <Route path="/about" element={<AboutUsPage />} />
+        <Route path="/about1" element={<AboutPage1 />} />
         <Route path="/contact" element={<ContactPage />} />
+        <Route path="*" element={<h1>404</h1>} />
       </Routes>
     </BrowserRouter>
   );

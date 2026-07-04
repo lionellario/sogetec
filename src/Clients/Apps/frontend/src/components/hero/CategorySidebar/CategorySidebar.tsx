@@ -32,7 +32,7 @@ export default function CategorySidebar({
       >
         <div className="sidebar-title-text">
           <FiGrid />
-          <span>Categories</span>
+          <span>Catalog</span>
         </div>
         <span className="arrow-down">
           <FiChevronDown />

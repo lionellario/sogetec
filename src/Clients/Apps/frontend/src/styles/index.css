@@ -9,15 +9,19 @@
 
   --color-secondary: #06b6d4;
   --color-accent: #f97316;
+  --color-green: #214a36;
+  --color-light-green: #335f4a;
+  --color-yellow: #f59e0b;
 
   /* ----------------------------------------------------------
        Semantic Colors
   ---------------------------------------------------------- */
-
   --color-success: #10b981;
   --color-warning: #f59e0b;
   --color-error: #ef4444;
   --color-info: #3b82f6;
+  --surface: #f8fafc;
+  --surface-dark: #111827;
 
   /* ----------------------------------------------------------
        Surface Colors
@@ -41,7 +45,7 @@
        Text Colors
     ---------------------------------------------------------- */
 
-  --color-text: #0f172a;
+  --color-text: #181d25;
   --color-text-secondary: #475569;
   --color-text-muted: #64748b;
   --color-text-disabled: #94a3b8;
@@ -116,11 +120,8 @@
   ---------------------------------------------------------- */
 
   --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-
   --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.08);
-
   --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-
   --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.12);
 
   /* ----------------------------------------------------------

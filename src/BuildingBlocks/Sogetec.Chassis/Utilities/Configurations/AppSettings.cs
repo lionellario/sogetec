@@ -1,16 +1,16 @@
-﻿using Microsoft.OpenApi;
+﻿// using Microsoft.OpenApi;
 
-namespace Sogetec.Chassis.Utilities.Configurations;
+// namespace Sogetec.Chassis.Utilities.Configurations;
 
-public abstract class AppSettings
-{
-    public virtual OpenApiInfo? OpenApi { get; set; } = new();
+// public abstract class AppSettings
+// {
+//     public virtual OpenApiInfo? OpenApi { get; set; } = new();
 
-    public static T Parse<T>(IConfiguration config)
-        where T : AppSettings, new()
-    {
-        var settings = new T();
-        config.Bind(settings);
-        return settings;
-    }
-}
+//     public static T Parse<T>(IConfiguration config)
+//         where T : AppSettings, new()
+//     {
+//         var settings = new T();
+//         config.Bind(settings);
+//         return settings;
+//     }
+// }

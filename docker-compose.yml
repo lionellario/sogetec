@@ -1,0 +1,32 @@
+services:
+  # First Frontend Application
+  fontend-public:
+    container_name: fontend_public
+    build:
+      context: .
+      dockerfile: deploy/frontend-public/Dockerfile
+    ports:
+      - "8081:80" # Maps local port 8081 to Nginx container port 8080
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - frontend-network
+
+  # Second Frontend Application
+  admin-portal:
+    container_name: admin_portal
+    build:
+      context: .
+      dockerfile: deploy/admin-portal/Dockerfile
+    ports:
+      - "8082:80" # Maps local port 8082 to Nginx container port 8080
+    environment:
+      - NODE_ENV=production
+    restart: unless-stopped
+    networks:
+      - frontend-network
+
+networks:
+  frontend-network:
+    driver: bridge

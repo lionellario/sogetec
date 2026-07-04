@@ -1,5 +1,6 @@
 import axios from "axios";
-import { forceLogout, getValidToken, validateTenant } from "./keycloak";
+// import { forceLogout, getValidToken, validateTenant } from "./keycloak";
+import { forceLogout, getValidToken } from "./keycloak";
 
 const api = axios.create({
   baseURL: import.meta.env.VITE_SOGETEC_API_HTTPS, // https://api.savyris.com
@@ -19,12 +20,6 @@ api.interceptors.request.use(async (config) => {
   if (!token) {
     forceLogout();
     return Promise.reject("No valid token");
-  }
-
-  // 🔥 double check tenant
-  if (!validateTenant()) {
-    forceLogout();
-    return Promise.reject("Tenant mismatch");
   }
 
   config.headers.Authorization = `Bearer ${token}`;

@@ -73,18 +73,18 @@ public static class ConfigurationExtensions
         ///     This helper uses <see cref="AppSettings.Parse{T}(IConfiguration)" /> to materialize
         ///     configuration once at startup and register it for DI consumers.
         /// </remarks>
-        public IServiceCollection AddAppSettings<T>()
-            where T : AppSettings, new()
-        {
-            var services = builder.Services;
+        // public IServiceCollection AddAppSettings<T>()
+        //     where T : AppSettings, new()
+        // {
+        //     var services = builder.Services;
 
-            services.AddSingleton<T>(_ =>
-            {
-                var settings = AppSettings.Parse<T>(builder.Configuration);
-                return settings;
-            });
+        //     services.AddSingleton<T>(_ =>
+        //     {
+        //         var settings = AppSettings.Parse<T>(builder.Configuration);
+        //         return settings;
+        //     });
 
-            return services;
-        }
+        //     return services;
+        // }
     }
 }

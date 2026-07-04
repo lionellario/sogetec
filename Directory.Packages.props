@@ -2,11 +2,11 @@
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
-    <AspireVersion>13.3.5</AspireVersion>
-    <AspireUnstableVersion>13.3.5-preview.1.26270.6</AspireUnstableVersion>
-    <DotnetPackagesVersion>10.0.8</DotnetPackagesVersion>
+    <AspireVersion>13.4.6</AspireVersion>
+    <AspireUnstableVersion>13.4.6-preview.1.26319.6</AspireUnstableVersion>
+    <DotnetPackagesVersion>10.0.9</DotnetPackagesVersion>
     <FusionCache>2.6.0</FusionCache>
-    <MsExtVersion>10.6.0</MsExtVersion>
+    <MsExtVersion>10.7.0</MsExtVersion>
     <FluentValidation>12.1.1</FluentValidation>
     <Mediator>3.1.0-rc.1</Mediator>
   </PropertyGroup>
@@ -30,8 +30,8 @@
     <PackageVersion Include="FluentValidation" Version="$(FluentValidation)" />
     <PackageVersion Include="FluentValidation.DependencyInjectionExtensions" Version="$(FluentValidation)" />
     <!-- Version together with ASP.NET -->
-    <PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="8.18.0" />
-    <PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="8.18.0" />
+    <PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="8.19.1" />
+    <PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="8.19.1" />
     <PackageVersion Include="Asp.Versioning.OpenApi" Version="10.0.0-rc.1" />
     <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="$(DotnetPackagesVersion)" />
     <!-- Caching -->
@@ -50,10 +50,10 @@
     <PackageVersion Include="Microsoft.Extensions.Telemetry" Version="$(MsExtVersion)" />
     <PackageVersion Include="Microsoft.AspNetCore.Diagnostics.Middleware" Version="$(MsExtVersion)" />
     <!-- OpenTelemetry -->
-    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.15.3" />
-    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.15.3" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.15.2" />
-    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.15.1" />
+    <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.16.0" />
+    <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.16.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.AspNetCore" Version="1.16.0" />
+    <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.16.0" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.15.1" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.15.1-beta.1" />
     <PackageVersion Include="OpenTelemetry.Instrumentation.StackExchangeRedis" Version="1.15.1-beta.1" />
@@ -79,8 +79,8 @@
   <ItemGroup Label="Testing">
     <!-- Testing packages -->
     <PackageVersion Include="Bogus" Version="35.6.5" />
-    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.5.1" />
-    <PackageVersion Include="xunit.v3" Version="4.0.0-pre.108" />
+    <PackageVersion Include="Microsoft.NET.Test.Sdk" Version="18.7.0" />
+    <PackageVersion Include="xunit.v3" Version="4.0.0-pre.128" />
     <PackageVersion Include="coverlet.collector" Version="10.0.1" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="4.0.0-pre.4" />
     <PackageVersion Include="Moq" Version="4.20.72" />
