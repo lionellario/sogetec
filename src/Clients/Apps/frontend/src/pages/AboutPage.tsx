@@ -1,126 +1,126 @@
-import React, { useEffect, useRef, useState } from "react";
+import React from "react";
 import Container from "../components/layout/Container";
 import { IMG_SRC } from "../lib/Constant";
 import "./AboutPage.css";
 
-type StatCounterProps = {
-  value: number;
-  suffix?: string;
-  label: string;
-};
+// type StatCounterProps = {
+//   value: number;
+//   suffix?: string;
+//   label: string;
+// };
 
-const StatCounter: React.FC<StatCounterProps> = ({
-  value,
-  suffix = "",
-  label,
-}) => {
-  const [count, setCount] = useState(0);
-  const ref = useRef<HTMLDivElement | null>(null);
-  const [visible, setVisible] = useState(false);
+// const StatCounter: React.FC<StatCounterProps> = ({
+//   value,
+//   suffix = "",
+//   label,
+// }) => {
+//   const [count, setCount] = useState(0);
+//   const ref = useRef<HTMLDivElement | null>(null);
+//   const [visible, setVisible] = useState(false);
 
-  useEffect(() => {
-    const element = ref.current;
+//   useEffect(() => {
+//     const element = ref.current;
 
-    if (!element) return;
+//     if (!element) return;
 
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setVisible(true);
-          observer.disconnect();
-        }
-      },
-      {
-        threshold: 0.3,
-      },
-    );
+//     const observer = new IntersectionObserver(
+//       ([entry]) => {
+//         if (entry.isIntersecting) {
+//           setVisible(true);
+//           observer.disconnect();
+//         }
+//       },
+//       {
+//         threshold: 0.3,
+//       },
+//     );
 
-    observer.observe(element);
+//     observer.observe(element);
 
-    return () => observer.disconnect();
-  }, []);
+//     return () => observer.disconnect();
+//   }, []);
 
-  useEffect(() => {
-    if (!visible) return;
+//   useEffect(() => {
+//     if (!visible) return;
 
-    let current = 0;
-    const increment = value / 60;
+//     let current = 0;
+//     const increment = value / 60;
 
-    const timer = setInterval(() => {
-      current += increment;
+//     const timer = setInterval(() => {
+//       current += increment;
 
-      if (current >= value) {
-        setCount(value);
-        clearInterval(timer);
-      } else {
-        setCount(Math.floor(current));
-      }
-    }, 25);
+//       if (current >= value) {
+//         setCount(value);
+//         clearInterval(timer);
+//       } else {
+//         setCount(Math.floor(current));
+//       }
+//     }, 25);
 
-    return () => clearInterval(timer);
-  }, [visible, value]);
+//     return () => clearInterval(timer);
+//   }, [visible, value]);
 
-  return (
-    <div ref={ref} className="stats-card">
-      <h3>
-        {count}
-        {suffix}
-      </h3>
-      <p>{label}</p>
-    </div>
-  );
-};
+//   return (
+//     <div ref={ref} className="stats-card">
+//       <h3>
+//         {count}
+//         {suffix}
+//       </h3>
+//       <p>{label}</p>
+//     </div>
+//   );
+// };
 
 const AboutUsPage: React.FC = () => {
-  const expertise = [
-    {
-      icon: "⚡",
-      title: "Electrical Distribution",
-      description:
-        "Wholesale and retail distribution of premium electrical products and equipment.",
-    },
-    {
-      icon: "🏭",
-      title: "Industrial Solutions",
-      description:
-        "Power systems and industrial electrical infrastructure solutions.",
-    },
-    {
-      icon: "🔋",
-      title: "Renewable Energy",
-      description:
-        "Electrical systems supporting solar and renewable energy projects.",
-    },
-    {
-      icon: "🛠",
-      title: "Maintenance",
-      description:
-        "Preventive and corrective maintenance for critical installations.",
-    },
-    {
-      icon: "🔥",
-      title: "Fire Detection",
-      description:
-        "Fire alarm installation, monitoring, testing and compliance.",
-    },
-    {
-      icon: "📊",
-      title: "Control Panels",
-      description:
-        "Design, assembly and maintenance of electrical control panels.",
-    },
-  ];
+  // const expertise = [
+  //   {
+  //     icon: "⚡",
+  //     title: "Electrical Distribution",
+  //     description:
+  //       "Wholesale and retail distribution of premium electrical products and equipment.",
+  //   },
+  //   {
+  //     icon: "🏭",
+  //     title: "Industrial Solutions",
+  //     description:
+  //       "Power systems and industrial electrical infrastructure solutions.",
+  //   },
+  //   {
+  //     icon: "🔋",
+  //     title: "Renewable Energy",
+  //     description:
+  //       "Electrical systems supporting solar and renewable energy projects.",
+  //   },
+  //   {
+  //     icon: "🛠",
+  //     title: "Maintenance",
+  //     description:
+  //       "Preventive and corrective maintenance for critical installations.",
+  //   },
+  //   {
+  //     icon: "🔥",
+  //     title: "Fire Detection",
+  //     description:
+  //       "Fire alarm installation, monitoring, testing and compliance.",
+  //   },
+  //   {
+  //     icon: "📊",
+  //     title: "Control Panels",
+  //     description:
+  //       "Design, assembly and maintenance of electrical control panels.",
+  //   },
+  // ];
 
-  const industries = [
-    "Commercial Buildings",
-    "Manufacturing",
-    "Energy & Utilities",
-    "Infrastructure",
-    "Renewable Energy",
-    "Government Projects",
-    "Industrial Plants",
-    "Street Lighting",
-  ];
+  // const industries = [
+  //   "Commercial Buildings",
+  //   "Manufacturing",
+  //   "Energy & Utilities",
+  //   "Infrastructure",
+  //   "Renewable Energy",
+  //   "Government Projects",
+  //   "Industrial Plants",
+  //   "Street Lighting",
+  // ];
 
   const advantages = [
     {
@@ -155,35 +155,35 @@ const AboutUsPage: React.FC = () => {
     },
   ];
 
-  const process = [
-    {
-      step: "01",
-      title: "Consultation",
-      description:
-        "Understanding your project requirements and technical objectives.",
-    },
-    {
-      step: "02",
-      title: "Analysis",
-      description: "Evaluating your needs and designing the optimal solution.",
-    },
-    {
-      step: "03",
-      title: "Supply & Installation",
-      description:
-        "Delivering quality equipment and professional implementation.",
-    },
-    {
-      step: "04",
-      title: "Testing",
-      description: "Comprehensive testing and commissioning of systems.",
-    },
-    {
-      step: "05",
-      title: "Maintenance",
-      description: "Continuous monitoring, maintenance and technical support.",
-    },
-  ];
+  // const process = [
+  //   {
+  //     step: "01",
+  //     title: "Consultation",
+  //     description:
+  //       "Understanding your project requirements and technical objectives.",
+  //   },
+  //   {
+  //     step: "02",
+  //     title: "Analysis",
+  //     description: "Evaluating your needs and designing the optimal solution.",
+  //   },
+  //   {
+  //     step: "03",
+  //     title: "Supply & Installation",
+  //     description:
+  //       "Delivering quality equipment and professional implementation.",
+  //   },
+  //   {
+  //     step: "04",
+  //     title: "Testing",
+  //     description: "Comprehensive testing and commissioning of systems.",
+  //   },
+  //   {
+  //     step: "05",
+  //     title: "Maintenance",
+  //     description: "Continuous monitoring, maintenance and technical support.",
+  //   },
+  // ];
 
   return (
     <div className="about-page">

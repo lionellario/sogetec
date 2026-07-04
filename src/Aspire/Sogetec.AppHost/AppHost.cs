@@ -56,7 +56,8 @@ var spa = builder
     .WithEnvironment("VITE_SOGETEC_API_HTTP", api.GetEndpoint(Uri.UriSchemeHttp))
     .WaitFor(api)
     .WithKeycloak(keycloak)
-    .WithFriendlyUrls();
+    .WithFriendlyUrls()
+    .PublishAsDockerFile();
 
 var admin = builder
     .AddViteApp(Services.ADMIN, "../../Clients/Apps/admin")
@@ -69,7 +70,8 @@ var admin = builder
     .WithEnvironment("VITE_SOGETEC_API_HTTP", api.GetEndpoint(Uri.UriSchemeHttp))
     .WaitFor(api)
     .WithKeycloak(keycloak)
-    .WithFriendlyUrls();
+    .WithFriendlyUrls()
+    .PublishAsDockerFile();
 
 // ------------------------------------------------------------
 // Gateway
@@ -130,8 +132,6 @@ builder
             .WithTransformRequestHeader("X-Real-IP", "{RemoteIpAddress}")
             .WithTransformResponseHeader("X-Powered-By", $"{nameof(Sogetec)} {nameof(Services.Gateway)}");
 
-        yarpBuilder.WithKeycloak(keycloak);
-
         yarpBuilder
             .AddRoute(spaCluster)
             .WithMatchHosts(["sogetecsarl.com"])
@@ -141,6 +141,8 @@ builder
             .WithTransformRequestHeader("X-Forwarded-Proto", "https", append: false)
             .WithTransformRequestHeader("X-Forwarded-Host", "{Host}")
             .WithTransformResponseHeader("X-Powered-By", $"{nameof(Sogetec)} {nameof(Services.Gateway)}");
+
+        yarpBuilder.WithKeycloak(keycloak);
 
     })
     .WithEnvironment("ASPNETCORE_FORWARDEDHEADERS_ENABLED", "true")

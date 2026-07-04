@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 import { useKeycloak } from "../hooks/useKeycloak";
 
 export const TenantGuard = ({ children }: any) => {
-  const { isAuthenticated, tenantValid, isLoading } = useKeycloak();
+  const { isAuthenticated, isLoading } = useKeycloak();
 
   if (isLoading) {
     return <div className="center">Loading...</div>;
@@ -10,10 +10,6 @@ export const TenantGuard = ({ children }: any) => {
 
   if (!isAuthenticated) {
     return <Navigate to="/" replace />;
-  }
-
-  if (!tenantValid) {
-    return <Navigate to="/access-denied" replace />;
   }
 
   return children;

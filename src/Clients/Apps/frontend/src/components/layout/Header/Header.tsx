@@ -6,8 +6,10 @@ import {
   FiSun,
   FiUser,
 } from "react-icons/fi";
+import { Link } from "react-router";
 import { mockMenuData } from "../../../data/categories";
 import { useIsHomePage } from "../../../hooks/useIsHomePage";
+import { IMG_SRC } from "../../../lib/Constant";
 import CategorySidebar from "../../hero/CategorySidebar/CategorySidebar";
 import "./Header.css";
 
@@ -25,7 +27,7 @@ export default function Header({ darkMode, onToggleTheme }: Props) {
         <div className="hd-top">
           <div className="header__logo">
             <img
-              src="/src/assets/images/sogetec_icon_png_white_600_879.png"
+              src={`${IMG_SRC}/sogetec_icon_png_white_600_879.png`}
               alt="Logo"
             />
             <span> Sogetec</span>
@@ -48,10 +50,10 @@ export default function Header({ darkMode, onToggleTheme }: Props) {
           <CategorySidebar categories={mockMenuData} alwaysOpen={isHome} />
           <div>
             <nav className="nav-links">
-              <a href="/">Home</a>
-              <a href="/about">About</a>
-              <a href="/contact">Contact</a>
-              <a href="/blog">Blog</a>
+              <Link to="/">Home</Link>
+              <Link to="/about">About</Link>
+              <Link to="/contact">Contact</Link>
+              <Link to="/blog">Blog</Link>
             </nav>
           </div>
         </div>

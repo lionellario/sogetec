@@ -1,9 +1,12 @@
-﻿<Project Sdk="Aspire.AppHost.Sdk/13.3.5">
+<Project Sdk="Aspire.AppHost.Sdk/13.4.6">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <UserSecretsId>b0dab410-c306-4895-8859-77c0323cad79</UserSecretsId>
-    <NoWarn>ASPIREINTERACTION001;ASPIREPIPELINES001;ASPIRECOMPUTE003;ASPIRECERTIFICATES001;NU1603</NoWarn>
+    <NoWarn>ASPIREINTERACTION001;ASPIREPIPELINES001;ASPIRECOMPUTE003;ASPIRECERTIFICATES001</NoWarn>
   </PropertyGroup>
+  <ItemGroup>
+    <Compile Remove="**/node_modules/**/*.cs" />
+  </ItemGroup>
   <ItemGroup Label="Aspire">
     <PackageReference Include="Aspire.Hosting.Docker" />
     <PackageReference Include="Aspire.Hosting.Yarp" />
