@@ -1,10 +1,10 @@
 namespace Api.Modules.Features.Categories.Commands.Create;
 
-public record UpdateCategoryResponse(
-    Guid Id,
+public record CreateCategoryResponse(
+    int Id,
     string Name,
     string Slug,
-    Guid? ParentId,
+    int? ParentId,
     string? ParentName,
     string? Description,
     bool IsActive,
@@ -13,9 +13,9 @@ public record UpdateCategoryResponse(
 );
 
 public record CreateCategoryCommand(
-    Guid Id,
+    int Id,
     string Name,
-    Guid? ParentId,
+    int? ParentId,
     string? Description,
     string? ImageUrl
-) : ICommand<UpdateCategoryResponse>;
+) : ICommand<CreateCategoryResponse>;

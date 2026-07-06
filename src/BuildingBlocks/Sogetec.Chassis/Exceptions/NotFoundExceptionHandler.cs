@@ -4,12 +4,12 @@ public sealed class NotFoundException(string message, Enum? errorCode = null) : 
 {
     public Enum ErrorCode => errorCode ?? GenericErrorCode.NotFound;
 
-    public static NotFoundException For<T>(Guid id, Enum? errorCode = null)
+    public static NotFoundException For<T>(int id, Enum? errorCode = null)
     {
         return For<T>(id.ToString(), errorCode);
     }
 
-    public static NotFoundException For<T>(Guid? id, Enum? errorCode = null)
+    public static NotFoundException For<T>(int? id, Enum? errorCode = null)
     {
         return For<T>(id?.ToString(), errorCode);
     }

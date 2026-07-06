@@ -1,10 +1,10 @@
 namespace Api.Modules.Features.Categories.Queries.GetById;
 
 public record GetCategoryByIdResponse(
-    Guid Id,
+    int Id,
     string Name,
     string Slug,
-    Guid? ParentId,
+    int? ParentId,
     string? ParentName,
     string? Description,
     bool IsActive,
@@ -12,4 +12,4 @@ public record GetCategoryByIdResponse(
     int SortOrder
 );
 
-public record GetCategoryByIdQuery(Guid Id) : IQuery<GetCategoryByIdResponse>;
+public record GetCategoryByIdQuery(int Id) : IQuery<GetCategoryByIdResponse>;

@@ -1,10 +1,10 @@
 namespace Api.Modules.Features.Categories.Queries.List;
 
 public record GetCategoryDto(
-    Guid Id,
+    int Id,
     string Name,
     string Slug,
-    Guid? ParentId,
+    int? ParentId,
     string? ParentName
 );
 

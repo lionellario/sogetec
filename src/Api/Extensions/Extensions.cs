@@ -67,7 +67,7 @@ public static class Extensions
         // Application Modules or Services
         builder.Services.AddValidatorsFromAssembly(typeof(Extensions).Assembly, includeInternalTypes: true);
 
-        builder.AddPostgresDbContext<SogetecDbContext>(Components.DatabaseName.Sogetec);
+        builder.AddSqliteDbContext<SogetecDbContext>(Components.Sqlite);
 
         builder.Services.AddEndpoints(typeof(Extensions));
 
