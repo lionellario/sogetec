@@ -60,3 +60,6 @@ Generated
 
 # Python
 .pyvenv/
+
+# Sqlite
+*.db-*
