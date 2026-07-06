@@ -4,6 +4,7 @@ public static class Components
 {
     public const string Postgres = "postgres";
     public const string Redis = "redis";
+    public const string Sqlite = "sqlite";
     public const string WebApi = "webapi";
     public const string Frontend = "frontend";
     public const string FrontendAdmin = "frontend-admin";

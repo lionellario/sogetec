@@ -85,12 +85,6 @@ public static class ClaimsPrincipalExtensions
             return Guard.Against.NotAuthenticated(userId);
         }
 
-        public List<long> GetAuthenticatedTenantIds()
-        {
-            var tenantIds = claimsPrincipal.FindAll(CustomClaimType.TenantId)?.Select(x => x.Value);
-            return Guard.Against.InvalidTenant(tenantIds);
-        }
-
         public string GetAuthenticatedSessionId()
         {
             var sessionId = claimsPrincipal.GetClaimValue(CustomClaimType.SessionId);

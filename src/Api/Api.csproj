@@ -28,4 +28,7 @@
     <Compile Remove="$(CompilerGeneratedFilesOutputPath)/**/*.cs" />
     <None Include="$(CompilerGeneratedFilesOutputPath)/**/*.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Modules/Data/sogeteclite.db" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
 </Project>

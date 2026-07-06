@@ -23,8 +23,9 @@ builder
 // ------------------------------------------------------------
 // Infrastructure
 // ------------------------------------------------------------
-var postgres = builder.AddPostgresServer(Components.Postgres);
-var databases = builder.AddApplicationDatabases();
+var sqlite = builder.AddSqlite(Components.Sqlite, "Modules/Data", "sogeteclite.db");
+// var postgres = builder.AddPostgresServer(Components.Postgres);
+// var databases = builder.AddApplicationDatabases();
 var redis = builder.AddRedisServer(Components.Redis);
 var keycloak = builder.AddKeycloakServer(Components.KeyCloak);
 
@@ -34,10 +35,12 @@ var keycloak = builder.AddKeycloakServer(Components.KeyCloak);
 
 var api = builder
     .AddProject<Api>(Services.WebApi)
-    .WithReference(databases.Sogetec)
     .WithReference(redis)
-    .WaitFor(databases.Sogetec)
+    .WithReference(sqlite)
+    // .WithReference(databases.Sogetec)
+    // .WaitFor(databases.Sogetec)
     .WaitFor(redis)
+    .WaitFor(sqlite)
     .WithKeycloak(keycloak)
     .WithFriendlyUrls();
 

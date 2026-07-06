@@ -9,7 +9,7 @@ public sealed class AccountingCategoryMap : IEntityTypeConfiguration<Category>
         builder.ToTable("category");
         builder.HasKey(t => t.Id).HasName("PK_category");
 
-        builder.Property(t => t.Id).ValueGeneratedNever().HasColumnName("id");
+        builder.Property(t => t.Id).HasColumnName("id");
         builder.Property(t => t.Name).HasColumnName("name").IsRequired();
         builder.Property(t => t.Slug).HasColumnName("slug").IsRequired();
         builder.Property(t => t.ParentId).HasColumnName("parent_id");

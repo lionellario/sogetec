@@ -5,14 +5,14 @@ public sealed class CreateCategoryEndpoint : IEndpoint
     public void Configure(IEndpointRouteBuilder app)
         => app
             .MapPost("categories", CreateCategoryAsync)
-            .ProducesPost<UpdateCategoryResponse>()
+            .ProducesPost<CreateCategoryResponse>()
             .WithTags(nameof(Category))
             .WithName(nameof(CreateCategoryEndpoint))
             .WithSummary("Create a new category.")
             .MapToApiVersion(ApiVersions.V1)
             .RequireAuthorization(Authorize.Policies.Admin);
 
-    public static async Task<Created<UpdateCategoryResponse>> CreateCategoryAsync(
+    public static async Task<Created<CreateCategoryResponse>> CreateCategoryAsync(
         ISender sender,
         LinkGenerator linker,
         [FromBody] CreateCategoryCommand cmd,

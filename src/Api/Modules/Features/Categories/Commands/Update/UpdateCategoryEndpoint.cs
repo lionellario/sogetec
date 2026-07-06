@@ -4,7 +4,7 @@ public sealed class UpdateCategoryEndpoint : IEndpoint
 {
     public void Configure(IEndpointRouteBuilder app)
         => app
-            .MapPost("categories/{categoryId:guid}", CreateCategoryAsync)
+            .MapPut("categories/{categoryId:int}", UpdateCategoryAsync)
             .ProducesPut()
             .WithTags(nameof(Category))
             .WithName(nameof(UpdateCategoryEndpoint))
@@ -12,9 +12,9 @@ public sealed class UpdateCategoryEndpoint : IEndpoint
             .MapToApiVersion(ApiVersions.V1)
             .RequireAuthorization(Authorize.Policies.Admin);
 
-    public static async Task<Ok<UpdateCategoryResponse>> CreateCategoryAsync(
+    public static async Task<Ok<UpdateCategoryResponse>> UpdateCategoryAsync(
         ISender sender,
-        Guid categoryId,
+        int categoryId,
         [FromBody] UpdateCategoryCommand cmd,
         CancellationToken cancellationToken)
     {

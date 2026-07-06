@@ -7,7 +7,7 @@ public sealed class Category : Entity, ISortableEntity
 {
     public string Name { get; internal set; } = default!;
     public string Slug { get; internal set; } = default!;
-    public Guid? ParentId { get; internal set; }
+    public int? ParentId { get; internal set; }
     public Category? Parent { get; internal set; }
     public string? Description { get; internal set; }
     public string? ImageUrl { get; internal set; }

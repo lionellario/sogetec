@@ -1,8 +1,8 @@
 namespace Api.Modules.Features.Categories.Commands.Create;
 
-public sealed class CreateCategoryHandler(SogetecDbContext db) : ICommandHandler<CreateCategoryCommand, UpdateCategoryResponse>
+public sealed class CreateCategoryHandler(SogetecDbContext db) : ICommandHandler<CreateCategoryCommand, CreateCategoryResponse>
 {
-    public async ValueTask<UpdateCategoryResponse> Handle(CreateCategoryCommand command, CancellationToken cancellationToken)
+    public async ValueTask<CreateCategoryResponse> Handle(CreateCategoryCommand command, CancellationToken cancellationToken)
     {
         var count = await db.Categories.CountAsync(cancellationToken);
         var parent = command.ParentId is null
