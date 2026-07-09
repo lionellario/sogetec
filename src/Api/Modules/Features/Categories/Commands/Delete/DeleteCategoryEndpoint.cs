@@ -4,7 +4,7 @@ public sealed class DeleteCategoryEndpoint : IEndpoint
 {
     public void Configure(IEndpointRouteBuilder app)
         => app
-            .MapPost("categories/{categoryId:int}", DeleteCategoryAsync)
+            .MapDelete("categories/{categoryId:int}", DeleteCategoryAsync)
             .ProducesDelete()
             .WithTags(nameof(Category))
             .WithName(nameof(DeleteCategoryEndpoint))

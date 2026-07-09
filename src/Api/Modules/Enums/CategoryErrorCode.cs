@@ -4,5 +4,7 @@ public enum CategoryErrorCode
 {
     ParentRequired,
     CategoryNotFound,
-    CategoryCannotBeSelfReferenced
+    CategoryCannotBeSelfReferenced,
+    CategoryGroupNotFound,
+    GroupMismatch
 }

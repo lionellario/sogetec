@@ -6,9 +6,12 @@ namespace Api.Modules.Entities;
 public sealed class Category : Entity, ISortableEntity
 {
     public string Name { get; internal set; } = default!;
+    public string NameFr { get; internal set; } = default!;
     public string Slug { get; internal set; } = default!;
     public int? ParentId { get; internal set; }
     public Category? Parent { get; internal set; }
+    public int GroupId { get; internal set; }
+    public CategoryGroup? Group { get; internal set; }
     public string? Description { get; internal set; }
     public string? ImageUrl { get; internal set; }
     public bool IsActive { get; internal set; }
@@ -17,6 +20,8 @@ public sealed class Category : Entity, ISortableEntity
 
     public static Category Create(
         string name,
+        string nameFr,
+        CategoryGroup group,
         Category? parent = null,
         string? description = null,
         string? image = null,
@@ -24,7 +29,10 @@ public sealed class Category : Entity, ISortableEntity
         => new()
         {
             Name = name,
+            NameFr = nameFr,
             Slug = name.Slugify(),
+            GroupId = group.Id,
+            Group = group,
             ParentId = parent?.Id,
             Parent = parent,
             Description = description,

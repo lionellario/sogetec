@@ -5,13 +5,13 @@ public sealed class GetCategoriesEndpoint : IEndpoint
     public void Configure(IEndpointRouteBuilder app)
         => app
             .MapGet("categories", GetCategoriesAsync)
-            .ProducesGet<List<GetCategoryDto>>()
+            .ProducesGet<List<GetCategoryRecord>>()
             .WithTags(nameof(Category))
             .WithName(nameof(GetCategoriesEndpoint))
             .WithSummary("Get all categories.")
             .MapToApiVersion(ApiVersions.V1);
 
-    public static async Task<Ok<List<GetCategoryDto>>> GetCategoriesAsync(
+    public static async Task<Ok<List<GetCategoryRecord>>> GetCategoriesAsync(
         ISender sender,
         CancellationToken cancellationToken)
     {

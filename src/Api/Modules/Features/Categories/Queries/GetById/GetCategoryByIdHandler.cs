@@ -22,7 +22,9 @@ public sealed class GetCategoryByIdHandler(SogetecDbContext db) : IQueryHandler<
             Description: category.Description,
             IsActive: category.IsActive,
             ImageUrl: category.ImageUrl,
-            SortOrder: category.SortOrder
+            SortOrder: category.SortOrder,
+            CreatedAt: category.CreatedOn,
+            LastModifiedAt: category.LastModifiedOn
         );
     }
 }

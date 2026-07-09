@@ -9,18 +9,32 @@ public sealed class GetCategoryByIdHandler(SogetecDbContext db) : ICommandHandle
         var desiredParentId = command.ParentId;
 
         var family = await (
+            // Load the target category
             from target in db.Categories.Where(targetCategory => targetCategory.Id == command.Id && targetCategory.IsActive)
-            from candidate in db.Categories.Where(candidateCategory => candidateCategory.IsActive && (
-                candidateCategory.Id == target.Id ||
-                (desiredParentId.HasValue && candidateCategory.Id == desiredParentId.Value) ||
-                (candidateCategory.ParentId == target.ParentId && target.ParentId != null) ||
-                (target.ParentId != desiredParentId && candidateCategory.ParentId == desiredParentId)))
+
+            // Load the family
+            from candidate in db.Categories
+                .Include(x => x.Group)
+                .Where(candidateCategory => candidateCategory.IsActive && (
+                    // load the target
+                    candidateCategory.Id == target.Id ||
+
+                    // load the desired parent
+                    (desiredParentId.HasValue && candidateCategory.Id == desiredParentId.Value) ||
+
+                    // Load the siblings of the target
+                    (candidateCategory.ParentId == target.ParentId && target.ParentId != null) ||
+
+                    // future siblings of the target category (categories that already live under the new desired parent)
+                    (target.ParentId != desiredParentId && candidateCategory.ParentId == desiredParentId)))
             select new
             {
                 Category = candidate,
                 IsTarget = candidate.Id == target.Id
             })
             .ToListAsync(cancellationToken);
+
+        var desiredGroup = await db.CategoryGroups.FirstOrDefaultAsync(g => g.Id == command.GroupId, cancellationToken);
 
         var category = family.FirstOrDefault(x => x.IsTarget)?.Category;
 
@@ -44,10 +58,22 @@ public sealed class GetCategoryByIdHandler(SogetecDbContext db) : ICommandHandle
             ]);
         }
 
+        var group = parent?.Group ?? desiredGroup;
+
+        if (group is null)
+        {
+            throw NotFoundException.For<CategoryGroup>(
+                command.GroupId,
+                CategoryErrorCode.CategoryGroupNotFound);
+        }
+
         category.Name = command.Name;
         category.Slug = command.Name.Slugify();
         category.Description = command.Description;
         category.ImageUrl = command.ImageUrl;
+        category.Group = group;
+        category.GroupId = group.Id;
+        category.IsActive = command.IsActive;
         category.AssignParent(parent);
 
         var familyCategories = family.Select(x => x.Category);
@@ -75,12 +101,16 @@ public sealed class GetCategoryByIdHandler(SogetecDbContext db) : ICommandHandle
             Id: category.Id,
             Name: category.Name,
             Slug: category.Slug,
+            GroupId: category.GroupId,
+            GroupName: category.Group.Name,
             ParentId: category.Parent?.Id,
             ParentName: category.Parent?.Name,
             Description: category.Description,
             IsActive: category.IsActive,
             ImageUrl: category.ImageUrl,
-            SortOrder: category.SortOrder
+            SortOrder: category.SortOrder,
+            CreatedAt: category.CreatedOn,
+            LastModifiedAt: category.LastModifiedOn
         );
     }
 }

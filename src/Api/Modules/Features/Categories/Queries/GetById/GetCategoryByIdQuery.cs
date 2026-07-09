@@ -9,7 +9,9 @@ public record GetCategoryByIdResponse(
     string? Description,
     bool IsActive,
     string? ImageUrl,
-    int SortOrder
+    int SortOrder,
+    DateTimeOffset CreatedAt,
+    DateTimeOffset LastModifiedAt
 );
 
 public record GetCategoryByIdQuery(int Id) : IQuery<GetCategoryByIdResponse>;
