@@ -3,6 +3,7 @@ namespace Api.Modules.Features.Categories.Commands.Update;
 public record UpdateCategoryResponse(
     int Id,
     string Name,
+    string NameFr,
     string Slug,
     int GroupId,
     string GroupName,
@@ -19,6 +20,7 @@ public record UpdateCategoryResponse(
 public record UpdateCategoryCommand(
     int Id,
     string Name,
+    string NameFr,
     int GroupId,
     int? ParentId,
     string? Description,

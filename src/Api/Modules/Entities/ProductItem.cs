@@ -19,7 +19,7 @@ public sealed class ProductItem : Entity
     public decimal InitialStock { get; internal set; }
     public decimal FinalStock { get; internal set; }
     public ProductQuantityUnit QuantityUnit { get; internal set; } = ProductQuantityUnit.Piece;
-    public ICollection<ProductItemVariant> Variants { get; internal set; } = [];
+    public ICollection<ProductVariant> Variants { get; internal set; } = [];
     public ProductItemDetails? Details { get; internal set; }
 
     public static ProductItem Create(

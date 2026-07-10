@@ -8,9 +8,9 @@ public class SogetecDbContext(DbContextOptions<SogetecDbContext> Options) : DbCo
     public IQueryable<Product> Products => Set<Product>();
     public IQueryable<ProductItem> ProductItems => Set<ProductItem>();
     public IQueryable<ProductImage> ProductImages => Set<ProductImage>();
-    public IQueryable<ProductSpecificationModel> ProductSpecificationModels => Set<ProductSpecificationModel>();
-    public IQueryable<ProductSpecificationModelItem> ProductSpecificationModelItems => Set<ProductSpecificationModelItem>();
-    public IQueryable<ProductSpecificationItem> ProductSpecificationItems => Set<ProductSpecificationItem>();
+    public IQueryable<ProductAttributeHeader> ProductAttributeHeaders => Set<ProductAttributeHeader>();
+    public IQueryable<ProductAttribute> ProductAttributes => Set<ProductAttribute>();
+    public IQueryable<ProductVariant> ProductVariants => Set<ProductVariant>();
 
 
     public override int SaveChanges()

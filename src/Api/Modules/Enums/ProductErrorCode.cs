@@ -2,5 +2,9 @@ namespace Api.Modules.Enums;
 
 public enum ProductErrorCode
 {
-    NotFound
+    NotFound,
+    ProductAttributeHeaderNotFound,
+    ProductAttributeNotFound,
+    ProductItemNotFound,
+    ProductVariantNotFound
 }

@@ -4,19 +4,23 @@ namespace Api.Modules.Entities;
 
 public sealed class ProductVariant : Entity
 {
-    public string Name { get; internal set; } = default!;
-    public string NameFr { get; internal set; } = default!;
-    public string? Description { get; internal set; }
+    public int AttributeId { get; internal set; }
+    public ProductAttribute? Attribute { get; internal set; }
+    public string Value { get; internal set; } = default!;
+    public ProductItem? Item { get; internal set; }
+    public int ItemId { get; internal set; }
 
     public static ProductVariant Create(
-        string name,
-        string nameFr,
-        string? description = null)
+        ProductItem item,
+        ProductAttribute attribute,
+        string value)
         => new()
         {
-            Name = name,
-            NameFr = nameFr,
-            Description = description
+            ItemId = item.Id,
+            Item = item,
+            AttributeId = attribute.Id,
+            Attribute = attribute,
+            Value = value
         };
 
     public override bool Equals(object? obj) => obj is ProductVariant at && Id == at.Id;

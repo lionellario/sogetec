@@ -16,7 +16,7 @@ public sealed class Product : Entity
     public Category? Category { get; internal set; }
     public ICollection<ProductItem> Items { get; internal set; } = [];
     public ICollection<ProductImage> Images { get; internal set; } = [];
-    public ICollection<ProductSpecificationItem> Specifications { get; internal set; } = [];
+    public ICollection<ProductVariant> Specifications { get; internal set; } = [];
 
     public static Product Create(
         string name,

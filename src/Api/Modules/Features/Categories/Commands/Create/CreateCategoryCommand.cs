@@ -3,6 +3,7 @@ namespace Api.Modules.Features.Categories.Commands.Create;
 public record CreateCategoryResponse(
     int Id,
     string Name,
+    string NameFr,
     string Slug,
     int GroupId,
     string GroupName,
@@ -19,6 +20,7 @@ public record CreateCategoryResponse(
 public record CreateCategoryCommand(
     int Id,
     string Name,
+    string NameFr,
     int GroupId,
     int? ParentId,
     string? Description,

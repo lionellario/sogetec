@@ -95,12 +95,12 @@ CREATE TABLE IF NOT EXISTS "product_specification_item" (
 	"id"	INTEGER NOT NULL,
 	"item_id"	INTEGER NOT NULL,
 	"value"	TEXT NOT NULL,
-	"product_id"	INTEGER NOT NULL,
+	"product_item_id"	INTEGER NOT NULL,
 	"created_on"	TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
 	"last_modified_on"	TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
 	CONSTRAINT "PK_product_specification_item" PRIMARY KEY("id" AUTOINCREMENT),
 	CONSTRAINT "FK_product_specification_item_model_item" FOREIGN KEY("item_id") REFERENCES "product_specification_model_item"("id") ON DELETE CASCADE,
-	CONSTRAINT "FK_product_specification_item_product" FOREIGN KEY("product_id") REFERENCES "product"("id") ON DELETE CASCADE
+	CONSTRAINT "FK_product_specification_item_product_item" FOREIGN KEY("product_item_id") REFERENCES "product_item"("id") ON DELETE CASCADE
 );
 CREATE TABLE IF NOT EXISTS "product_specification_model" (
 	"id"	INTEGER NOT NULL,

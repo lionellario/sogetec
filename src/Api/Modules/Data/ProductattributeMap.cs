@@ -2,12 +2,12 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace Api.Modules.Data;
 
-public sealed class ProductSpecificationModelItemMap : IEntityTypeConfiguration<ProductSpecificationModelItem>
+public sealed class ProductAttributeMap : IEntityTypeConfiguration<ProductAttribute>
 {
-    public void Configure(EntityTypeBuilder<ProductSpecificationModelItem> builder)
+    public void Configure(EntityTypeBuilder<ProductAttribute> builder)
     {
-        builder.ToTable("product_specification_model_item");
-        builder.HasKey(t => t.Id).HasName("PK_product_specification_model_item");
+        builder.ToTable("product_attribute");
+        builder.HasKey(t => t.Id).HasName("PK_product_attribute");
 
         builder.Property(t => t.Id).HasColumnName("id");
         builder.Property(t => t.Name).HasColumnName("name").IsRequired();
@@ -19,11 +19,11 @@ public sealed class ProductSpecificationModelItemMap : IEntityTypeConfiguration<
 
         builder
             .HasOne(c => c.Header)
-            .WithMany(p => p.Items)
+            .WithMany(p => p.Attributes)
             .HasForeignKey(t => t.HeaderId)
-            .HasConstraintName("FK_product_specification_model_item_product_specification_model")
+            .HasConstraintName("FK_product_attribute_header")
             .OnDelete(DeleteBehavior.Cascade);
 
-        builder.HasIndex(t => t.HeaderId).HasDatabaseName("IX_product_specification_model_item_header");
+        builder.HasIndex(t => t.HeaderId).HasDatabaseName("IX_product_attribute_header");
     }
 }

@@ -68,6 +68,7 @@ public sealed class GetCategoryByIdHandler(SogetecDbContext db) : ICommandHandle
         }
 
         category.Name = command.Name;
+        category.NameFr = command.NameFr;
         category.Slug = command.Name.Slugify();
         category.Description = command.Description;
         category.ImageUrl = command.ImageUrl;
@@ -100,6 +101,7 @@ public sealed class GetCategoryByIdHandler(SogetecDbContext db) : ICommandHandle
         return new(
             Id: category.Id,
             Name: category.Name,
+            NameFr: category.NameFr,
             Slug: category.Slug,
             GroupId: category.GroupId,
             GroupName: category.Group.Name,

@@ -34,6 +34,7 @@ public sealed class CreateCategoryHandler(SogetecDbContext db) : ICommandHandler
 
         var category = Category.Create(
             name: command.Name,
+            nameFr: command.NameFr,
             group: group,
             parent: parent,
             description: command.Description,
@@ -48,6 +49,7 @@ public sealed class CreateCategoryHandler(SogetecDbContext db) : ICommandHandler
         return new(
             Id: category.Id,
             Name: category.Name,
+            NameFr: category.NameFr,
             Slug: category.Slug,
             GroupId: category.GroupId,
             GroupName: group.Name,
