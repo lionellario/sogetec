@@ -1,5 +1,3 @@
-using Sogetec.Chassis.Extensions;
-
 namespace Api.Modules.Features.ProductVariants.Commands.Update;
 
 public sealed class UpdateProductVariantHandler(SogetecDbContext db)

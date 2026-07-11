@@ -25,7 +25,8 @@ public sealed class Category : Entity, ISortableEntity
         Category? parent = null,
         string? description = null,
         string? image = null,
-        int order = 0)
+        int order = 0,
+        bool isActive = false)
         => new()
         {
             Name = name,
@@ -37,7 +38,7 @@ public sealed class Category : Entity, ISortableEntity
             Parent = parent,
             Description = description,
             ImageUrl = image,
-            IsActive = true,
+            IsActive = isActive,
             SortOrder = order
         };
 

@@ -7,7 +7,6 @@ public sealed class GetCategoriesHandler(SogetecDbContext db) : IQueryHandler<Ge
         var entities = await db.Categories
                         .AsNoTracking()
                         .Include(c => c.Group)
-                        .Where(c => c.IsActive)
                         .Select(c => new GetCategoryRecord(
                             Id: c.Id,
                             Name: c.Name,

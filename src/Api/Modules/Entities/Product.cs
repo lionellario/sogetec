@@ -16,13 +16,13 @@ public sealed class Product : Entity
     public Category? Category { get; internal set; }
     public ICollection<ProductItem> Items { get; internal set; } = [];
     public ICollection<ProductImage> Images { get; internal set; } = [];
-    public ICollection<ProductVariant> Specifications { get; internal set; } = [];
 
     public static Product Create(
         string name,
         string description,
         Brand brand,
-        Category category)
+        Category category,
+        bool isActive = false)
         => new()
         {
             Name = name,
@@ -32,7 +32,7 @@ public sealed class Product : Entity
             Brand = brand,
             CategoryId = category.Id,
             Category = category,
-            IsActive = true
+            IsActive = isActive
         };
 
     public override bool Equals(object? obj) => obj is Product at && Id == at.Id;

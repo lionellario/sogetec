@@ -25,4 +25,4 @@ public record GetCategoryGroupRecord(
     List<CategoryRecord> Categories
 );
 
-public record GetCategoryGroupsQuery : IQuery<List<GetCategoryGroupRecord>>;
+public record GetCategoryGroupsQuery(bool IncludeInactive) : IQuery<List<GetCategoryGroupRecord>>;

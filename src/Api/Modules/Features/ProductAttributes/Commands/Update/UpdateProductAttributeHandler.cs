@@ -1,5 +1,3 @@
-using Sogetec.Chassis.Extensions;
-
 namespace Api.Modules.Features.ProductAttributes.Commands.Update;
 
 public sealed class UpdateProductAttributeHandler(SogetecDbContext db)

@@ -4,10 +4,9 @@ public sealed class GetCategoryGroupsHandler(SogetecDbContext db) : IQueryHandle
 {
     public async ValueTask<List<GetCategoryGroupRecord>> Handle(GetCategoryGroupsQuery query, CancellationToken cancellationToken)
     {
-        var entities = await db.CategoryGroups
+        var dbQuery = db.CategoryGroups
                         .AsNoTracking()
                         .Include(c => c.Categories)
-                        .Where(c => c.IsActive)
                         .Select(c => new GetCategoryGroupRecord(
                             Id: c.Id,
                             Name: c.Name,
@@ -29,8 +28,14 @@ public sealed class GetCategoryGroupsHandler(SogetecDbContext db) : IQueryHandle
                                 CreatedAt: c.CreatedOn,
                                 LastModifiedAt: c.LastModifiedOn
                             )).ToList()
-                        ))
-                        .ToListAsync(cancellationToken);
+                        ));
+
+        if (!query.IncludeInactive)
+        {
+            dbQuery = dbQuery.Where(c => c.IsActive);
+        }
+
+        var entities = await dbQuery.ToListAsync(cancellationToken);
 
         return entities;
     }

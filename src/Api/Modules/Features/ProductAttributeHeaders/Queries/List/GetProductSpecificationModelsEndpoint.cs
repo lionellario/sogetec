@@ -8,7 +8,7 @@ public sealed class GetProductSpecificationModelsEndpoint : IEndpoint
             .ProducesGet<List<GetProductSpecificationModelRecord>>()
             .WithTags(nameof(ProductAttributeHeader))
             .WithName(nameof(GetProductSpecificationModelsEndpoint))
-            .WithSummary("Get all categories.")
+            .WithSummary("Get all product attribute header.")
             .MapToApiVersion(ApiVersions.V1);
 
     public static async Task<Ok<List<GetProductSpecificationModelRecord>>> GetProductSpecificationModelsAsync(

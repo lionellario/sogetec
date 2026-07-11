@@ -12,5 +12,7 @@
     "editor.defaultFormatter": "redhat.vscode-xml",
     "editor.tabSize": 2,
     "files.trimTrailingWhitespace": true
-  }
+  },
+  "github.copilot.inlineSuggest.enable": false,
+  "chat.disableAIFeatures": true,
 }

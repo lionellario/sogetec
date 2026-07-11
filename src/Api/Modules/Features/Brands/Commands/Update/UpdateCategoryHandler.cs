@@ -1,5 +1,3 @@
-using Sogetec.Chassis.Extensions;
-
 namespace Api.Modules.Features.Brands.Commands.Update;
 
 public sealed class GetBrandByIdHandler(SogetecDbContext db) : ICommandHandler<UpdateBrandCommand, UpdateBrandResponse>

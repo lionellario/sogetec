@@ -4,7 +4,7 @@ public sealed class GetByProductItemsEndpoint : IEndpoint
 {
     public void Configure(IEndpointRouteBuilder app)
         => app
-            .MapGet("product-variants/{productItemId:int}", GetByProductItemsAsync)
+            .MapGet("product-variants/product-items/{productItemId:int}", GetByProductItemsAsync)
             .ProducesGet<List<GetByProductItemRecord>>()
             .WithTags(nameof(GetByProductItem))
             .WithName(nameof(GetByProductItemsEndpoint))

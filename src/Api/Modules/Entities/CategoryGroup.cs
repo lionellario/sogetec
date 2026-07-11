@@ -15,13 +15,14 @@ public sealed class CategoryGroup : Entity, ISortableEntity
         string name,
         string nameFr,
         string image,
-        int order = 0)
+        int order = 0,
+        bool isActive = false)
         => new()
         {
             Name = name,
             NameFr = nameFr,
             ImageUrl = image,
-            IsActive = true,
+            IsActive = isActive,
             SortOrder = order
         };
 

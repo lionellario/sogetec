@@ -1,6 +1,6 @@
-namespace Api.Modules.Features.ProductItems.Commands.Create;
+namespace Api.Modules.Features.ProductItems.Commands.Update;
 
-public record CreateProductItemResponse(
+public record UpdateProductItemResponse(
     int Id,
     string Name,
     string NameFr,
@@ -20,12 +20,7 @@ public record CreateProductItemResponse(
     DateTimeOffset LastModifiedAt
 );
 
-public record CreateProductVariantRecord(
-    int ProductAttributeId,
-    string Value
-);
-
-public record CreateProductItemCommand(
+public record UpdateProductItemCommand(
     int Id,
     string Name,
     string NameFr,
@@ -33,12 +28,10 @@ public record CreateProductItemCommand(
     string Sku,
     string? Description,
     bool IsActive,
-    int ProductId,
     decimal Price,
     decimal Cost,
     decimal InitialStock,
     decimal FinalStock,
     ProductQuantityUnit QuantityUnit,
-    ProductItemDetailRecord? Details,
-    List<CreateProductVariantRecord> Specifications
-) : ICommand<CreateProductItemResponse>;
+    ProductItemDetailRecord? Details
+) : ICommand<UpdateProductItemResponse>;
