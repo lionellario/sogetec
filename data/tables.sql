@@ -50,6 +50,26 @@ CREATE TABLE IF NOT EXISTS "product" (
 	CONSTRAINT "FK_product_brand" FOREIGN KEY("brand_id") REFERENCES "brand"("id") ON DELETE CASCADE,
 	CONSTRAINT "FK_product_category" FOREIGN KEY("category_id") REFERENCES "category"("id") ON DELETE CASCADE
 );
+CREATE TABLE IF NOT EXISTS "product_attribute" (
+	"id"	INTEGER NOT NULL,
+	"name"	TEXT NOT NULL,
+	"name_fr"	TEXT NOT NULL,
+	"header_id"	INTEGER NOT NULL,
+	"is_variant"	INTEGER NOT NULL,
+	"created_on"	TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+	"last_modified_on"	TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+	CONSTRAINT "PK_product_attribute" PRIMARY KEY("id" AUTOINCREMENT),
+	CONSTRAINT "FK_product_attribute_header" FOREIGN KEY("header_id") REFERENCES "product_attribute_header"("id") ON DELETE CASCADE
+);
+CREATE TABLE IF NOT EXISTS "product_attribute_header" (
+	"id"	INTEGER NOT NULL,
+	"name"	TEXT NOT NULL,
+	"name_fr"	TEXT NOT NULL,
+	"sort_order"	INTEGER NOT NULL,
+	"created_on"	TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+	"last_modified_on"	TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
+	CONSTRAINT "PK_product_attribute_header" PRIMARY KEY("id" AUTOINCREMENT)
+);
 CREATE TABLE IF NOT EXISTS "product_image" (
 	"id"	INTEGER NOT NULL,
 	"url"	TEXT NOT NULL,
@@ -81,56 +101,17 @@ CREATE TABLE IF NOT EXISTS "product_item" (
 	CONSTRAINT "PK_product_item" PRIMARY KEY("id" AUTOINCREMENT),
 	CONSTRAINT "FK_product_item_product" FOREIGN KEY("product_id") REFERENCES "product"("id") ON DELETE CASCADE
 );
-CREATE TABLE IF NOT EXISTS "product_item_variant" (
-	"id"	INTEGER NOT NULL,
-	"item_id"	INTEGER NOT NULL,
-	"variant_id"	INTEGER NOT NULL,
-	"created_on"	TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
-	"last_modified_on"	TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
-	CONSTRAINT "PK_product_item_variant" PRIMARY KEY("id" AUTOINCREMENT),
-	CONSTRAINT "FK_product_item_variant_product_item" FOREIGN KEY("item_id") REFERENCES "product_item"("id") ON DELETE CASCADE,
-	CONSTRAINT "FK_product_item_variant_product_variant" FOREIGN KEY("variant_id") REFERENCES "product_variant"("id") ON DELETE CASCADE
-);
-CREATE TABLE IF NOT EXISTS "product_specification_item" (
-	"id"	INTEGER NOT NULL,
-	"item_id"	INTEGER NOT NULL,
-	"value"	TEXT NOT NULL,
-	"product_item_id"	INTEGER NOT NULL,
-	"created_on"	TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
-	"last_modified_on"	TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
-	CONSTRAINT "PK_product_specification_item" PRIMARY KEY("id" AUTOINCREMENT),
-	CONSTRAINT "FK_product_specification_item_model_item" FOREIGN KEY("item_id") REFERENCES "product_specification_model_item"("id") ON DELETE CASCADE,
-	CONSTRAINT "FK_product_specification_item_product_item" FOREIGN KEY("product_item_id") REFERENCES "product_item"("id") ON DELETE CASCADE
-);
-CREATE TABLE IF NOT EXISTS "product_specification_model" (
-	"id"	INTEGER NOT NULL,
-	"name"	TEXT NOT NULL,
-	"name_fr"	TEXT NOT NULL,
-	"created_on"	TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
-	"last_modified_on"	TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
-	CONSTRAINT "PK_product_specification_model" PRIMARY KEY("id" AUTOINCREMENT)
-);
-CREATE TABLE IF NOT EXISTS "product_specification_model_item" (
-	"id"	INTEGER NOT NULL,
-	"name"	TEXT NOT NULL,
-	"name_fr"	TEXT NOT NULL,
-	"header_id"	INTEGER NOT NULL,
-	"is_variant"	INTEGER NOT NULL,
-	"created_on"	TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
-	"last_modified_on"	TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
-	CONSTRAINT "PK_product_specification_model_item" PRIMARY KEY("id" AUTOINCREMENT),
-	CONSTRAINT "FK_product_specification_model_item_product_specification_model" FOREIGN KEY("header_id") REFERENCES "product_specification_model"("id") ON DELETE CASCADE
-);
 CREATE TABLE IF NOT EXISTS "product_variant" (
 	"id"	INTEGER NOT NULL,
-	"name"	TEXT NOT NULL,
-	"name_fr"	TEXT NOT NULL,
-	"description"	TEXT,
+	"variant_id"	INTEGER NOT NULL,
+	"value"	TEXT NOT NULL,
+	"item_id"	INTEGER NOT NULL,
 	"created_on"	TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
 	"last_modified_on"	TEXT NOT NULL DEFAULT (CURRENT_TIMESTAMP),
-	CONSTRAINT "PK_product_variant" PRIMARY KEY("id" AUTOINCREMENT)
+	CONSTRAINT "PK_product_variant" PRIMARY KEY("id" AUTOINCREMENT),
+	CONSTRAINT "FK_product_variant_product_item" FOREIGN KEY("item_id") REFERENCES "product_item"("id") ON DELETE CASCADE,
+	CONSTRAINT "FK_product_variant_product_variant" FOREIGN KEY("variant_id") REFERENCES "product_attribute"("id") ON DELETE CASCADE
 );
-
 CREATE INDEX IF NOT EXISTS "IX_category_group" ON "category" (
 	"group_id"
 );
@@ -139,6 +120,9 @@ CREATE INDEX IF NOT EXISTS "IX_category_parent" ON "category" (
 );
 CREATE UNIQUE INDEX IF NOT EXISTS "IX_category_slug" ON "category" (
 	"slug"
+);
+CREATE INDEX IF NOT EXISTS "IX_product_attribute_header" ON "product_attribute" (
+	"header_id"
 );
 CREATE INDEX IF NOT EXISTS "IX_product_brand" ON "product" (
 	"brand_id"
@@ -152,19 +136,10 @@ CREATE INDEX IF NOT EXISTS "IX_product_image_product" ON "product_image" (
 CREATE INDEX IF NOT EXISTS "IX_product_item_product" ON "product_item" (
 	"product_id"
 );
-CREATE INDEX IF NOT EXISTS "IX_product_item_variant_item" ON "product_item_variant" (
-	"item_id"
-);
-CREATE INDEX IF NOT EXISTS "IX_product_item_variant_variant" ON "product_item_variant" (
+CREATE INDEX IF NOT EXISTS "IX_product_variant_attribute" ON "product_variant" (
 	"variant_id"
 );
-CREATE INDEX IF NOT EXISTS "IX_product_specification_item_item" ON "product_specification_item" (
+CREATE INDEX IF NOT EXISTS "IX_product_variant_item" ON "product_variant" (
 	"item_id"
-);
-CREATE INDEX IF NOT EXISTS "IX_product_specification_item_product" ON "product_specification_item" (
-	"product_id"
-);
-CREATE INDEX IF NOT EXISTS "IX_product_specification_model_item_header" ON "product_specification_model_item" (
-	"header_id"
 );
 COMMIT;

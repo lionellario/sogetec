@@ -1,4 +1,4 @@
-import type { MegaMenuCategory } from "../lib/MenuCategory";
+import type { Category } from "../lib/Category";
 
 export const categories = [
   "Computers & Accessories",
@@ -14,7 +14,7 @@ export const categories = [
   "Video Games",
 ];
 
-export const mockMenuData: MegaMenuCategory[] = [
+export const mockMenuData: Category[] = [
   {
     id: "comp-acc",
     title: "Computers & Accessories",

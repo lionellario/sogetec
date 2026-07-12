@@ -77,6 +77,16 @@ public sealed class GetCategoryByIdHandler(SogetecDbContext db) : ICommandHandle
         category.IsActive = command.IsActive;
         category.AssignParent(parent);
 
+        if(group.Categories.Count > 2)
+        {
+            throw new ValidationException([
+                new ValidationFailure
+                {
+                    ErrorCode = CategoryErrorCode.GroupMaxCategoryExceeded.ToDisplayString()
+                }
+            ]);
+        }
+
         var familyCategories = family.Select(x => x.Category);
         var parentChanged = oldParentId != desiredParentId;
 

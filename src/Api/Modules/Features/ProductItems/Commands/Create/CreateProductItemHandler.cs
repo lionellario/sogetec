@@ -25,6 +25,7 @@ public sealed class CreateProductItemHandler(SogetecDbContext db) : ICommandHand
             finalStock: command.FinalStock,
             quantityUnit: command.QuantityUnit,
             description: command.Description,
+            isActive: command.IsActive,
             Details: command.Details is null ? null : new ProductItemDetails
             {
                 ValeurInitialV0 = command.Details.ValeurInitialV0,

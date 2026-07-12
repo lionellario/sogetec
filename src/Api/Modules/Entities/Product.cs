@@ -19,6 +19,7 @@ public sealed class Product : Entity
 
     public static Product Create(
         string name,
+        string nameFr,
         string description,
         Brand brand,
         Category category,
@@ -26,6 +27,7 @@ public sealed class Product : Entity
         => new()
         {
             Name = name,
+            NameFr = nameFr,
             Slug = name.Slugify(),
             Description = description,
             BrandId = brand.Id,

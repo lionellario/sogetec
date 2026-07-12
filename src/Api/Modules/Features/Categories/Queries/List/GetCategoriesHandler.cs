@@ -10,9 +10,13 @@ public sealed class GetCategoriesHandler(SogetecDbContext db) : IQueryHandler<Ge
                         .Select(c => new GetCategoryRecord(
                             Id: c.Id,
                             Name: c.Name,
+                            NameFr: c.NameFr,
                             Slug: c.Slug,
                             GroupId: c.GroupId,
                             GroupName: c.Group!.Name,
+                            GroupNameFr: c.Group!.NameFr,
+                            GroupSortOrder: c.Group!.SortOrder,
+                            GroupImageUrl: c.Group!.ImageUrl,
                             ParentId: c.ParentId,
                             ParentName: c.Parent == null ? null : c.Parent.Name,
                             SortOrder: c.SortOrder,

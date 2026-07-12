@@ -24,5 +24,6 @@ public record CreateCategoryCommand(
     int GroupId,
     int? ParentId,
     string? Description,
-    string? ImageUrl
+    string? ImageUrl,
+    bool IsActive
 ) : ICommand<CreateCategoryResponse>;

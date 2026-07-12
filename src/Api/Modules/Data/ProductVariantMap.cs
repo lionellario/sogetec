@@ -12,6 +12,7 @@ public sealed class ProductVariantMap : IEntityTypeConfiguration<ProductVariant>
         builder.Property(t => t.Id).HasColumnName("id");
         builder.Property(t => t.ItemId).HasColumnName("item_id").IsRequired();
         builder.Property(t => t.AttributeId).HasColumnName("variant_id").IsRequired();
+        builder.Property(t => t.Value).HasColumnName("value").IsRequired();
         builder.Property(t => t.CreatedOn).HasColumnName("created_on").HasDefaultValueSql("CURRENT_TIMESTAMP").IsRequired();
         builder.Property(t => t.LastModifiedOn).HasColumnName("last_modified_on").HasDefaultValueSql("CURRENT_TIMESTAMP").IsRequired();
 

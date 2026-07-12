@@ -14,5 +14,5 @@
     "files.trimTrailingWhitespace": true
   },
   "github.copilot.inlineSuggest.enable": false,
-  "chat.disableAIFeatures": true,
+  "chat.disableAIFeatures": false,
 }

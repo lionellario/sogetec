@@ -34,7 +34,8 @@ public sealed class ProductItem : Entity
         decimal finalStock,
         ProductQuantityUnit quantityUnit = ProductQuantityUnit.Piece,
         string? description = null,
-        ProductItemDetails? Details = null)
+        ProductItemDetails? Details = null,
+        bool isActive = false)
         => new()
         {
             Name = name,
@@ -51,7 +52,7 @@ public sealed class ProductItem : Entity
             QuantityUnit = quantityUnit,
             Description = description,
             Details = Details,
-            IsActive = true
+            IsActive = isActive
         };
 
     public override bool Equals(object? obj) => obj is ProductItem at && Id == at.Id;

@@ -1,33 +1,34 @@
 import { useState } from "react";
 import { FiChevronDown, FiChevronRight, FiGrid } from "react-icons/fi";
-import type { MegaMenuCategory } from "../../../lib/MenuCategory";
+import type { CategoryGroup } from "../../../lib/Category";
 import "./CategorySidebar.css";
+import { Link } from "react-router-dom";
 
 interface SideBarMenuProps {
-  categories: MegaMenuCategory[];
+  categoryGroups: CategoryGroup[];
   alwaysOpen: boolean;
 }
 
 export default function CategorySidebar({
-  categories,
+  categoryGroups,
   alwaysOpen,
 }: SideBarMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeCategory, setActiveCategory] = useState<MegaMenuCategory | null>(
+  const [activeGroup, setActiveGroup] = useState<CategoryGroup | null>(
     null,
   );
 
   const handleMenuLeave = () => {
     setIsOpen(false);
   };
-
+  
   return (
     <aside className="category-sidebar" onMouseLeave={handleMenuLeave}>
       <div
         className={`sidebar-title ${isOpen ? "active" : ""}`}
         onMouseEnter={() => {
           setIsOpen(true);
-          setActiveCategory(null);
+          setActiveGroup(null);
         }}
       >
         <div className="sidebar-title-text">
@@ -46,41 +47,41 @@ export default function CategorySidebar({
             onMouseLeave={(e) => {
               const nextTarget = e.relatedTarget as HTMLElement;
               if (!nextTarget || !nextTarget.closest(".mega-box")) {
-                setActiveCategory(null);
+                setActiveGroup(null);
               }
             }}
           >
-            {categories.map((category) => (
+            {categoryGroups.map((group: CategoryGroup) => (
               <div
-                key={category.id}
-                className={`category-item ${activeCategory?.id === category.id ? "selected" : ""}`}
-                onMouseEnter={() => setActiveCategory(category)}
+                key={group.id}
+                className={`category-item ${activeGroup?.id === group.id ? "selected" : ""}`}
+                onMouseEnter={() => setActiveGroup(group)}
               >
-                <span>{category.title}</span>
+                <span>{group.name}</span>
                 <FiChevronRight className="arrow-right" />
               </div>
             ))}
           </div>
 
           {/* Dynamic Mega Box Panel */}
-          {activeCategory && (
+          {activeGroup && (
             <div
               className="mega-box"
               onMouseLeave={(e) => {
                 const nextTarget = e.relatedTarget as HTMLElement;
                 if (!nextTarget || !nextTarget.closest(".sidebar-list")) {
-                  setActiveCategory(null);
+                  setActiveGroup(null);
                 }
               }}
             >
               <div className="mega-columns-container">
-                {activeCategory.groups.map((group) => (
-                  <div key={group.id} className="mega-column">
-                    <h3 className="column-title">{group.title}</h3>
+                {activeGroup.categories.map((category) => (
+                  <div key={category.id} className="mega-column">
+                    <h3 className="column-title">{category.name}</h3>
                     <ul className="column-links">
-                      {group.items.map((item) => (
+                      {category.children.map((item) => (
                         <li key={item.id}>
-                          <a href={item.url}>{item.name}</a>
+                          <Link to={`/categories/${item.slug}`}>{item.name}</Link>
                         </li>
                       ))}
                     </ul>
@@ -91,8 +92,8 @@ export default function CategorySidebar({
               {/* Image Column */}
               <div className="mega-image-column">
                 <img
-                  src={activeCategory.imageUrl}
-                  alt={activeCategory.imageAlt}
+                  src={activeGroup.imageUrl}
+                  alt={activeGroup.name}
                   className="mega-menu-image"
                 />
               </div>

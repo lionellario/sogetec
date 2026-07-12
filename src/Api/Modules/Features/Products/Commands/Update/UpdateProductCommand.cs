@@ -1,6 +1,6 @@
-namespace Api.Modules.Features.Products.Commands.Create;
+namespace Api.Modules.Features.Products.Commands.Update;
 
-public record CreateProductResponse(
+public record UpdateProductResponse(
     int Id,
     string Name,
     string NameFr,
@@ -9,7 +9,7 @@ public record CreateProductResponse(
     bool IsActive
 );
 
-public record CreateProductCommand(
+public record UpdateProductCommand(
     int Id,
     string Name,
     string NameFr,
@@ -17,4 +17,4 @@ public record CreateProductCommand(
     bool IsActive,
     int BrandId,
     int CategoryId
-) : ICommand<CreateProductResponse>;
+) : ICommand<UpdateProductResponse>;

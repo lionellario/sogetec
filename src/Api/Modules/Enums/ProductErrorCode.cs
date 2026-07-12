@@ -6,5 +6,7 @@ public enum ProductErrorCode
     ProductAttributeHeaderNotFound,
     ProductAttributeNotFound,
     ProductItemNotFound,
-    ProductVariantNotFound
+    ProductVariantNotFound,
+    BrandNotFound,
+    CategoryNotFound
 }

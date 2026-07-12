@@ -5,11 +5,11 @@ FROM node:22-alpine AS build
 WORKDIR /app
 
 # Copy package files and install dependencies
-COPY src/Clients/Apps/frontend/package*.json ./
+COPY src/Clients/frontend/package*.json ./
 RUN npm ci
 
 # Copy source code and build
-COPY src/Clients/Apps/frontend .
+COPY src/Clients/frontend .
 RUN npm run build
 
 # Stage 2: Serve with Nginx

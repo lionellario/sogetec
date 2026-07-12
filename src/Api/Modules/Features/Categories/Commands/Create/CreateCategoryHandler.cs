@@ -39,10 +39,21 @@ public sealed class CreateCategoryHandler(SogetecDbContext db) : ICommandHandler
             parent: parent,
             description: command.Description,
             image: command.ImageUrl,
+            isActive: command.IsActive,
             order: count + 1
         );
 
         db.Add(category);
+
+        if(group.Categories.Count > 2)
+        {
+            throw new ValidationException([
+                new ValidationFailure
+                {
+                    ErrorCode = CategoryErrorCode.GroupMaxCategoryExceeded.ToDisplayString()
+                }
+            ]);
+        }
 
         await db.SaveChangesAsync(cancellationToken);
 

@@ -6,5 +6,6 @@ public enum CategoryErrorCode
     CategoryNotFound,
     CategoryCannotBeSelfReferenced,
     CategoryGroupNotFound,
-    GroupMismatch
+    GroupMismatch,
+    GroupMaxCategoryExceeded
 }

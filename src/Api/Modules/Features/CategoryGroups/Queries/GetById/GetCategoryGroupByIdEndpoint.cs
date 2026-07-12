@@ -1,17 +1,17 @@
 namespace Api.Modules.Features.CategoryGroups.Queries.GetById;
 
-public sealed class GetCategoryByIdEndpoint : IEndpoint
+public sealed class GetCategoryGroupByIdEndpoint : IEndpoint
 {
     public void Configure(IEndpointRouteBuilder app)
         => app
-            .MapGet("category-groups/{groupId:int}", GetCategoryByIdAsync)
+            .MapGet("category-groups/{groupId:int}", GetCategoryGroupByIdAsync)
             .ProducesGet<GetCategoryGroupByIdResponse>()
-            .WithTags(nameof(Category))
-            .WithName(nameof(GetCategoryByIdEndpoint))
-            .WithSummary("Get a Category Group using its internal Id.")
+            .WithTags(nameof(CategoryGroup))
+            .WithName(nameof(GetCategoryGroupByIdEndpoint))
+            .WithSummary("Get a category group using its internal Id.")
             .MapToApiVersion(ApiVersions.V1);
 
-    public static async Task<Ok<GetCategoryGroupByIdResponse>> GetCategoryByIdAsync(
+    public static async Task<Ok<GetCategoryGroupByIdResponse>> GetCategoryGroupByIdAsync(
         ISender sender,
         int groupId,
         CancellationToken cancellationToken)

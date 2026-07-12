@@ -49,7 +49,7 @@ var api = builder
 // ------------------------------------------------------------
 
 var spa = builder
-    .AddViteApp(Services.SPA, "../../Clients/Apps/frontend")
+    .AddViteApp(Services.SPA, "../../Clients/frontend")
     .WithOtlpExporter()
     .WithHttpsEndpoint(port: 3000, env: "PORT")
     .WithExternalHttpEndpoints()
@@ -63,7 +63,7 @@ var spa = builder
     .PublishAsDockerFile();
 
 var admin = builder
-    .AddViteApp(Services.ADMIN, "../../Clients/Apps/admin")
+    .AddViteApp(Services.ADMIN, "../../Clients/admin")
     .WithOtlpExporter()
     .WithHttpsEndpoint(port: 3001, env: "PORT")
     .WithExternalHttpEndpoints()

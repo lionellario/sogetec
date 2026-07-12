@@ -7,11 +7,13 @@ import {
   FiUser,
 } from "react-icons/fi";
 import { Link } from "react-router";
-import { mockMenuData } from "../../../data/categories";
 import { useIsHomePage } from "../../../hooks/useIsHomePage";
-import { IMG_SRC } from "../../../lib/Constant";
+import { API_PREFIX, IMG_SRC } from "../../../lib/Constant";
 import CategorySidebar from "../../hero/CategorySidebar/CategorySidebar";
 import "./Header.css";
+import { useEffect, useState } from "react";
+import api from "../../../lib/axios";
+import { buildCategoryTree, type CategoryGroup } from "../../../lib/Category";
 
 interface Props {
   darkMode: boolean;
@@ -20,6 +22,18 @@ interface Props {
 
 export default function Header({ darkMode, onToggleTheme }: Props) {
   const isHome = useIsHomePage();
+
+  const [categories, setCategories] = useState<CategoryGroup[]>([]);
+
+  useEffect(() => {
+    async function loadCategories() {
+      const response = await api.get(`${API_PREFIX}/categories`);
+      const groups = buildCategoryTree(response.data);
+      setCategories(groups);
+    }
+
+    loadCategories();
+  }, []);
 
   return (
     <header className="header">
@@ -47,7 +61,7 @@ export default function Header({ darkMode, onToggleTheme }: Props) {
           </div>
         </div>
         <div className="hd-bottom">
-          <CategorySidebar categories={mockMenuData} alwaysOpen={isHome} />
+          <CategorySidebar categoryGroups={categories} alwaysOpen={isHome} />
           <div>
             <nav className="nav-links">
               <Link to="/">Home</Link>

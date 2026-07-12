@@ -1,3 +1,4 @@
+BEGIN TRANSACTION;
 -----BRAND
 INSERT INTO brand (id, name, logo_url) 
 VALUES 
@@ -37,16 +38,16 @@ VALUES
 (19508, 'indicator Light', 'Lampe de signalisation', 'indicator-light', null, 19308, 'description', 'https://levis.com.br/images/logo.svg', 1, 2);
 -----CATEGORY
 
------PRODUCT SPECIFICATION MODEL
-INSERT INTO product_specification_model (id, name, name_fr) 
+-----PRODUCT ATTRIBUTE HEADER
+INSERT INTO product_attribute_header (id, name, name_fr, sort_order) 
 VALUES 
-(19308, 'Characteristics & Features', 'Caracteristiques & Fonctions'),
-(19508, 'Dimensions & Measurements', 'Dimensions & Mesures'),
-(19580, 'Certifications & Warranties', 'Certifications & Garanties'),
------PRODUCT SPECIFICATION MODEL
+(19308, 'Characteristics & Features', 'Caracteristiques & Fonctions', 1),
+(19508, 'Dimensions & Measurements', 'Dimensions & Mesures', 2),
+(19580, 'Certifications & Warranties', 'Certifications & Garanties', 3);
+-----PRODUCT ATTRIBUTE HEADER
 
------PRODUCT SPECIFICATION MODEL ITEM
-INSERT INTO product_specification_model_item (id, name, name_fr, header_id, is_variant) 
+-----PRODUCT ATTRIBUTE
+INSERT INTO product_attribute (id, name, name_fr, header_id, is_variant) 
 VALUES 
 (19308, 'color', 'couleur', 19308, 1),
 (19508, 'type', 'type', 19308, 1),
@@ -70,4 +71,5 @@ VALUES
 (31540, 'wattage', 'puissance', 19508, 1),
 (34513, 'operating temperature', 'temperature d''operation', 19508, 0),
 (35917, 'weight', 'poids', 19508, 0);
------PRODUCT SPECIFICATION MODEL ITEM
+-----PRODUCT ATTRIBUTE
+COMMIT;

@@ -1,6 +1,6 @@
 namespace Api.Modules.Features.CategoryGroups.Queries.GetById;
 
-public sealed class GetCategoryByIdHandler(SogetecDbContext db) : IQueryHandler<GetCategoryGroupByIdQuery, GetCategoryGroupByIdResponse>
+public sealed class GetCategoryGroupByIdHandler(SogetecDbContext db) : IQueryHandler<GetCategoryGroupByIdQuery, GetCategoryGroupByIdResponse>
 {
     public async ValueTask<GetCategoryGroupByIdResponse> Handle(GetCategoryGroupByIdQuery query, CancellationToken cancellationToken)
     {
