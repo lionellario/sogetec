@@ -1,0 +1,36 @@
+.admin-layout {
+  min-height: 100vh;
+}
+
+/*
+ Desktop layout
+*/
+
+.admin-main {
+  margin-left: 260px;
+
+  min-height: 100vh;
+
+  display: flex;
+
+  flex-direction: column;
+
+  transition: margin-left 0.3s ease;
+}
+
+.admin-main.sidebar-collapsed {
+  margin-left: 70px;
+}
+
+.content {
+  flex: 1;
+
+  padding: 25px;
+}
+
+@media (max-width: 1024px) {
+  .admin-main,
+  .admin-main.sidebar-collapsed {
+    margin-left: 0;
+  }
+}

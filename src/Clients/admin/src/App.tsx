@@ -1,13 +1,10 @@
-import { useState } from "react";
 import "./App.css";
 import { AUTH_ERROR_CODE } from "./enums/authErrorCode";
 import { useKeycloak } from "./hooks/useKeycloak";
 import { getValidToken } from "./lib/keycloak";
-import "./styles/custom.css";
+import AdminLayout from "./components/Layout/AdminLayout";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   const { isAuthenticated, isLoading, profile, error, login, logout } =
     useKeycloak();
 
@@ -46,52 +43,28 @@ function App() {
 
   return (
     <div className="container">
-      <h1 className="title">Savyris Platform</h1>
-      <p className="subtitle">
-        Secure financial operations with enterprise-grade authentication
-      </p>
-      <p>
-        <button className="btn" onClick={printToken}>
-          Get new Token
-        </button>
-      </p>
-
       {!isAuthenticated ? (
-        <div className="card">
-          <h2>Welcome</h2>
-          <h2>You're not authenticated</h2>
-
-          <button className="btn login" onClick={login}>
-            Login to your organization
-          </button>
-        </div>
-      ) : (
         <div>
-          <div className="card success">
-            <h2>Welcome {profile?.firstName} 👋</h2>
-            <p>{profile?.email}</p>
+          <h1 className="title">Savyris Platform</h1>
+          <p className="subtitle">
+            Secure financial operations with enterprise-grade authentication
+          </p>
+          <p>
+            <button className="btn" onClick={printToken}>
+              Get new Token
+            </button>
+          </p>
+          <div className="card">
+            <h2>Welcome</h2>
+            <h2>You're not authenticated</h2>
 
-            <section id="next-steps">
-              <button
-                className="counter"
-                onClick={() => setCount((count) => count + 1)}
-              >
-                Count is {count}
-              </button>
-            </section>
-
-            <p>
-              <strong>Username:</strong> {profile?.username}
-            </p>
-            <p>
-              <strong>Email:</strong> {profile?.email}
-            </p>
-
-            <button className="btn logout" onClick={logout}>
-              Logout
+            <button className="btn login" onClick={login}>
+              Login to your organization
             </button>
           </div>
         </div>
+      ) : (
+        <AdminLayout profile={profile} logout={logout} />
       )}
     </div>
   );

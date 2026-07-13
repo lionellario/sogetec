@@ -1,0 +1,97 @@
+.header {
+  height: 70px;
+
+  background: white;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  padding: 0 25px;
+
+  box-shadow: 0 2px 8px #0001;
+  position: relative;
+}
+
+.hamburger,
+.mobile-user {
+  font-size: 24px;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+.user-area {
+  display: flex;
+
+  gap: 25px;
+
+  align-items: center;
+}
+
+.mobile-logo,
+.mobile-user {
+  display: none;
+}
+
+.mobile-user-panel {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .header {
+    justify-content: space-between;
+  }
+
+  .user-area {
+    display: none;
+  }
+
+  .mobile-logo {
+    display: block;
+
+    font-weight: bold;
+  }
+
+  .mobile-user {
+    display: block;
+  }
+
+  .mobile-user-panel {
+    display: flex;
+
+    position: absolute;
+
+    right: 20px;
+
+    top: 65px;
+
+    width: 200px;
+
+    background: white;
+
+    border-radius: 8px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+
+    flex-direction: column;
+
+    padding: 15px;
+
+    gap: 15px;
+
+    z-index: 2000;
+  }
+
+  .mobile-user-panel div {
+    padding: 10px;
+
+    cursor: pointer;
+  }
+
+  .mobile-user-panel div:hover {
+    background: #f1f5f9;
+  }
+}
