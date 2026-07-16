@@ -182,13 +182,6 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  min-height: 100vh;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 img,
 picture,
 svg,
@@ -216,6 +209,10 @@ body {
   font-size: var(--font-size-md);
   font-weight: var(--font-weight-normal);
   line-height: var(--line-height-normal);
+  min-height: 100vh;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   transition:
     background-color var(--transition-normal),
     color var(--transition-normal);
@@ -252,8 +249,13 @@ h6 {
 }
 
 p {
-  color: var(--color-text-secondary);
   line-height: var(--line-height-relaxed);
+}
+
+a {
+  text-decoration: none;
+  background-color: transparent;
+  color: inherit;
 }
 
 /* ==========================================================================
@@ -262,9 +264,9 @@ p {
 
 .container {
   width: 100%;
-  max-width: var(--container-max-width);
+  /* max-width: var(--container-max-width);
   margin-inline: auto;
-  padding-inline: var(--space-6);
+  padding-inline: var(--space-6); */
 }
 
 .text-success {

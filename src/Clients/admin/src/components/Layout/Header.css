@@ -1,16 +1,10 @@
 .header {
   height: 70px;
-
   background: white;
-
   display: flex;
-
   align-items: center;
-
   justify-content: space-between;
-
   padding: 0 25px;
-
   box-shadow: 0 2px 8px #0001;
   position: relative;
 }
@@ -25,9 +19,7 @@
 
 .user-area {
   display: flex;
-
   gap: 25px;
-
   align-items: center;
 }
 
@@ -61,33 +53,21 @@
 
   .mobile-user-panel {
     display: flex;
-
     position: absolute;
-
     right: 20px;
-
     top: 65px;
-
     width: 200px;
-
     background: white;
-
     border-radius: 8px;
-
     box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
-
     flex-direction: column;
-
     padding: 15px;
-
     gap: 15px;
-
     z-index: 2000;
   }
 
   .mobile-user-panel div {
     padding: 10px;
-
     cursor: pointer;
   }
 

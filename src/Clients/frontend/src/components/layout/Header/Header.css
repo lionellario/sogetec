@@ -1,6 +1,6 @@
 .header {
   height: 139px;
-  background: #214a36;
+  background: var(--color-green);
   padding-top: 20px;
 }
 

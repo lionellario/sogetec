@@ -3,14 +3,10 @@
   top: 0;
   left: 0;
   bottom: 0;
-
   width: 260px;
-
-  background: #18212f;
+  background: var(--color-green);
   color: white;
-
   z-index: 1000;
-
   transition:
     width 0.3s ease,
     transform 0.3s ease;
@@ -26,100 +22,175 @@
 
 .sidebar-logo {
   height: 70px;
-
   display: flex;
   align-items: center;
-  gap: 15px;
-
+  gap: 10px;
   padding: 0 20px;
-
   border-bottom: 1px solid #2d3748;
 }
 
 .logo {
   width: 35px;
-  height: 35px;
+  height: 40px;
+}
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.company {
+  font-size: var(--font-size-xl);
+  white-space: nowrap;
+  flex: 1;
+  transition:
+    opacity 0.2s ease,
+    transform 0.2s ease;
+  transform: translateX(0);
+}
 
-  border-radius: 50%;
+.menu-item.menu-active {
+  font-weight: 700;
+  background: var(--color-light-green);
+}
 
-  background: #22c55e;
+.menu-item.menu-active::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 6px;
+  bottom: 6px;
+  width: 4px;
+  border-radius: 0 4px 4px 0;
+  background: #3b82f6;
 }
 
 .menu-item {
-  height: 50px;
+  position: relative;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease;
+}
 
+.menu-item a {
   display: flex;
   align-items: center;
-
-  padding: 0 20px;
-
+  padding: 10px 20px;
   cursor: pointer;
-
   gap: 15px;
 }
 
 .menu-item:hover {
-  background: #263244;
+  background: var(--color-light-green);
 }
 
 .menu-icon {
   width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.menu-icon svg {
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
 }
 
 .menu-text {
   flex: 1;
+  white-space: nowrap;
+  overflow: hidden;
 }
 
-.collapsed .menu-text,
-.collapsed .arrow,
-.collapsed .company {
+.sidebar.collapsed .menu-text,
+.sidebar.collapsed .arrow,
+.sidebar.collapsed .company {
   opacity: 0;
   visibility: hidden;
-  width: 0;
 }
 
 .sidebar.collapsed.hover-expanded .company,
-.sidebar.collapsed.hover-expanded .menu-text,
-.sidebar.collapsed.hover-expanded .arrow {
+.sidebar.collapsed.hover-expanded .arrow,
+.sidebar.collapsed.hover-expanded .menu-text {
   opacity: 1;
-
   visibility: visible;
-
-  width: auto;
 }
 
 .arrow {
-  transition: 0.3s;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.25s ease;
+  transform: rotate(0deg);
+  transform-origin: center;
 }
 
-.rotate {
+.arrow.expanded {
   transform: rotate(90deg);
 }
 
+.arrow svg {
+  display: block;
+}
+
 .submenu {
-  background: #111827;
+  background: var(--color-light-green);
+  overflow: hidden;
+  max-height: 0;
+  opacity: 0;
+  transition:
+    max-height 0.3s ease,
+    opacity 0.3s ease;
+}
+
+.submenu.submenu-open {
+  max-height: 300px;
+  opacity: 1;
 }
 
 .submenu-item {
-  padding: 12px 60px;
+  /* font-size: 14px; */
+}
 
-  font-size: 14px;
+.submenu-item a {
+  padding: 5px 30px;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.submenu-item a:hover {
+  font-weight: 700;
+}
+
+.submenu-icon {
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.submenu-icon svg {
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+}
+
+.sidebar.collapsed .submenu-item p {
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+}
+
+.sidebar.collapsed.hover-expanded .submenu-item p {
+  opacity: 1;
+  width: auto;
 }
 
 .overlay {
   display: none;
-}
-
-.menu-text,
-.company,
-.arrow {
-  transition:
-    opacity 0.2s ease,
-    width 0.2s ease;
 }
 
 @media (min-width: 1025px) {
@@ -139,13 +210,9 @@
 
   .overlay {
     display: block;
-
     position: fixed;
-
     inset: 0;
-
     background: rgba(0, 0, 0, 0.4);
-
     z-index: 999;
   }
 }

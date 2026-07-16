@@ -3,6 +3,7 @@ import { AUTH_ERROR_CODE } from "./enums/authErrorCode";
 import { useKeycloak } from "./hooks/useKeycloak";
 import { getValidToken } from "./lib/keycloak";
 import AdminLayout from "./components/Layout/AdminLayout";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App() {
   const { isAuthenticated, isLoading, profile, error, login, logout } =
@@ -64,7 +65,15 @@ function App() {
           </div>
         </div>
       ) : (
-        <AdminLayout profile={profile} logout={logout} />
+        <BrowserRouter>
+          <Routes>
+            <Route
+              path="/"
+              element={<AdminLayout profile={profile} logout={logout} />}
+            />
+            <Route path="*" element={<h1>404</h1>} />
+          </Routes>
+        </BrowserRouter>
       )}
     </div>
   );
