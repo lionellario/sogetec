@@ -8,9 +8,9 @@ public record ProductItemDetailRecord(
 );
 
 public record ProductSpecificationRecord(
-    int Id,
-    int ProductItemId,
-    int ProductAttributeId,
+    Guid Id,
+    Guid ProductItemId,
+    Guid ProductAttributeId,
     string ProductAttributeName,
     string ProductAttributeNameFr,
     string HeaderName,
@@ -20,7 +20,7 @@ public record ProductSpecificationRecord(
 );
 
 public record ProductItemRecord(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
     string Slug,
@@ -28,7 +28,7 @@ public record ProductItemRecord(
     string Sku,
     string? Description,
     bool IsActive,
-    int ProductId,
+    Guid ProductId,
     decimal PriceAdjustment,
     decimal CostAdjustment,
     decimal InitialStock,
@@ -40,14 +40,14 @@ public record ProductItemRecord(
 );
 
 public record ProductImageDto(
-    int Id,
-    int ProductId,
+    Guid Id,
+    Guid ProductId,
     string ImageUrl,
     string ThumbnailImageUrl
 );
 
 public record GetProductByIdResponse(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
     string Slug,
@@ -56,7 +56,7 @@ public record GetProductByIdResponse(
     decimal Cost,
     decimal Stock,
     ProductQuantityUnit QuantityUnit,
-    int CategoryId,
+    Guid CategoryId,
     string CategoryName,
     string CategoryNameFr,
     List<ProductItemRecord> Items,
@@ -65,4 +65,4 @@ public record GetProductByIdResponse(
     DateTimeOffset LastModifiedAt
 );
 
-public record GetProductByIdQuery(int Id) : IQuery<GetProductByIdResponse>;
+public record GetProductByIdQuery(Guid Id) : IQuery<GetProductByIdResponse>;

@@ -4,7 +4,7 @@ public sealed class DeleteProductSpecificationModelEndpoint : IEndpoint
 {
     public void Configure(IEndpointRouteBuilder app)
         => app
-            .MapDelete("product-attribute-headers/{headerId:int}", DeleteProductAttributeHeaderAsync)
+            .MapDelete("product-attribute-headers/{headerId:guid}", DeleteProductAttributeHeaderAsync)
             .ProducesDelete()
             .WithTags(nameof(ProductAttributeHeader))
             .WithName(nameof(DeleteProductSpecificationModelEndpoint))
@@ -14,7 +14,7 @@ public sealed class DeleteProductSpecificationModelEndpoint : IEndpoint
 
     public static async Task<NoContent> DeleteProductAttributeHeaderAsync(
         ISender sender,
-        int headerId,
+        Guid headerId,
         CancellationToken cancellationToken)
     {
         var cmd = new DeleteProductAttributeHeaderCommand(headerId);

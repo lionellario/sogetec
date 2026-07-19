@@ -1,17 +1,17 @@
 namespace Api.Modules.Features.Products.Commands.Update;
 
 public record UpdateProductResponse(
-    int Id
+    Guid Id
 );
 
 public record UpdateProductCommand(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
     string Description,
     bool IsActive,
-    int BrandId,
-    int CategoryId,
+    Guid BrandId,
+    Guid CategoryId,
     decimal Price,
     decimal Cost,
     ProductQuantityUnit QuantityUnit

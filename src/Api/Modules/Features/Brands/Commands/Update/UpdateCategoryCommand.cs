@@ -1,7 +1,7 @@
 namespace Api.Modules.Features.Brands.Commands.Update;
 
 public record UpdateBrandResponse(
-    int Id,
+    Guid Id,
     string Name,
     string? ImageUrl,
     DateTimeOffset CreatedAt,
@@ -9,7 +9,7 @@ public record UpdateBrandResponse(
 );
 
 public record UpdateBrandCommand(
-    int Id,
+    Guid Id,
     string Name,
     string? ImageUrl
 ) : ICommand<UpdateBrandResponse>;

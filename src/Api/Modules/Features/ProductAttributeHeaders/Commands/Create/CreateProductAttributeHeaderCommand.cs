@@ -1,7 +1,7 @@
 namespace Api.Modules.Features.ProductAttributeHeaders.Commands.Create;
 
 public record CreateProductAttributeHeaderResponse(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
     int SortOrder,
@@ -10,7 +10,7 @@ public record CreateProductAttributeHeaderResponse(
 );
 
 public record CreateProductAttributeHeaderCommand(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr
 ) : ICommand<CreateProductAttributeHeaderResponse>;

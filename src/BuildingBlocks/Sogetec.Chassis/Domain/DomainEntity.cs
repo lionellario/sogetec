@@ -2,16 +2,16 @@ namespace Sogetec.Chassis.Domain;
 
 public abstract class Entity : HasDomainEvents
 {
-    public int Id { get; protected set; }
+    public Guid Id { get; protected set; }
 
     public DateTimeOffset CreatedOn { get; set; } = DateTimeOffset.UtcNow;
 
     public DateTimeOffset LastModifiedOn { get; set; }
 
-    // protected Entity()
-    // {
-    //     Id = Guid.CreateVersion7();
-    // }
+    protected Entity()
+    {
+        Id = Guid.CreateVersion7();
+    }
 }
 
 public abstract class DomainEntity : Entity

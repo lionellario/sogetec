@@ -1,19 +1,19 @@
 namespace Api.Modules.Features.ProductAttributes.Commands.Create;
 
 public record CreateProductAttributeResponse(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
-    int HeaderId,
+    Guid HeaderId,
     bool IsVariant,
     DateTimeOffset CreatedAt,
     DateTimeOffset LastModifiedAt
 );
 
 public record CreateProductAttributeCommand(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
-    int HeaderId,
+    Guid HeaderId,
     bool IsVariant
 ) : ICommand<CreateProductAttributeResponse>;

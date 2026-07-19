@@ -15,6 +15,6 @@ public sealed class GetBrandsHandler(SogetecDbContext db) : IQueryHandler<GetBra
                         ))
                         .ToListAsync(cancellationToken);
 
-        return entities;
+        return [.. entities.OrderBy(x => x.Name)];
     }
 }

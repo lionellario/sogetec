@@ -8,9 +8,9 @@ public sealed class Category : Entity, ISortableEntity
     public string Name { get; internal set; } = default!;
     public string NameFr { get; internal set; } = default!;
     public string Slug { get; internal set; } = default!;
-    public int? ParentId { get; internal set; }
+    public Guid? ParentId { get; internal set; }
     public Category? Parent { get; internal set; }
-    public int GroupId { get; internal set; }
+    public Guid GroupId { get; internal set; }
     public CategoryGroup? Group { get; internal set; }
     public string? Description { get; internal set; }
     public string? ImageUrl { get; internal set; }

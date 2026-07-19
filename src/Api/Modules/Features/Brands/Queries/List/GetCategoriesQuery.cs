@@ -1,7 +1,7 @@
 namespace Api.Modules.Features.Brands.Queries.List;
 
 public record GetBrandRecord(
-    int Id,
+    Guid Id,
     string Name,
     string LogoUrl,
     DateTimeOffset CreatedAt,

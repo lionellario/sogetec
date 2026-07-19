@@ -1,9 +1,9 @@
 namespace Api.Modules.Features.ProductItems.Queries.GetById;
 
 public record ProductSpecificationRecord(
-    int Id,
-    int ProductItemId,
-    int ProductAttributeId,
+    Guid Id,
+    Guid ProductItemId,
+    Guid ProductAttributeId,
     string ProductAttributeName,
     string ProductAttributeNameFr,
     string HeaderName,
@@ -13,7 +13,7 @@ public record ProductSpecificationRecord(
 );
 
 public record GetProductItemByIdResponse(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
     string Slug,
@@ -21,7 +21,7 @@ public record GetProductItemByIdResponse(
     string Sku,
     string? Description,
     bool IsActive,
-    int ProductId,
+    Guid ProductId,
     decimal PriceAdjustment,
     decimal CostAdjustment,
     decimal InitialStock,
@@ -32,4 +32,4 @@ public record GetProductItemByIdResponse(
     DateTimeOffset LastModifiedAt
 );
 
-public record GetProductItemByIdQuery(int Id) : IQuery<GetProductItemByIdResponse>;
+public record GetProductItemByIdQuery(Guid Id) : IQuery<GetProductItemByIdResponse>;

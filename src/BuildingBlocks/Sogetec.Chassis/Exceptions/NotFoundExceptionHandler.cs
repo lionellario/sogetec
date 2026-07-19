@@ -14,6 +14,21 @@ public sealed class NotFoundException(string message, Enum? errorCode = null) : 
         return For<T>(id?.ToString(), errorCode);
     }
 
+    public static NotFoundException For<T>(Guid id, Enum? errorCode = null)
+    {
+        return For<T>(id.ToString(), errorCode);
+    }
+
+    public static NotFoundException For<T>(List<Guid> ids, Enum? errorCode = null)
+    {
+        return For<T>(ids.ToString(), errorCode);
+    }
+
+    public static NotFoundException For<T>(Guid? id, Enum? errorCode = null)
+    {
+        return For<T>(id?.ToString(), errorCode);
+    }
+
     public static NotFoundException For<T>(string? id, Enum? errorCode = null)
     {
         return new($"{typeof(T).Name} with identifier {id} was not found.", errorCode);

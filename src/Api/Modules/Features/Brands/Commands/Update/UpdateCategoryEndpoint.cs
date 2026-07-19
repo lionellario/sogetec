@@ -4,7 +4,7 @@ public sealed class UpdateBrandEndpoint : IEndpoint
 {
     public void Configure(IEndpointRouteBuilder app)
         => app
-            .MapPut("brands/{brandId:int}", UpdateBrandAsync)
+            .MapPut("brands/{brandId:guid}", UpdateBrandAsync)
             .ProducesPut()
             .WithTags(nameof(Brand))
             .WithName(nameof(UpdateBrandEndpoint))
@@ -14,7 +14,7 @@ public sealed class UpdateBrandEndpoint : IEndpoint
 
     public static async Task<Ok<UpdateBrandResponse>> UpdateBrandAsync(
         ISender sender,
-        int brandId,
+        Guid brandId,
         [FromBody] UpdateBrandCommand cmd,
         CancellationToken cancellationToken)
     {

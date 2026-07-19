@@ -1,3 +1,3 @@
 namespace Api.Modules.Features.ProductItems.Commands.Delete;
 
-public record DeleteProductItemCommand(int Id) : ICommand;
+public record DeleteProductItemCommand(Guid Id) : ICommand;

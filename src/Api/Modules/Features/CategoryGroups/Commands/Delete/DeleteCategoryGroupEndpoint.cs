@@ -4,7 +4,7 @@ public sealed class DeleteCategoryGroupEndpoint : IEndpoint
 {
     public void Configure(IEndpointRouteBuilder app)
         => app
-            .MapDelete("category-groups/{groupId:int}", DeleteCategoryGroupAsync)
+            .MapDelete("category-groups/{groupId:guid}", DeleteCategoryGroupAsync)
             .ProducesDelete()
             .WithTags(nameof(Category))
             .WithName(nameof(DeleteCategoryGroupEndpoint))
@@ -14,7 +14,7 @@ public sealed class DeleteCategoryGroupEndpoint : IEndpoint
 
     public static async Task<NoContent> DeleteCategoryGroupAsync(
         ISender sender,
-        int groupId,
+        Guid groupId,
         CancellationToken cancellationToken)
     {
         var cmd = new DeleteCategoryGroupCommand(groupId);

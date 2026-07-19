@@ -4,7 +4,7 @@ public sealed class GetCategoryGroupByIdEndpoint : IEndpoint
 {
     public void Configure(IEndpointRouteBuilder app)
         => app
-            .MapGet("category-groups/{groupId:int}", GetCategoryGroupByIdAsync)
+            .MapGet("category-groups/{groupId:guid}", GetCategoryGroupByIdAsync)
             .ProducesGet<GetCategoryGroupByIdResponse>()
             .WithTags(nameof(CategoryGroup))
             .WithName(nameof(GetCategoryGroupByIdEndpoint))
@@ -13,7 +13,7 @@ public sealed class GetCategoryGroupByIdEndpoint : IEndpoint
 
     public static async Task<Ok<GetCategoryGroupByIdResponse>> GetCategoryGroupByIdAsync(
         ISender sender,
-        int groupId,
+        Guid groupId,
         CancellationToken cancellationToken)
     {
         var query = new GetCategoryGroupByIdQuery(groupId);

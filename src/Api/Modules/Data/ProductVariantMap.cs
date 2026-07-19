@@ -9,9 +9,9 @@ public sealed class ProductVariantMap : IEntityTypeConfiguration<ProductVariant>
         builder.ToTable("product_variant");
         builder.HasKey(t => t.Id).HasName("PK_product_variant");
 
-        builder.Property(t => t.Id).HasColumnName("id");
+        builder.Property(t => t.Id).ValueGeneratedNever().HasColumnName("id");
         builder.Property(t => t.ItemId).HasColumnName("item_id").IsRequired();
-        builder.Property(t => t.AttributeId).HasColumnName("variant_id").IsRequired();
+        builder.Property(t => t.AttributeId).HasColumnName("attribute_id").IsRequired();
         builder.Property(t => t.Value).HasColumnName("value").IsRequired();
         builder.Property(t => t.CreatedOn).HasColumnName("created_on").HasDefaultValueSql("CURRENT_TIMESTAMP").IsRequired();
         builder.Property(t => t.LastModifiedOn).HasColumnName("last_modified_on").HasDefaultValueSql("CURRENT_TIMESTAMP").IsRequired();
@@ -27,7 +27,7 @@ public sealed class ProductVariantMap : IEntityTypeConfiguration<ProductVariant>
             .HasOne(c => c.Attribute)
             .WithMany()
             .HasForeignKey(t => t.AttributeId)
-            .HasConstraintName("FK_product_variant_product_variant")
+            .HasConstraintName("FK_product_variant_product_attribute")
             .OnDelete(DeleteBehavior.Cascade);
 
         builder.HasIndex(t => t.ItemId).HasDatabaseName("IX_product_variant_item");

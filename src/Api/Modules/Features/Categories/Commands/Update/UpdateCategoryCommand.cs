@@ -1,13 +1,13 @@
 namespace Api.Modules.Features.Categories.Commands.Update;
 
 public record UpdateCategoryResponse(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
     string Slug,
-    int GroupId,
+    Guid GroupId,
     string GroupName,
-    int? ParentId,
+    Guid? ParentId,
     string? ParentName,
     string? Description,
     bool IsActive,
@@ -18,11 +18,11 @@ public record UpdateCategoryResponse(
 );
 
 public record UpdateCategoryCommand(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
-    int GroupId,
-    int? ParentId,
+    Guid GroupId,
+    Guid? ParentId,
     string? Description,
     string? ImageUrl,
     bool IsActive,

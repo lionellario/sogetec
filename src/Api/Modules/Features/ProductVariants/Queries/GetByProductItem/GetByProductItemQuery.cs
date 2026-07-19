@@ -1,9 +1,9 @@
 namespace Api.Modules.Features.ProductVariants.Queries.GetByProductItem;
 
 public record GetByProductItemRecord(
-    int Id,
-    int ProductItemId,
-    int ProductAttributeId,
+    Guid Id,
+    Guid ProductItemId,
+    Guid ProductAttributeId,
     string ProductAttributeName,
     string ProductAttributeNameFr,
     string HeaderName,
@@ -12,4 +12,4 @@ public record GetByProductItemRecord(
     bool IsVariant
 );
 
-public record GetByProductItemQuery(int ProductItemId) : IQuery<List<GetByProductItemRecord>>;
+public record GetByProductItemQuery(Guid ProductItemId) : IQuery<List<GetByProductItemRecord>>;

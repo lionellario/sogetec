@@ -3,14 +3,14 @@ using Sogetec.Chassis.Pagination;
 namespace Api.Modules.Features.Products.Queries.GetProducts;
 
 public record ProductImageDto(
-    int Id,
-    int ProductId,
+    Guid Id,
+    Guid ProductId,
     string ImageUrl,
     string ThumbnailImageUrl
 );
 
 public record ProductRecord(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
     string Slug,
@@ -19,7 +19,7 @@ public record ProductRecord(
     decimal Cost,
     decimal Stock,
     ProductQuantityUnit QuantityUnit,
-    int CategoryId,
+    Guid CategoryId,
     string CategoryName,
     string CategoryNameFr,
     List<ProductImageDto> Images,

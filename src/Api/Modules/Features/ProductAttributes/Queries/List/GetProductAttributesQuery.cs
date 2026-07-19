@@ -1,10 +1,10 @@
 namespace Api.Modules.Features.ProductAttributes.Queries.List;
 
 public record GetProductAttributeRecord(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
-    int HeaderId,
+    Guid HeaderId,
     bool IsVariant,
     DateTimeOffset CreatedAt,
     DateTimeOffset LastModifiedAt

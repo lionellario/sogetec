@@ -1,8 +1,8 @@
 namespace Api.Modules.Features.ProductImages.Commands.Delete;
 
 public record DeleteProductImageDto(
-    int ProductImageId,
-    int ProductId,
+    Guid ProductImageId,
+    Guid ProductId,
     string ImageUrl,
     string ThumbnailImageUrl
 );

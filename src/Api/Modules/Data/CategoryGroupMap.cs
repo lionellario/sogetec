@@ -9,7 +9,7 @@ public sealed class CategoryGroupMap : IEntityTypeConfiguration<CategoryGroup>
         builder.ToTable("category_group");
         builder.HasKey(t => t.Id).HasName("PK_category_group");
 
-        builder.Property(t => t.Id).HasColumnName("id");
+        builder.Property(t => t.Id).ValueGeneratedNever().HasColumnName("id");
         builder.Property(t => t.Name).HasColumnName("name").IsRequired();
         builder.Property(t => t.NameFr).HasColumnName("name_fr").IsRequired();
         builder.Property(t => t.ImageUrl).HasColumnName("image_url").IsRequired();

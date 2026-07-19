@@ -1,7 +1,7 @@
 namespace Api.Modules.Features.ProductItems.Commands.Update;
 
 public record UpdateProductItemResponse(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
     string Slug,
@@ -9,7 +9,7 @@ public record UpdateProductItemResponse(
     string Sku,
     string? Description,
     bool IsActive,
-    int ProductId,
+    Guid ProductId,
     decimal PriceAdjustment,
     decimal CostAdjustment,
     decimal InitialStock,
@@ -20,7 +20,7 @@ public record UpdateProductItemResponse(
 );
 
 public record UpdateProductItemCommand(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
     string Code,

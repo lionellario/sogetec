@@ -1,7 +1,7 @@
 namespace Api.Modules.Features.CategoryGroups.Queries.GetById;
 
 public record GetCategoryGroupByIdResponse(
-    int Id,
+    Guid Id,
     string Name,
     bool IsActive,
     string ImageUrl,
@@ -10,4 +10,4 @@ public record GetCategoryGroupByIdResponse(
     DateTimeOffset LastModifiedAt
 );
 
-public record GetCategoryGroupByIdQuery(int Id) : IQuery<GetCategoryGroupByIdResponse>;
+public record GetCategoryGroupByIdQuery(Guid Id) : IQuery<GetCategoryGroupByIdResponse>;

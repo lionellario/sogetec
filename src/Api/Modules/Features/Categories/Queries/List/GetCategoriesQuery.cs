@@ -3,16 +3,16 @@ using Sogetec.Chassis.Pagination;
 namespace Api.Modules.Features.Categories.Queries.List;
 
 public record GetCategoryRecord(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
     string Slug,
-    int GroupId,
+    Guid GroupId,
     string GroupName,
     string GroupNameFr,
     int GroupSortOrder,
     string GroupImageUrl,
-    int? ParentId,
+    Guid? ParentId,
     string? ParentName,
     int SortOrder,
     bool IsActive,

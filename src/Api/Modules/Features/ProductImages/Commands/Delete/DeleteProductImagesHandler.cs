@@ -4,8 +4,8 @@ public sealed class DeleteProductImagesHandler(SogetecDbContext db) : ICommandHa
 {
     public async ValueTask<Unit> Handle(DeleteProductImagesCommand command, CancellationToken cancellationToken)
     {
-        var productIds = command.Images.Select(x => x.ProductImageId).ToList();
-        var productImagesToRemove = await db.ProductImages.Where(c => productIds.Contains(c.Id)).ToListAsync(cancellationToken);
+        var productImgIds = command.Images.Select(x => x.ProductImageId).ToList();
+        var productImagesToRemove = await db.ProductImages.Where(c => productImgIds.Contains(c.Id)).ToListAsync(cancellationToken);
 
         db.RemoveRange(productImagesToRemove);
 

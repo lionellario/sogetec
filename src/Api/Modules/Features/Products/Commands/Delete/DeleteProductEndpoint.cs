@@ -4,7 +4,7 @@ public sealed class DeleteProductEndpoint : IEndpoint
 {
     public void Configure(IEndpointRouteBuilder app)
         => app
-            .MapDelete("products/{productId:int}", DeleteProductAsync)
+            .MapDelete("products/{productId:guid}", DeleteProductAsync)
             .ProducesDelete()
             .WithTags(nameof(Product))
             .WithName(nameof(DeleteProductEndpoint))
@@ -14,7 +14,7 @@ public sealed class DeleteProductEndpoint : IEndpoint
 
     public static async Task<NoContent> DeleteProductAsync(
         ISender sender,
-        int productId,
+        Guid productId,
         CancellationToken cancellationToken)
     {
         var cmd = new DeleteProductCommand(productId);

@@ -1,5 +1,5 @@
 export type BrandData = {
-  id: number;
+  id: string;
   name: string;
   logoUrl: string;
   createdAt: string;

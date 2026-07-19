@@ -1,12 +1,12 @@
 namespace Api.Modules.Features.CategoryGroups.Queries.List;
 
 public record CategoryRecord(
-    int Id,
+    Guid Id,
     string Name,
     string Slug,
-    int GroupId,
+    Guid GroupId,
     string GroupName,
-    int? ParentId,
+    Guid? ParentId,
     string? ParentName,
     bool IsActive,
     int SortOrder,
@@ -15,7 +15,7 @@ public record CategoryRecord(
 );
 
 public record GetCategoryGroupRecord(
-    int Id,
+    Guid Id,
     string Name,
     string ImageUrl,
     bool IsActive,

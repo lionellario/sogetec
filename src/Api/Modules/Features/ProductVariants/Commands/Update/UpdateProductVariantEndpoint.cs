@@ -4,7 +4,7 @@ public sealed class UpdateProductVariantEndpoint : IEndpoint
 {
     public void Configure(IEndpointRouteBuilder app)
         => app
-            .MapPut("product-variants/{variantId:int}", UpdateProductVariantAsync)
+            .MapPut("product-variants/{variantId:guid}", UpdateProductVariantAsync)
             .ProducesPut()
             .WithTags(nameof(ProductVariant))
             .WithName(nameof(UpdateProductVariantEndpoint))
@@ -14,7 +14,7 @@ public sealed class UpdateProductVariantEndpoint : IEndpoint
 
     public static async Task<Ok<UpdateProductVariantResponse>> UpdateProductVariantAsync(
         ISender sender,
-        int variantId,
+        Guid variantId,
         [FromBody] UpdateProductVariantCommand cmd,
         CancellationToken cancellationToken)
     {

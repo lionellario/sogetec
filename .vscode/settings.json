@@ -15,4 +15,7 @@
   },
   "github.copilot.inlineSuggest.enable": false,
   "chat.disableAIFeatures": false,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "explicit"
+  }
 }

@@ -4,7 +4,7 @@ public sealed class UpdateCategoryEndpoint : IEndpoint
 {
     public void Configure(IEndpointRouteBuilder app)
         => app
-            .MapPut("categories/{categoryId:int}", UpdateCategoryAsync)
+            .MapPut("categories/{categoryId:guid}", UpdateCategoryAsync)
             .ProducesPut()
             .WithTags(nameof(Category))
             .WithName(nameof(UpdateCategoryEndpoint))
@@ -14,7 +14,7 @@ public sealed class UpdateCategoryEndpoint : IEndpoint
 
     public static async Task<Ok<UpdateCategoryResponse>> UpdateCategoryAsync(
         ISender sender,
-        int categoryId,
+        Guid categoryId,
         [FromBody] UpdateCategoryCommand cmd,
         CancellationToken cancellationToken)
     {

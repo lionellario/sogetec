@@ -1,7 +1,7 @@
 namespace Api.Modules.Features.ProductItems.Commands.Create;
 
 public record CreateProductItemResponse(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
     string Slug,
@@ -9,7 +9,7 @@ public record CreateProductItemResponse(
     string Sku,
     string? Description,
     bool IsActive,
-    int ProductId,
+    Guid ProductId,
     decimal PriceAdjustment,
     decimal CostAdjustment,
     decimal InitialStock,
@@ -20,19 +20,19 @@ public record CreateProductItemResponse(
 );
 
 public record CreateProductVariantRecord(
-    int ProductAttributeId,
+    Guid ProductAttributeId,
     string Value
 );
 
 public record CreateProductItemCommand(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
     string Code,
     string Sku,
     string? Description,
     bool IsActive,
-    int ProductId,
+    Guid ProductId,
     decimal PriceAdjustment,
     decimal CostAdjustment,
     decimal InitialStock,

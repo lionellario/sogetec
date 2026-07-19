@@ -12,7 +12,7 @@ public sealed class ProductItem : Entity
     public string Sku { get; internal set; } = default!;
     public string? Description { get; internal set; }
     public bool IsActive { get; internal set; }
-    public int ProductId { get; internal set; }
+    public Guid ProductId { get; internal set; }
     public Product? Product { get; internal set; }
     public decimal PriceAdjustment { get; internal set; }
     public decimal CostAdjustment { get; internal set; }

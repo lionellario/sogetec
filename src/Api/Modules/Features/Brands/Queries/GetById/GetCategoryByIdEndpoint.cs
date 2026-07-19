@@ -4,7 +4,7 @@ public sealed class GetBrandByIdEndpoint : IEndpoint
 {
     public void Configure(IEndpointRouteBuilder app)
         => app
-            .MapGet("brands/{brandId:int}", GetBrandByIdAsync)
+            .MapGet("brands/{brandId:guid}", GetBrandByIdAsync)
             .ProducesGet<GetBrandByIdResponse>()
             .WithTags(nameof(Brand))
             .WithName(nameof(GetBrandByIdEndpoint))
@@ -13,7 +13,7 @@ public sealed class GetBrandByIdEndpoint : IEndpoint
 
     public static async Task<Ok<GetBrandByIdResponse>> GetBrandByIdAsync(
         ISender sender,
-        int brandId,
+        Guid brandId,
         CancellationToken cancellationToken)
     {
         var query = new GetBrandByIdQuery(brandId);

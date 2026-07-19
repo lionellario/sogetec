@@ -1,7 +1,7 @@
 namespace Api.Modules.Features.ProductAttributeHeaders.Commands.Update;
 
 public record UpdateProductAttributeHeaderResponse(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
     int SortOrder,
@@ -10,7 +10,7 @@ public record UpdateProductAttributeHeaderResponse(
 );
 
 public record UpdateProductAttributeHeaderCommand(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
     int? SortOrder

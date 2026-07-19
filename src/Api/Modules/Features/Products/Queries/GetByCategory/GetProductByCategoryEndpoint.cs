@@ -6,7 +6,7 @@ public sealed class GetProductByCategoryEndpoint : IEndpoint
 {
     public void Configure(IEndpointRouteBuilder app)
         => app
-            .MapGet("products/categories/{categoryId:int}", GetProductByCategoryAsync)
+            .MapGet("products/categories/{categoryId:guid}", GetProductByCategoryAsync)
             .ProducesGet<PagedResponse<ProductByCategoryRecord>>()
             .WithTags(nameof(Product))
             .WithName(nameof(GetProductByCategoryEndpoint))
@@ -15,7 +15,7 @@ public sealed class GetProductByCategoryEndpoint : IEndpoint
 
     public static async Task<Ok<PagedResponse<ProductByCategoryRecord>>> GetProductByCategoryAsync(
         ISender sender,
-        int categoryId,
+        Guid categoryId,
         int? pageNumber,
         int? pageSize,
         CancellationToken cancellationToken)

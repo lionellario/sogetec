@@ -4,7 +4,7 @@ public sealed class AddProductImagesHandler(SogetecDbContext db) : ICommandHandl
 {
     public async ValueTask<List<AddProductImagesRecord>> Handle(AddProductImagesCommand command, CancellationToken cancellationToken)
     {
-        var productId = command.Images.FirstOrDefault()?.ProductId ?? 0;
+        var productId = command.ProductId;
         var product = await db.Products.FirstOrDefaultAsync(c => c.Id == productId, cancellationToken);
 
         var products = new List<ProductImage>();

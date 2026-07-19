@@ -1,7 +1,7 @@
 namespace Api.Modules.Features.ProductAttributeHeaders.Queries.GetById;
 
 public record GetProductAttributeHeaderByIdResponse(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
     int SortOrder,
@@ -9,4 +9,4 @@ public record GetProductAttributeHeaderByIdResponse(
     DateTimeOffset LastModifiedAt
 );
 
-public record GetProductAttributeHeaderByIdQuery(int Id) : IQuery<GetProductAttributeHeaderByIdResponse>;
+public record GetProductAttributeHeaderByIdQuery(Guid Id) : IQuery<GetProductAttributeHeaderByIdResponse>;

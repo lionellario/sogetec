@@ -1,15 +1,15 @@
 namespace Api.Modules.Features.ProductAttributeHeaders.Queries.List;
 
 public record ItemRecord(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
-    int HeaderId,
+    Guid HeaderId,
     bool IsVariant
 );
 
 public record GetProductSpecificationModelRecord(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
     int SortOrder,

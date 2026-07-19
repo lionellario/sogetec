@@ -1,19 +1,19 @@
 namespace Api.Modules.Features.ProductAttributes.Commands.Update;
 
 public record UpdateProductAttributeResponse(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
-    int HeaderId,
+    Guid HeaderId,
     bool IsVariant,
     DateTimeOffset CreatedAt,
     DateTimeOffset LastModifiedAt
 );
 
 public record UpdateProductAttributeCommand(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
-    int HeaderId,
+    Guid HeaderId,
     bool IsVariant
 ) : ICommand<UpdateProductAttributeResponse>;

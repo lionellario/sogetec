@@ -10,9 +10,9 @@ public sealed class Product : Entity
     public string Slug { get; internal set; } = default!;
     public string Description { get; internal set; } = default!;
     public bool IsActive { get; internal set; }
-    public int BrandId { get; internal set; }
+    public Guid BrandId { get; internal set; }
     public Brand? Brand { get; internal set; }
-    public int CategoryId { get; internal set; }
+    public Guid CategoryId { get; internal set; }
     public Category? Category { get; internal set; }
     public decimal Price { get; internal set; }
     public decimal Cost { get; internal set; }

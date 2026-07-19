@@ -3,14 +3,14 @@ using Sogetec.Chassis.Pagination;
 namespace Api.Modules.Features.Products.Queries.GetByCategory;
 
 public record ProductImageDto(
-    int Id,
-    int ProductId,
+    Guid Id,
+    Guid ProductId,
     string ImageUrl,
     string ThumbnailImageUrl
 );
 
 public record ProductByCategoryRecord(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
     string Slug,
@@ -19,4 +19,4 @@ public record ProductByCategoryRecord(
     List<ProductImageDto> Images
 );
 
-public record GetProductByCategoryQuery(int CategoryId, PaginationQueryFilter Filter) : IQuery<PagedResponse<ProductByCategoryRecord>>;
+public record GetProductByCategoryQuery(Guid CategoryId, PaginationQueryFilter Filter) : IQuery<PagedResponse<ProductByCategoryRecord>>;

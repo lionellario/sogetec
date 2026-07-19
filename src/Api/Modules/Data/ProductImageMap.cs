@@ -9,7 +9,7 @@ public sealed class ProductImageMap : IEntityTypeConfiguration<ProductImage>
         builder.ToTable("product_image");
         builder.HasKey(t => t.Id).HasName("PK_product_image");
 
-        builder.Property(t => t.Id).HasColumnName("id");
+        builder.Property(t => t.Id).ValueGeneratedNever().HasColumnName("id");
         builder.Property(t => t.Url).HasColumnName("url").IsRequired();
         builder.Property(t => t.PreviewUrl).HasColumnName("preview_url").IsRequired();
         builder.Property(t => t.ProductId).HasColumnName("product_id").IsRequired();

@@ -1,13 +1,3 @@
-import { useEffect, useMemo, useState } from "react";
-
-//MRT Imports
-import {
-  MaterialReactTable,
-  useMaterialReactTable,
-  type MRT_ColumnDef,
-  MRT_GlobalFilterTextField,
-  MRT_ToggleFiltersButton,
-} from "material-react-table";
 import {
   Alert,
   Box,
@@ -16,36 +6,79 @@ import {
   MenuItem,
   lighten,
 } from "@mui/material";
-
-import { AccountCircle, Send } from "@mui/icons-material";
-import type { BrandData } from "../data/BrandData";
-import { useNavigate } from "react-router-dom";
-import { API_PREFIX } from "../lib/Constant";
-import api from "../lib/axios";
-import LoadingSpinner from "../components/Spinner/LoadingSpinner";
+import { Pencil, Trash2 } from "lucide-react";
+import {
+  MRT_GlobalFilterTextField,
+  MRT_ToggleFiltersButton,
+  MaterialReactTable,
+  useMaterialReactTable,
+  type MRT_ColumnDef,
+  type MRT_TableInstance,
+} from "material-react-table";
 import { enqueueSnackbar } from "notistack";
+import { useEffect, useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import LoadingSpinner from "../components/Spinner/LoadingSpinner";
+import type { BrandData } from "../data/BrandData";
+import { API_PREFIX } from "../lib/Constant";
 import { ERROR_MESSAGES } from "../lib/ErrorMessages";
+import api from "../lib/axios";
 
 const BrandPage = () => {
   const navigate = useNavigate();
   const [deleting, setDeleting] = useState<boolean>(false);
+  const [isLoading, setLoading] = useState<boolean>(true);
   const [data, setProducts] = useState<BrandData[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     async function loadProducts() {
-      const response = await api.get(`${API_PREFIX}/brands`);
-      setProducts(response.data);
+      try {
+        const response = await api.get(`${API_PREFIX}/brands`);
+        setProducts(response.data);
+      } catch (err) {
+        setError("An error occurred while loading brands.");
+      } finally {
+        setLoading(false);
+      }
     }
 
     loadProducts();
   }, []);
 
+  const deleteProducts = async (
+    ids: Set<string>,
+    table?: MRT_TableInstance<BrandData> | null,
+  ) => {
+    setDeleting(true);
+
+    try {
+      await api.delete(`${API_PREFIX}/brands`, {
+        data: {
+          ids: Array.from(ids),
+        },
+      });
+      enqueueSnackbar("Brands were successfully deleted", {
+        variant: "success",
+      });
+      setProducts((prevBrands) => prevBrands.filter((d) => !ids.has(d.id)));
+      setError(null);
+      table?.resetRowSelection();
+    } catch (err: any) {
+      setError(
+        ERROR_MESSAGES[err.details.title] ||
+          "An error occurred while saving the changes.",
+      );
+    } finally {
+      setDeleting(false);
+    }
+  };
+
   const columns = useMemo<MRT_ColumnDef<BrandData>[]>(
     () => [
       {
-        accessorFn: (row) => `${row.name}`, //accessorFn used to join multiple data into a single cell
-        id: "name", //id is still required when using accessorFn instead of accessorKey
+        accessorFn: (row) => `${row.name}`,
+        id: "name",
         header: "Name",
         size: 250,
         Cell: ({ renderedCellValue, row }) => (
@@ -57,14 +90,13 @@ const BrandPage = () => {
             }}
           >
             <img
-              alt="brand logo"
+              alt={row.original.name}
               height={30}
               width={30}
               src="https://picsum.photos/200/300?random=1"
               loading="lazy"
               style={{ borderRadius: "50%" }}
             />
-            {/* using renderedCellValue instead of cell.getValue() preserves filter match highlighting */}
             <span>{renderedCellValue}</span>
           </Box>
         ),
@@ -105,7 +137,7 @@ const BrandPage = () => {
 
   const table = useMaterialReactTable({
     columns,
-    data, //data must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
+    data,
     enableRowActions: true,
     enableRowSelection: true,
     initialState: {
@@ -138,46 +170,32 @@ const BrandPage = () => {
         sx={{ m: 0 }}
       >
         <ListItemIcon>
-          <AccountCircle />
+          <Pencil />
         </ListItemIcon>
         Edit
       </MenuItem>,
       <MenuItem
         key={1}
         onClick={() => {
-          // Send email logic...
+          const ids: Set<string> = new Set([row.original.id]);
+          deleteProducts(ids);
           closeMenu();
         }}
         sx={{ m: 0 }}
       >
         <ListItemIcon>
-          <Send />
+          <Trash2 />
         </ListItemIcon>
         Delete
       </MenuItem>,
     ],
     renderTopToolbar: ({ table }) => {
       const handleDelete = async () => {
-        setDeleting(true);
-        const ids: number[] = [];
+        const ids: Set<string> = new Set();
         table.getSelectedRowModel().flatRows.map((row) => {
-          ids.push(row.original.id);
+          ids.add(row.original.id);
         });
-
-        try {
-          await api.delete(`${API_PREFIX}/brands`, {
-            data: {
-              ids: ids,
-            },
-          });
-        } catch (err: any) {
-          setError(
-            ERROR_MESSAGES[err.details.title] ||
-              "An error occurred while saving the changes.",
-          );
-        } finally {
-          setDeleting(false);
-        }
+        deleteProducts(ids, table);
       };
 
       return (
@@ -191,7 +209,6 @@ const BrandPage = () => {
           })}
         >
           <Box sx={{ display: "flex", gap: "0.5rem", alignItems: "center" }}>
-            {/* import MRT sub-components */}
             <MRT_GlobalFilterTextField table={table} />
             <MRT_ToggleFiltersButton table={table} />
           </Box>
@@ -201,7 +218,7 @@ const BrandPage = () => {
                 Add
               </Button>
               <Button
-                color="success"
+                color="error"
                 disabled={!table.getIsSomeRowsSelected()}
                 onClick={handleDelete}
                 variant="contained"
@@ -217,9 +234,13 @@ const BrandPage = () => {
 
   return (
     <div>
-      <LoadingSpinner isLoading={deleting} />
+      <LoadingSpinner isLoading={deleting || isLoading} />
       {error && (
-        <Alert severity="error" sx={{ mb: 3, mt: 2 }}>
+        <Alert
+          severity="error"
+          sx={{ mb: 3, mt: 2 }}
+          onClose={() => setError(null)}
+        >
           {error}
         </Alert>
       )}

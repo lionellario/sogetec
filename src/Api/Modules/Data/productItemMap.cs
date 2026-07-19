@@ -9,7 +9,7 @@ public sealed class ProductItemMap : IEntityTypeConfiguration<ProductItem>
         builder.ToTable("product_item");
         builder.HasKey(t => t.Id).HasName("PK_product_item");
 
-        builder.Property(t => t.Id).HasColumnName("id");
+        builder.Property(t => t.Id).ValueGeneratedNever().HasColumnName("id");
         builder.Property(t => t.Name).HasColumnName("name").IsRequired();
         builder.Property(t => t.NameFr).HasColumnName("name_fr").IsRequired();
         builder.Property(t => t.Slug).HasColumnName("slug").IsRequired();
@@ -35,7 +35,7 @@ public sealed class ProductItemMap : IEntityTypeConfiguration<ProductItem>
         builder
             .OwnsOne(c => c.Details, b =>
             {
-                b.ToJson();
+                b.ToJson("details");
             });
 
         builder.HasIndex(t => t.ProductId).HasDatabaseName("IX_product_item_product");

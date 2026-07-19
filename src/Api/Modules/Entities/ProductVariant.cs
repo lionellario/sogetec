@@ -4,11 +4,11 @@ namespace Api.Modules.Entities;
 
 public sealed class ProductVariant : Entity
 {
-    public int AttributeId { get; internal set; }
+    public Guid AttributeId { get; internal set; }
     public ProductAttribute? Attribute { get; internal set; }
     public string Value { get; internal set; } = default!;
     public ProductItem? Item { get; internal set; }
-    public int ItemId { get; internal set; }
+    public Guid ItemId { get; internal set; }
 
     public static ProductVariant Create(
         ProductItem item,

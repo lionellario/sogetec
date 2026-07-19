@@ -6,7 +6,7 @@ public sealed class ProductAttribute : Entity
 {
     public string Name { get; internal set; } = default!;
     public string NameFr { get; internal set; } = default!;
-    public int HeaderId { get; internal set; }
+    public Guid HeaderId { get; internal set; }
     public ProductAttributeHeader? Header { get; internal set; }
     public bool IsVariant { get; internal set; }
 

@@ -8,13 +8,14 @@ import {
   Typography,
 } from "@mui/material";
 import { CircleArrowLeft } from "lucide-react";
+import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import api from "../lib/axios";
-import type { BrandData } from "../data/BrandData";
-import { API_PREFIX } from "../lib/Constant";
 import LoadingSpinner from "../components/Spinner/LoadingSpinner";
-import { useSnackbar } from "notistack";
+import type { BrandData } from "../data/BrandData";
+import api from "../lib/axios";
+import { API_PREFIX } from "../lib/Constant";
+import { ERROR_MESSAGES } from "../lib/ErrorMessages";
 import { isNullOrEmpty } from "../utils/StringExtensions";
 
 export default function BrandPageEdit() {
@@ -97,8 +98,8 @@ export default function BrandPageEdit() {
         variant: "error",
       });
       setError(
-        err.response?.data?.message ||
-          "An error occurred while saving the entity changes.",
+        ERROR_MESSAGES[err.details.title] ||
+          "An error occurred while saving the changes.",
       );
     } finally {
       setSaving(false);

@@ -1,7 +1,7 @@
 namespace Api.Modules.Features.CategoryGroups.Commands.Create;
 
 public record CreateCategoryGroupResponse(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
     string? ImageUrl,
@@ -12,7 +12,7 @@ public record CreateCategoryGroupResponse(
 );
 
 public record CreateCategoryGroupCommand(
-    int Id,
+    Guid Id,
     string Name,
     string NameFr,
     string ImageUrl,

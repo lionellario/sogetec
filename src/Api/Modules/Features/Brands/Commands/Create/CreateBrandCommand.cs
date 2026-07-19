@@ -1,7 +1,7 @@
 namespace Api.Modules.Features.Brands.Commands.Create;
 
 public record CreateBrandResponse(
-    int Id,
+    Guid Id,
     string Name,
     string? ImageUrl,
     DateTimeOffset CreatedAt,
@@ -9,7 +9,7 @@ public record CreateBrandResponse(
 );
 
 public record CreateBrandCommand(
-    int Id,
+    Guid Id,
     string Name,
     string? ImageUrl
 ) : ICommand<CreateBrandResponse>;

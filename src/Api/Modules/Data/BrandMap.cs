@@ -9,7 +9,7 @@ public sealed class BrandMap : IEntityTypeConfiguration<Brand>
         builder.ToTable("brand");
         builder.HasKey(t => t.Id).HasName("PK_brand");
 
-        builder.Property(t => t.Id).HasColumnName("id");
+        builder.Property(t => t.Id).ValueGeneratedNever().HasColumnName("id");
         builder.Property(t => t.Name).HasColumnName("name").IsRequired();
         builder.Property(t => t.LogoUrl).HasColumnName("logo_url").IsRequired();
         builder.Property(t => t.CreatedOn).HasColumnName("created_on").HasDefaultValueSql("CURRENT_TIMESTAMP").IsRequired();

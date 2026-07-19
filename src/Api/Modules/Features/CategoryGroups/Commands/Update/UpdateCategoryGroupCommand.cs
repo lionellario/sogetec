@@ -1,7 +1,7 @@
 namespace Api.Modules.Features.CategoryGroups.Commands.Update;
 
 public record UpdateCategoryGroupResponse(
-    int Id,
+    Guid Id,
     string Name,
     string? ImageUrl,
     bool IsActive,
@@ -11,7 +11,7 @@ public record UpdateCategoryGroupResponse(
 );
 
 public record UpdateCategoryGroupCommand(
-    int Id,
+    Guid Id,
     string Name,
     string ImageUrl,
     bool IsActive,

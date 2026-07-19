@@ -1,10 +1,10 @@
 namespace Api.Modules.Features.Categories.Queries.GetById;
 
 public record GetCategoryByIdResponse(
-    int Id,
+    Guid Id,
     string Name,
     string Slug,
-    int? ParentId,
+    Guid? ParentId,
     string? ParentName,
     string? Description,
     bool IsActive,
@@ -14,4 +14,4 @@ public record GetCategoryByIdResponse(
     DateTimeOffset LastModifiedAt
 );
 
-public record GetCategoryByIdQuery(int Id) : IQuery<GetCategoryByIdResponse>;
+public record GetCategoryByIdQuery(Guid Id) : IQuery<GetCategoryByIdResponse>;

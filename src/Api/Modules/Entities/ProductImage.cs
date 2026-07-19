@@ -6,7 +6,7 @@ public sealed class ProductImage : Entity
 {
     public string Url { get; internal set; } = default!;
     public string PreviewUrl { get; internal set; } = default!;
-    public int ProductId { get; internal set; }
+    public Guid ProductId { get; internal set; }
     public Product? Product { get; internal set; }
 
 

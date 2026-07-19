@@ -9,7 +9,7 @@ public sealed class ProductMap : IEntityTypeConfiguration<Product>
         builder.ToTable("product");
         builder.HasKey(t => t.Id).HasName("PK_product");
 
-        builder.Property(t => t.Id).HasColumnName("id");
+        builder.Property(t => t.Id).ValueGeneratedNever().HasColumnName("id");
         builder.Property(t => t.Name).HasColumnName("name").IsRequired();
         builder.Property(t => t.NameFr).HasColumnName("name_fr").IsRequired();
         builder.Property(t => t.Slug).HasColumnName("slug").IsRequired();

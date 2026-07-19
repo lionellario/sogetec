@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import "./Dashboard.css";
 import api from "../lib/axios";
 import { API_PREFIX } from "../lib/Constant";
+import "./Dashboard.css";
 
 export default function DashboardPage() {
   const [products, setProducts] = useState([]);
