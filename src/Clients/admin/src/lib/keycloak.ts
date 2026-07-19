@@ -3,6 +3,7 @@ import Keycloak, {
   type KeycloakTokenParsed,
 } from "keycloak-js";
 import { AUTH_ERROR_CODE } from "../enums/authErrorCode";
+import type { UserProfile } from "./profile";
 
 const isDev = import.meta.env.MODE === "development";
 
@@ -76,7 +77,7 @@ export const logout = () => {
   });
 };
 
-export const getUserInfo = () => {
+export const getUserInfo = (): UserProfile | null => {
   const parsed: KeycloakTokenParsed | undefined = keycloakInstance.tokenParsed;
   if (!parsed) return null;
 
@@ -85,7 +86,6 @@ export const getUserInfo = () => {
     email: parsed.email,
     firstName: parsed.given_name,
     lastName: parsed.family_name,
-    tenants: parsed.membership || [],
   };
 };
 

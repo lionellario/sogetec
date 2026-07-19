@@ -20,12 +20,11 @@ public sealed class GetProductItemByIdHandler(SogetecDbContext db) : ICommandHan
         productItem.Slug = command.Name.Slugify();
         productItem.Code = command.Code;
         productItem.Sku = command.Sku;
-        productItem.Price = command.Price;
-        productItem.Cost = command.Cost;
+        productItem.PriceAdjustment = command.PriceAdjustment;
+        productItem.CostAdjustment = command.CostAdjustment;
         productItem.Description = command.Description;
         productItem.InitialStock = command.InitialStock;
         productItem.FinalStock = command.FinalStock;
-        productItem.QuantityUnit = command.QuantityUnit;
         productItem.IsActive = command.IsActive;
         productItem.Details = command.Details is null ? productItem.Details : new ProductItemDetails
         {
@@ -45,11 +44,10 @@ public sealed class GetProductItemByIdHandler(SogetecDbContext db) : ICommandHan
             Code: productItem.Code,
             Sku: productItem.Sku,
             ProductId: productItem.ProductId,
-            Price: productItem.Price,
-            Cost: productItem.Cost,
+            PriceAdjustment: productItem.PriceAdjustment,
+            CostAdjustment: productItem.CostAdjustment,
             InitialStock: productItem.InitialStock,
             FinalStock: productItem.FinalStock,
-            QuantityUnit: productItem.QuantityUnit,
             Description: productItem.Description,
             IsActive: productItem.IsActive,
             Details: productItem.Details is null ? null : new ProductItemDetailRecord(

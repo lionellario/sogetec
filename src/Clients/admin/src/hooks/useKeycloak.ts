@@ -6,11 +6,12 @@ import {
   login as kcLogin,
   logout,
 } from "../lib/keycloak";
+import type { UserProfile } from "../lib/profile";
 
 type AuthState = {
   isAuthenticated: boolean;
   isLoading: boolean;
-  profile?: any;
+  profile?: UserProfile;
   error?: string;
 };
 

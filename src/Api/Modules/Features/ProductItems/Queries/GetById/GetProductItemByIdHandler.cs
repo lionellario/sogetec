@@ -28,11 +28,10 @@ public sealed class GetProductItemByIdHandler(SogetecDbContext db) : IQueryHandl
             Code: productItem.Code,
             Sku: productItem.Sku,
             ProductId: productItem.ProductId,
-            Price: productItem.Price,
-            Cost: productItem.Cost,
+            PriceAdjustment: productItem.PriceAdjustment,
+            CostAdjustment: productItem.CostAdjustment,
             InitialStock: productItem.InitialStock,
             FinalStock: productItem.FinalStock,
-            QuantityUnit: productItem.QuantityUnit,
             Description: productItem.Description,
             IsActive: productItem.IsActive,
             Details: productItem.Details is null ? null : new ProductItemDetailRecord(

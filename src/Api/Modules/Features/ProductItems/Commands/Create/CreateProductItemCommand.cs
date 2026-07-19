@@ -10,11 +10,10 @@ public record CreateProductItemResponse(
     string? Description,
     bool IsActive,
     int ProductId,
-    decimal Price,
-    decimal Cost,
+    decimal PriceAdjustment,
+    decimal CostAdjustment,
     decimal InitialStock,
     decimal FinalStock,
-    ProductQuantityUnit QuantityUnit,
     ProductItemDetailRecord? Details,
     DateTimeOffset CreatedAt,
     DateTimeOffset LastModifiedAt
@@ -34,11 +33,10 @@ public record CreateProductItemCommand(
     string? Description,
     bool IsActive,
     int ProductId,
-    decimal Price,
-    decimal Cost,
+    decimal PriceAdjustment,
+    decimal CostAdjustment,
     decimal InitialStock,
     decimal FinalStock,
-    ProductQuantityUnit QuantityUnit,
     ProductItemDetailRecord? Details,
     List<CreateProductVariantRecord> Specifications
 ) : ICommand<CreateProductItemResponse>;

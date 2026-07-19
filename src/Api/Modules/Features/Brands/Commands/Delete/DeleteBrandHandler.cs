@@ -4,16 +4,16 @@ public sealed class DeleteBrandHandler(SogetecDbContext db) : ICommandHandler<De
 {
     public async ValueTask<Unit> Handle(DeleteBrandCommand command, CancellationToken cancellationToken)
     {
-        var brand = await db.Brands.FirstOrDefaultAsync(c => c.Id == command.Id, cancellationToken);
+        var brands = await db.Brands.Where(c => command.Ids.Contains(c.Id)).ToListAsync(cancellationToken);
 
-        if (brand is null)
+        if (brands.Count == 0)
         {
             throw NotFoundException.For<Brand>(
-                command.Id,
+                "Brands",
                 BrandErrorCode.NotFound);
         }
 
-        db.Remove(brand);
+        db.RemoveRange(brands);
 
         await db.SaveChangesAsync(cancellationToken);
 

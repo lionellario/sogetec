@@ -26,7 +26,6 @@ public record GetProductItemByIdRecord(
     decimal Cost,
     decimal InitialStock,
     decimal FinalStock,
-    ProductQuantityUnit QuantityUnit,
     ProductItemDetailRecord? Details,
     List<ProductSpecificationRecord> Specifications,
     DateTimeOffset CreatedAt,

@@ -18,11 +18,10 @@ public sealed class ProductItemMap : IEntityTypeConfiguration<ProductItem>
         builder.Property(t => t.Description).HasColumnName("description");
         builder.Property(t => t.IsActive).HasColumnName("is_active").IsRequired();
         builder.Property(t => t.ProductId).HasColumnName("product_id").IsRequired();
-        builder.Property(t => t.Price).HasColumnName("price").IsRequired();
-        builder.Property(t => t.Cost).HasColumnName("cost").IsRequired();
+        builder.Property(t => t.PriceAdjustment).HasColumnName("price_adjustment").IsRequired();
+        builder.Property(t => t.CostAdjustment).HasColumnName("cost_adjustment").IsRequired();
         builder.Property(t => t.InitialStock).HasColumnName("initial_stock").IsRequired();
         builder.Property(t => t.FinalStock).HasColumnName("final_stock").IsRequired();
-        builder.Property(t => t.QuantityUnit).HasColumnName("quantity_unit").IsRequired();
         builder.Property(t => t.CreatedOn).HasColumnName("created_on").HasDefaultValueSql("CURRENT_TIMESTAMP").IsRequired();
         builder.Property(t => t.LastModifiedOn).HasColumnName("last_modified_on").HasDefaultValueSql("CURRENT_TIMESTAMP").IsRequired();
 

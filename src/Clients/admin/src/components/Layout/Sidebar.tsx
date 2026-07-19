@@ -22,20 +22,34 @@ const menus = [
     title: "Dashboard",
     icon: <LayoutDashboard />,
     children: [],
+    link: "/",
+  },
+  {
+    title: "Catalog",
+    icon: <Book />,
+    link: "#",
+    children: [
+      { title: "Brands", link: "/brands" },
+      { title: "Category Groups", link: "/category-groups" },
+      { title: "Categories", link: "/categories" },
+      { title: "Products", link: "/products" },
+      { title: "Product Attributes", link: "/product-attributes" },
+      { title: "Product Headers", link: "/product-headers" },
+    ],
   },
   {
     title: "Users",
     icon: <Users />,
-    children: ["Customers", "Employees"],
-  },
-  {
-    title: "Products",
-    icon: <Book />,
-    children: ["Inventory", "Categories"],
+    link: "#",
+    children: [
+      { title: "Customers", link: "" },
+      { title: "Employees", link: "" },
+    ],
   },
   {
     title: "Reports",
     icon: <Summary />,
+    link: "/reports",
     children: [],
   },
 ];
@@ -75,7 +89,7 @@ export default function Sidebar({ mobileOpen, collapsed, onClose }: Props) {
                 className={`menu-item${expanded === index ? " menu-active" : ""}`}
                 onClick={() => setExpanded(expanded === index ? null : index)}
               >
-                <Link to="#">
+                <Link to={item.link}>
                   <span className="menu-icon">{item.icon}</span>
                   <span className="menu-text">{item.title}</span>
                   {item.children.length > 0 && (
@@ -91,12 +105,12 @@ export default function Sidebar({ mobileOpen, collapsed, onClose }: Props) {
                 className={`submenu${expanded === index ? " submenu-open" : ""}`}
               >
                 {item.children.map((child) => (
-                  <div key={child} className="submenu-item">
-                    <Link to="#">
+                  <div key={child.title} className="submenu-item">
+                    <Link to={child.link}>
                       <span className="submenu-icon">
                         <CircleDot />
                       </span>
-                      <p>{child}</p>
+                      <p>{child.title}</p>
                     </Link>
                   </div>
                 ))}

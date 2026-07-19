@@ -14,11 +14,10 @@ public sealed class ProductItem : Entity
     public bool IsActive { get; internal set; }
     public int ProductId { get; internal set; }
     public Product? Product { get; internal set; }
-    public decimal Price { get; internal set; }
-    public decimal Cost { get; internal set; }
+    public decimal PriceAdjustment { get; internal set; }
+    public decimal CostAdjustment { get; internal set; }
     public decimal InitialStock { get; internal set; }
     public decimal FinalStock { get; internal set; }
-    public ProductQuantityUnit QuantityUnit { get; internal set; } = ProductQuantityUnit.Piece;
     public ICollection<ProductVariant> Variants { get; internal set; } = [];
     public ProductItemDetails? Details { get; internal set; }
 
@@ -28,11 +27,10 @@ public sealed class ProductItem : Entity
         string code,
         string sku,
         Product product,
-        decimal price,
-        decimal cost,
+        decimal priceAdjustment,
+        decimal costAdjustment,
         decimal initialStock,
         decimal finalStock,
-        ProductQuantityUnit quantityUnit = ProductQuantityUnit.Piece,
         string? description = null,
         ProductItemDetails? Details = null,
         bool isActive = false)
@@ -45,11 +43,10 @@ public sealed class ProductItem : Entity
             Sku = sku,
             ProductId = product.Id,
             Product = product,
-            Price = price,
-            Cost = cost,
+            PriceAdjustment = priceAdjustment,
+            CostAdjustment = costAdjustment,
             InitialStock = initialStock,
             FinalStock = finalStock,
-            QuantityUnit = quantityUnit,
             Description = description,
             Details = Details,
             IsActive = isActive

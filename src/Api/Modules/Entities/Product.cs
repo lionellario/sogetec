@@ -14,6 +14,9 @@ public sealed class Product : Entity
     public Brand? Brand { get; internal set; }
     public int CategoryId { get; internal set; }
     public Category? Category { get; internal set; }
+    public decimal Price { get; internal set; }
+    public decimal Cost { get; internal set; }
+    public ProductQuantityUnit QuantityUnit { get; internal set; } = ProductQuantityUnit.Piece;
     public ICollection<ProductItem> Items { get; internal set; } = [];
     public ICollection<ProductImage> Images { get; internal set; } = [];
 
@@ -23,6 +26,9 @@ public sealed class Product : Entity
         string description,
         Brand brand,
         Category category,
+        decimal price,
+        decimal cost,
+        ProductQuantityUnit quantityUnit = ProductQuantityUnit.Piece,
         bool isActive = false)
         => new()
         {
@@ -32,6 +38,9 @@ public sealed class Product : Entity
             Description = description,
             BrandId = brand.Id,
             Brand = brand,
+            Price = price,
+            Cost = cost,
+            QuantityUnit = quantityUnit,
             CategoryId = category.Id,
             Category = category,
             IsActive = isActive

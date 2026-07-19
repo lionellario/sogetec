@@ -1,12 +1,7 @@
 namespace Api.Modules.Features.Products.Commands.Create;
 
 public record CreateProductResponse(
-    int Id,
-    string Name,
-    string NameFr,
-    string Slug,
-    string Description,
-    bool IsActive
+    int Id
 );
 
 public record CreateProductCommand(
@@ -16,5 +11,8 @@ public record CreateProductCommand(
     string Description,
     bool IsActive,
     int BrandId,
-    int CategoryId
+    int CategoryId,
+    decimal Price,
+    decimal Cost,
+    ProductQuantityUnit QuantityUnit
 ) : ICommand<CreateProductResponse>;

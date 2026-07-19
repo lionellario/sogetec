@@ -1,3 +1,5 @@
+using Sogetec.Chassis.Pagination;
+
 namespace Api.Modules.Features.Products.Queries.GetByCategory;
 
 public record ProductImageDto(
@@ -12,10 +14,9 @@ public record ProductByCategoryRecord(
     string Name,
     string NameFr,
     string Slug,
-    string Description,
-    bool IsActive,
     decimal Price,
+    ProductQuantityUnit QuantityUnit,
     List<ProductImageDto> Images
 );
 
-public record GetProductByCategoryQuery(int CategoryId, bool IncludeInactiveProducts) : IQuery<List<ProductByCategoryRecord>>;
+public record GetProductByCategoryQuery(int CategoryId, PaginationQueryFilter Filter) : IQuery<PagedResponse<ProductByCategoryRecord>>;

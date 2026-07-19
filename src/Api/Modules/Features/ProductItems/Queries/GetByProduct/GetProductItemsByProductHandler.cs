@@ -20,11 +20,10 @@ public sealed class GetCategoriesHandler(SogetecDbContext db) : IQueryHandler<Ge
                                 Description: productItem.Description,
                                 IsActive: productItem.IsActive,
                                 ProductId: productItem.ProductId,
-                                Price: productItem.Price,
-                                Cost: productItem.Cost,
+                                Price: productItem.PriceAdjustment,
+                                Cost: productItem.CostAdjustment,
                                 InitialStock: productItem.InitialStock,
                                 FinalStock: productItem.FinalStock,
-                                QuantityUnit: productItem.QuantityUnit,
                                 Details: productItem.Details == null ? null : new ProductItemDetailRecord(
                                     ValeurInitialV0: productItem.Details.ValeurInitialV0,
                                     ValeurResiduelleVT: productItem.Details.ValeurResiduelleVT,

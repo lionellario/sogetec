@@ -27,6 +27,9 @@ public sealed class CreateProductHandler(SogetecDbContext db) : ICommandHandler<
             description: command.Description,
             brand: brand,
             category: category,
+            price: command.Price,
+            cost: command.Cost,
+            quantityUnit: command.QuantityUnit,
             isActive: command.IsActive
         );
 
@@ -35,12 +38,7 @@ public sealed class CreateProductHandler(SogetecDbContext db) : ICommandHandler<
         await db.SaveChangesAsync(cancellationToken);
 
         return new(
-            Id: product.Id,
-            Name: product.Name,
-            NameFr: product.NameFr,
-            Slug: product.Slug,
-            Description: product.Description,
-            IsActive: product.IsActive
+            Id: product.Id
         );
     }
 }

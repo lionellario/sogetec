@@ -1,9 +1,13 @@
+using Sogetec.Chassis.Pagination;
+
 namespace Api.Modules.Features.Categories.Queries.List;
 
-public sealed class GetCategoriesHandler(SogetecDbContext db) : IQueryHandler<GetCategoriesQuery, List<GetCategoryRecord>>
+public sealed class GetCategoriesHandler(SogetecDbContext db) : IQueryHandler<GetCategoriesQuery, PagedResponse<GetCategoryRecord>>
 {
-    public async ValueTask<List<GetCategoryRecord>> Handle(GetCategoriesQuery query, CancellationToken cancellationToken)
+    public async ValueTask<PagedResponse<GetCategoryRecord>> Handle(GetCategoriesQuery query, CancellationToken cancellationToken)
     {
+        var count = await db.Categories.CountAsync(cancellationToken);
+
         var entities = await db.Categories
                         .AsNoTracking()
                         .Include(c => c.Group)
@@ -24,8 +28,12 @@ public sealed class GetCategoriesHandler(SogetecDbContext db) : IQueryHandler<Ge
                             CreatedAt: c.CreatedOn,
                             LastModifiedAt: c.LastModifiedOn
                         ))
+                        .Skip(query.Filter.Skip)
+                        .Take(query.Filter.Take)
                         .ToListAsync(cancellationToken);
 
-        return entities;
+        var response = PagedResponse<GetCategoryRecord>.Create(entities, query.Filter.PageIndex, query.Filter.PageSize, count);
+
+        return response;
     }
 }

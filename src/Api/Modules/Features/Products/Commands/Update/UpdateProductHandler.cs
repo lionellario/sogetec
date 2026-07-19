@@ -23,7 +23,7 @@ public sealed class UpdateProductHandler(SogetecDbContext db) : ICommandHandler<
         }
 
         var product = await db.Products.FirstOrDefaultAsync(x => x.Id == command.Id, cancellationToken);
-        if(product is null)
+        if (product is null)
         {
             throw NotFoundException.For<Product>(
                 command.Id,
@@ -37,16 +37,14 @@ public sealed class UpdateProductHandler(SogetecDbContext db) : ICommandHandler<
         product.IsActive = command.IsActive;
         product.BrandId = brand.Id;
         product.CategoryId = category.Id;
+        product.Price = command.Price;
+        product.Cost = command.Cost;
+        product.QuantityUnit = command.QuantityUnit;
 
         await db.SaveChangesAsync(cancellationToken);
 
         return new(
-            Id: product.Id,
-            Name: product.Name,
-            NameFr: product.NameFr,
-            Slug: product.Slug,
-            Description: product.Description,
-            IsActive: product.IsActive
+            Id: product.Id
         );
     }
 }

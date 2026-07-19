@@ -10,11 +10,10 @@ public record UpdateProductItemResponse(
     string? Description,
     bool IsActive,
     int ProductId,
-    decimal Price,
-    decimal Cost,
+    decimal PriceAdjustment,
+    decimal CostAdjustment,
     decimal InitialStock,
     decimal FinalStock,
-    ProductQuantityUnit QuantityUnit,
     ProductItemDetailRecord? Details,
     DateTimeOffset CreatedAt,
     DateTimeOffset LastModifiedAt
@@ -28,10 +27,9 @@ public record UpdateProductItemCommand(
     string Sku,
     string? Description,
     bool IsActive,
-    decimal Price,
-    decimal Cost,
+    decimal PriceAdjustment,
+    decimal CostAdjustment,
     decimal InitialStock,
     decimal FinalStock,
-    ProductQuantityUnit QuantityUnit,
     ProductItemDetailRecord? Details
 ) : ICommand<UpdateProductItemResponse>;

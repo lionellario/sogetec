@@ -1,3 +1,5 @@
+using Sogetec.Chassis.Pagination;
+
 namespace Api.Modules.Features.Categories.Queries.List;
 
 public record GetCategoryRecord(
@@ -18,4 +20,4 @@ public record GetCategoryRecord(
     DateTimeOffset LastModifiedAt
 );
 
-public record GetCategoriesQuery : IQuery<List<GetCategoryRecord>>;
+public record GetCategoriesQuery(PaginationQueryFilter Filter) : IQuery<PagedResponse<GetCategoryRecord>>;

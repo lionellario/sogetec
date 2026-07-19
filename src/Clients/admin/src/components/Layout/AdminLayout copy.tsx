@@ -1,13 +1,20 @@
 import { useState } from "react";
 import Sidebar from "./Sidebar";
 import Header from "./Header";
+import DashboardPage from "../../pages/Dashboard";
 import Footer from "./Footer";
 import "./AdminLayout.css";
-import { Outlet } from "react-router-dom";
-import { useAuth } from "../../auth/AuthContext";
+import type { UserProfile } from "../../lib/profile";
+import { Outlet, Route, Routes } from "react-router-dom";
+import BrandPage from "../../pages/BrandPage";
+import BrandPageEdit from "../../pages/BrandPageEdit";
 
-export default function AdminLayout() {
-  const { profile, logout } = useAuth();
+interface AdminLayoutProps {
+  profile: UserProfile | undefined;
+  logout: () => void;
+}
+
+export default function AdminLayout({ profile, logout }: AdminLayoutProps) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
@@ -35,6 +42,13 @@ export default function AdminLayout() {
         />
 
         <main className="content">
+          {/* <Routes>
+            <Route path="/" element={<DashboardPage />} />
+            <Route path="brands" element={<BrandPage />}>
+              <Route path="create" element={<BrandPageEdit />} />
+            </Route>
+            <Route path="*" element={<h1>404</h1>} />
+          </Routes> */}
           <Outlet />
         </main>
 
