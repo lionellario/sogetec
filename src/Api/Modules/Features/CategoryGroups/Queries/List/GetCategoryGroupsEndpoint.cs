@@ -13,7 +13,7 @@ public sealed class GetCategoryGroupsEndpoint : IEndpoint
 
     public static async Task<Ok<List<GetCategoryGroupRecord>>> GetCategoryGroupsAsync(
         ISender sender,
-        bool includeInactive,
+        bool? includeInactive,
         CancellationToken cancellationToken)
     {
         var query = new GetCategoryGroupsQuery(includeInactive);

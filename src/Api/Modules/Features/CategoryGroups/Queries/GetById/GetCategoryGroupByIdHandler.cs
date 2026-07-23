@@ -16,6 +16,7 @@ public sealed class GetCategoryGroupByIdHandler(SogetecDbContext db) : IQueryHan
         return new(
             Id: categoryGroup.Id,
             Name: categoryGroup.Name,
+            NameFr: categoryGroup.NameFr,
             IsActive: categoryGroup.IsActive,
             ImageUrl: categoryGroup.ImageUrl,
             SortOrder: categoryGroup.SortOrder,

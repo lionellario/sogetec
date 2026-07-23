@@ -1,13 +1,10 @@
 import { useState } from "react";
-import Sidebar from "./Sidebar";
-import Header from "./Header";
-import DashboardPage from "../../pages/Dashboard";
-import Footer from "./Footer";
-import "./AdminLayout.css";
+import { Outlet } from "react-router-dom";
 import type { UserProfile } from "../../lib/profile";
-import { Outlet, Route, Routes } from "react-router-dom";
-import BrandPage from "../../pages/BrandPage";
-import BrandPageEdit from "../../pages/BrandPageEdit";
+import "./AdminLayout.css";
+import Footer from "./Footer";
+import Header from "./Header";
+import Sidebar from "./Sidebar";
 
 interface AdminLayoutProps {
   profile: UserProfile | undefined;

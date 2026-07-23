@@ -2,11 +2,12 @@ import {
   Alert,
   Box,
   Button,
+  ButtonGroup,
   ListItemIcon,
   MenuItem,
   lighten,
 } from "@mui/material";
-import { Pencil, Trash2 } from "lucide-react";
+import { Pencil, ShieldCheck, ShieldOff, Trash2 } from "lucide-react";
 import {
   MRT_GlobalFilterTextField,
   MRT_ToggleFiltersButton,
@@ -19,49 +20,51 @@ import { enqueueSnackbar } from "notistack";
 import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import LoadingSpinner from "../components/Spinner/LoadingSpinner";
-import type { BrandData } from "../data/BrandData";
+import type { CategoryGroupData } from "../data/CategoryGroupData";
 import { API_PREFIX } from "../lib/Constant";
 import { ERROR_MESSAGES } from "../lib/ErrorMessages";
 import api from "../lib/axios";
 
-const BrandPage = () => {
+const CategoryGroupPage = () => {
   const navigate = useNavigate();
-  const [deleting, setDeleting] = useState<boolean>(false);
-  const [isLoading, setLoading] = useState<boolean>(true);
-  const [data, setBrands] = useState<BrandData[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const [deleting, setIsDeleting] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [data, setGroups] = useState<CategoryGroupData[]>([]);
+  const [error, setError] = useState<string | string[] | null>(null);
 
   useEffect(() => {
-    async function loadProducts() {
+    async function loadGroups() {
       try {
-        const response = await api.get(`${API_PREFIX}/brands`);
-        setBrands(response.data);
+        const response = await api.get(
+          `${API_PREFIX}/category-groups?includeInactive=true`,
+        );
+        setGroups(response.data);
       } catch (err) {
         setError("An error occurred while loading brands.");
       } finally {
-        setLoading(false);
+        setIsLoading(false);
       }
     }
 
-    loadProducts();
+    loadGroups();
   }, []);
 
-  const deleteBrands = async (
+  const deleteGroups = async (
     ids: Set<string>,
-    table?: MRT_TableInstance<BrandData> | null,
+    table?: MRT_TableInstance<CategoryGroupData> | null,
   ) => {
-    setDeleting(true);
+    setIsDeleting(true);
 
     try {
-      await api.delete(`${API_PREFIX}/brands`, {
+      await api.delete(`${API_PREFIX}/category-groups`, {
         data: {
           ids: Array.from(ids),
         },
       });
-      enqueueSnackbar("Brands were successfully deleted", {
+      enqueueSnackbar("Category groups were successfully deleted", {
         variant: "success",
       });
-      setBrands((prevBrands) => prevBrands.filter((d) => !ids.has(d.id)));
+      setGroups((prevBrands) => prevBrands.filter((d) => !ids.has(d.id)));
       setError(null);
       table?.resetRowSelection();
     } catch (err: any) {
@@ -70,11 +73,43 @@ const BrandPage = () => {
           "An error occurred while saving the changes.",
       );
     } finally {
-      setDeleting(false);
+      setIsDeleting(false);
     }
   };
 
-  const columns = useMemo<MRT_ColumnDef<BrandData>[]>(
+  const changeStatus = async (
+    ids: Set<string>,
+    isActive: boolean,
+    table?: MRT_TableInstance<CategoryGroupData> | null,
+  ) => {
+    setIsLoading(true);
+
+    try {
+      await api.put(`${API_PREFIX}/category-groups/change-status`, {
+        ids: Array.from(ids),
+        isActive: isActive,
+      });
+      enqueueSnackbar("Category groups were successfully updated", {
+        variant: "success",
+      });
+      setGroups((prevGroups) =>
+        prevGroups.map((group) =>
+          ids.has(group.id) ? { ...group, isActive: isActive } : group,
+        ),
+      );
+      setError(null);
+      table?.resetRowSelection();
+    } catch (err: any) {
+      setError(
+        ERROR_MESSAGES[err.details.title] ||
+          "An error occurred while saving the changes.",
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const columns = useMemo<MRT_ColumnDef<CategoryGroupData>[]>(
     () => [
       {
         accessorFn: (row) => `${row.name}`,
@@ -99,6 +134,21 @@ const BrandPage = () => {
             />
             <span>{renderedCellValue}</span>
           </Box>
+        ),
+      },
+      {
+        accessorFn: (row) => `${row.isActive}`,
+        id: "isActive",
+        header: "Status",
+        size: 250,
+        Cell: ({ row }) => (
+          <span>
+            {row.original.isActive ? (
+              <ShieldCheck color="green" />
+            ) : (
+              <ShieldOff color="red" />
+            )}
+          </span>
         ),
       },
       {
@@ -138,6 +188,8 @@ const BrandPage = () => {
   const table = useMaterialReactTable({
     columns,
     data,
+    id: "category-group-table",
+    selectAllMode: "page",
     enableRowActions: true,
     enableRowSelection: true,
     initialState: {
@@ -177,7 +229,26 @@ const BrandPage = () => {
         key={1}
         onClick={() => {
           const ids: Set<string> = new Set([row.original.id]);
-          deleteBrands(ids);
+          const status: boolean = !row.original.isActive;
+          changeStatus(ids, status);
+          closeMenu();
+        }}
+        sx={{ m: 0 }}
+      >
+        <ListItemIcon>
+          {row.original.isActive ? (
+            <ShieldOff color="orange" />
+          ) : (
+            <ShieldCheck color="green" />
+          )}
+        </ListItemIcon>
+        {row.original.isActive ? "Unpublish" : "Publish"}
+      </MenuItem>,
+      <MenuItem
+        key={2}
+        onClick={() => {
+          const ids: Set<string> = new Set([row.original.id]);
+          deleteGroups(ids);
           closeMenu();
         }}
         sx={{ m: 0 }}
@@ -194,7 +265,17 @@ const BrandPage = () => {
         table.getSelectedRowModel().flatRows.map((row) => {
           ids.add(row.original.id);
         });
-        deleteBrands(ids, table);
+
+        deleteGroups(ids, table);
+      };
+
+      const handleStatusChange = async (status: boolean) => {
+        const ids: Set<string> = new Set();
+        table.getSelectedRowModel().flatRows.map((row) => {
+          ids.add(row.original.id);
+        });
+
+        changeStatus(ids, status, table);
       };
 
       return (
@@ -214,13 +295,27 @@ const BrandPage = () => {
           <Box>
             <Box sx={{ display: "flex", gap: "0.5rem" }}>
               <Button
-                sx={{ backgroundColor: "var(--color-green)" }}
                 variant="contained"
+                sx={{ backgroundColor: "var(--color-green)" }}
                 onClick={() => navigate("create")}
                 disableElevation
               >
                 Add
               </Button>
+              <ButtonGroup
+                variant="contained"
+                aria-label="Publish or Unpublish"
+                color="warning"
+                disabled={table.getSelectedRowModel().rows.length == 0}
+                disableElevation
+              >
+                <Button onClick={() => handleStatusChange(true)}>
+                  Publish
+                </Button>
+                <Button onClick={() => handleStatusChange(false)}>
+                  Unpublish
+                </Button>
+              </ButtonGroup>
               <Button
                 color="error"
                 disabled={table.getSelectedRowModel().rows.length == 0}
@@ -249,9 +344,9 @@ const BrandPage = () => {
           {error}
         </Alert>
       )}
-      <MaterialReactTable table={table} />;
+      <MaterialReactTable table={table} />
     </div>
   );
 };
 
-export default BrandPage;
+export default CategoryGroupPage;

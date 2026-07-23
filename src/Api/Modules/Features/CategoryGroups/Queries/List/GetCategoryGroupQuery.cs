@@ -3,9 +3,8 @@ namespace Api.Modules.Features.CategoryGroups.Queries.List;
 public record CategoryRecord(
     Guid Id,
     string Name,
+    string NameFr,
     string Slug,
-    Guid GroupId,
-    string GroupName,
     Guid? ParentId,
     string? ParentName,
     bool IsActive,
@@ -17,6 +16,7 @@ public record CategoryRecord(
 public record GetCategoryGroupRecord(
     Guid Id,
     string Name,
+    string NameFr,
     string ImageUrl,
     bool IsActive,
     int SortOrder,
@@ -25,4 +25,4 @@ public record GetCategoryGroupRecord(
     List<CategoryRecord> Categories
 );
 
-public record GetCategoryGroupsQuery(bool IncludeInactive) : IQuery<List<GetCategoryGroupRecord>>;
+public record GetCategoryGroupsQuery(bool? IncludeInactive = null) : IQuery<List<GetCategoryGroupRecord>>;

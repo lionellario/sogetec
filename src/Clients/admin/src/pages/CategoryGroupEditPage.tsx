@@ -1,7 +1,7 @@
 import {
-  Alert,
   Box,
   Button,
+  Checkbox,
   Grid,
   Paper,
   TextField,
@@ -11,48 +11,60 @@ import { CircleArrowLeft } from "lucide-react";
 import { useSnackbar } from "notistack";
 import { useEffect, useState } from "react";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import { ErrorBox } from "../components/ErrorBox";
 import LoadingSpinner from "../components/Spinner/LoadingSpinner";
-import type { BrandData } from "../data/BrandData";
+import type { CategoryGroupData } from "../data/CategoryGroupData";
 import api from "../lib/axios";
 import { API_PREFIX } from "../lib/Constant";
 import { ERROR_MESSAGES } from "../lib/ErrorMessages";
 import { isNullOrEmpty } from "../utils/StringExtensions";
 
-export default function BrandPageEdit() {
+export default function CategoryGroupEditPage() {
   const navigate = useNavigate();
   const { enqueueSnackbar } = useSnackbar();
   const [searchParams] = useSearchParams();
   const [loading, setLoading] = useState<boolean>(false);
   const [saving, setSaving] = useState<boolean>(false);
-  const [error, setError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<string | string[] | null>(null);
+
   const ID = searchParams.get("id");
   const isEditMode = Boolean(ID);
 
   const [formData, setFormData] = useState({
+    id: "",
     name: "",
-    logo: "",
+    nameFr: "",
+    imageUrl: "",
+    isActive: false,
+    sortOrder: 0,
   });
 
   useEffect(() => {
     if (!isEditMode) return;
 
-    const fetchBrandData = async () => {
+    const fetchCategroupData = async () => {
       setLoading(true);
-      setError(null);
+      setErrors(null);
       try {
-        const response = await api.get<BrandData>(`${API_PREFIX}/brands/${ID}`);
+        const response = await api.get<CategoryGroupData>(
+          `${API_PREFIX}/category-groups/${ID}`,
+        );
         setFormData({
+          id: response.data.id,
           name: response.data.name || "",
-          logo: response.data.logoUrl || "",
+          nameFr: response.data.nameFr || "",
+          imageUrl: response.data.imageUrl || "",
+          isActive: response.data.isActive || false,
+          sortOrder: response.data.sortOrder || 0,
         });
       } catch (err: any) {
-        setError("Failed to populate brand record data.");
+        setErrors(["Failed to populate category group record data."]);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchBrandData();
+    fetchCategroupData();
   }, [isEditMode]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -62,30 +74,49 @@ export default function BrandPageEdit() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    const errs: string[] = [];
 
     if (isNullOrEmpty(formData.name)) {
-      setError("Name required");
+      errs.push("Name required");
+    }
+
+    if (isNullOrEmpty(formData.nameFr)) {
+      errs.push("Le nom en français dois être rempli.");
+    }
+
+    if (isNullOrEmpty(formData.imageUrl)) {
+      errs.push("Image is required.");
+    }
+
+    if (errs.length > 0) {
+      setErrors(errs);
       return;
     }
 
     setSaving(true);
-    setError(null);
+    setErrors(null);
     try {
       if (isEditMode) {
-        await api.put(`${API_PREFIX}/brands/${ID}`, {
+        await api.put(`${API_PREFIX}/category-groups/${ID}`, {
           id: ID,
           name: formData.name,
-          imageUrl: formData.logo,
+          nameFr: formData.nameFr,
+          imageUrl: formData.imageUrl,
+          isActive: formData.isActive,
+          sortOrder: formData.sortOrder,
         });
       } else {
-        await api.post(`${API_PREFIX}/brands`, {
+        await api.post(`${API_PREFIX}/category-groups`, {
           name: formData.name,
-          imageUrl: formData.logo,
+          nameFr: formData.nameFr,
+          imageUrl: formData.imageUrl,
+          isActive: formData.isActive,
+          sortOrder: formData.sortOrder,
         });
       }
 
       enqueueSnackbar(
-        `Brand "${formData.name} was ${isEditMode ? "updated" : "created"}.`,
+        `Category Group "${formData.name} was ${isEditMode ? "updated" : "created"}.`,
         {
           variant: "success",
           onExit: () => {
@@ -97,7 +128,7 @@ export default function BrandPageEdit() {
       enqueueSnackbar("An error occurred while saving the entity changes.", {
         variant: "error",
       });
-      setError(
+      setErrors(
         ERROR_MESSAGES[err.details.title] ||
           "An error occurred while saving the changes.",
       );
@@ -110,16 +141,12 @@ export default function BrandPageEdit() {
     <Box>
       <LoadingSpinner isLoading={loading} />
       <Box>
-        <span>Add a new Brand</span>
+        <span>{`${isEditMode ? "Edit" : "Add"}`} a new Category Group</span>
         <Button variant="text" onClick={() => navigate(-1)}>
           <CircleArrowLeft />
-          Back to Brand List
+          Back to Group List
         </Button>
-        {error && (
-          <Alert severity="error" sx={{ mb: 3, mt: 2 }}>
-            {error}
-          </Alert>
-        )}
+        <ErrorBox errors={errors} />
       </Box>
       <Paper
         sx={{
@@ -140,7 +167,7 @@ export default function BrandPageEdit() {
                 <Typography
                   variant="body1"
                   component="label"
-                  htmlFor="brand-name"
+                  htmlFor="name"
                   sx={{ display: "block", textAlign: "right", fontWeight: 500 }}
                 >
                   Name:
@@ -149,14 +176,14 @@ export default function BrandPageEdit() {
 
               <Grid size={{ xs: 9 }}>
                 <TextField
-                  id="brand-name"
+                  id="name"
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
                   variant="outlined"
                   size="small"
                   fullWidth
-                  placeholder="Enter brand name"
+                  placeholder="Enter name"
                   disabled={saving}
                 />
               </Grid>
@@ -165,24 +192,75 @@ export default function BrandPageEdit() {
                 <Typography
                   variant="body1"
                   component="label"
-                  htmlFor="brand-logo"
+                  htmlFor="nameFr"
                   sx={{ display: "block", textAlign: "right", fontWeight: 500 }}
                 >
-                  Logo:
+                  Nom en Français:
                 </Typography>
               </Grid>
 
               <Grid size={{ xs: 9 }}>
                 <TextField
-                  id="brand-logo"
-                  name="logo"
-                  value={formData.logo}
+                  id="nameFr"
+                  name="nameFr"
+                  value={formData.nameFr}
+                  onChange={handleChange}
+                  variant="outlined"
+                  size="small"
+                  fullWidth
+                  placeholder="Entre le nom en français"
+                  disabled={saving}
+                />
+              </Grid>
+
+              <Grid size={{ xs: 3 }}>
+                <Typography
+                  variant="body1"
+                  component="label"
+                  htmlFor="image"
+                  sx={{ display: "block", textAlign: "right", fontWeight: 500 }}
+                >
+                  Image Url:
+                </Typography>
+              </Grid>
+
+              <Grid size={{ xs: 9 }}>
+                <TextField
+                  id="image"
+                  name="imageUrl"
+                  value={formData.imageUrl}
                   onChange={handleChange}
                   variant="outlined"
                   size="small"
                   fullWidth
                   placeholder="Enter logo image URL or asset key"
                   disabled={saving}
+                />
+              </Grid>
+
+              <Grid size={{ xs: 3 }}>
+                <Typography
+                  variant="body1"
+                  component="label"
+                  htmlFor="status"
+                  sx={{ display: "block", textAlign: "right", fontWeight: 500 }}
+                >
+                  Publish:
+                </Typography>
+              </Grid>
+
+              <Grid size={{ xs: 9 }}>
+                <Checkbox
+                  checked={formData.isActive}
+                  onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      isActive: event.target.checked,
+                    }))
+                  }
+                  slotProps={{
+                    input: { "aria-label": "controlled" },
+                  }}
                 />
               </Grid>
 
@@ -193,10 +271,12 @@ export default function BrandPageEdit() {
                 <Button
                   type="submit"
                   variant="contained"
-                  color="primary"
-                  disabled={saving}
+                  sx={{ backgroundColor: "var(--color-green)" }}
+                  loading={saving}
+                  loadingPosition="start"
+                  disableElevation
                 >
-                  Save Brand
+                  Save Group
                 </Button>
               </Grid>
             </Grid>

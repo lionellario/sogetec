@@ -4,39 +4,38 @@ public sealed class GetCategoryGroupsHandler(SogetecDbContext db) : IQueryHandle
 {
     public async ValueTask<List<GetCategoryGroupRecord>> Handle(GetCategoryGroupsQuery query, CancellationToken cancellationToken)
     {
-        var dbQuery = db.CategoryGroups
-                        .AsNoTracking()
-                        .Include(c => c.Categories)
-                        .Select(c => new GetCategoryGroupRecord(
-                            Id: c.Id,
-                            Name: c.Name,
-                            ImageUrl: c.ImageUrl,
-                            IsActive: c.IsActive,
-                            SortOrder: c.SortOrder,
-                            CreatedAt: c.CreatedOn,
-                            LastModifiedAt: c.LastModifiedOn,
-                            Categories: c.Categories.Select(c => new CategoryRecord(
-                                Id: c.Id,
-                                Name: c.Name,
-                                Slug: c.Slug,
-                                GroupId: c.GroupId,
-                                GroupName: c.Group!.Name,
-                                ParentId: c.ParentId,
-                                ParentName: c.Parent == null ? null : c.Parent.Name,
-                                IsActive: c.IsActive,
-                                SortOrder: c.SortOrder,
-                                CreatedAt: c.CreatedOn,
-                                LastModifiedAt: c.LastModifiedOn
-                            )).ToList()
-                        ));
+        var baseQuery = db.CategoryGroups.AsNoTracking();
 
-        if (!query.IncludeInactive)
+        if (query.IncludeInactive == false)
         {
-            dbQuery = dbQuery.Where(c => c.IsActive);
+            baseQuery = baseQuery.Where(c => c.IsActive);
         }
+
+        var dbQuery = baseQuery.Select(c => new GetCategoryGroupRecord(
+            Id: c.Id,
+            Name: c.Name,
+            NameFr: c.NameFr,
+            ImageUrl: c.ImageUrl,
+            IsActive: c.IsActive,
+            SortOrder: c.SortOrder,
+            CreatedAt: c.CreatedOn,
+            LastModifiedAt: c.LastModifiedOn,
+            Categories: c.Categories.Select(c => new CategoryRecord(
+                Id: c.Id,
+                Name: c.Name,
+                NameFr: c.NameFr,
+                Slug: c.Slug,
+                ParentId: c.ParentId,
+                ParentName: c.Parent == null ? null : c.Parent.Name,
+                IsActive: c.IsActive,
+                SortOrder: c.SortOrder,
+                CreatedAt: c.CreatedOn,
+                LastModifiedAt: c.LastModifiedOn
+            )).ToList()
+        ));
 
         var entities = await dbQuery.ToListAsync(cancellationToken);
 
-        return entities;
+        return [.. entities.OrderBy(x => x.SortOrder)];
     }
 }

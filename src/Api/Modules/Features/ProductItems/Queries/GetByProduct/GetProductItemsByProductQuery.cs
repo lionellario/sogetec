@@ -32,4 +32,4 @@ public record GetProductItemByIdRecord(
     DateTimeOffset LastModifiedAt
 );
 
-public record GetProductItemsByProductQuery(Guid ProdcutId, bool IncludeInactiveItems) : IQuery<List<GetProductItemByIdRecord>>;
+public record GetProductItemsByProductQuery(Guid ProdcutId, bool? IncludeInactive) : IQuery<List<GetProductItemByIdRecord>>;

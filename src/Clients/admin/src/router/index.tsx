@@ -1,11 +1,13 @@
 import { createBrowserRouter } from "react-router-dom";
-import { ProtectedRoute } from "./ProtectedRoute";
-import DashboardPage from "../pages/Dashboard";
-import BrandPage from "../pages/BrandPage";
-import BrandPageEdit from "../pages/BrandPageEdit";
 import AdminLayout from "../components/Layout/AdminLayout";
+import BrandEditPage from "../pages/BrandEditPage";
+import BrandPage from "../pages/BrandPage";
+import CategoryGroupEditPage from "../pages/CategoryGroupEditPage";
+import CategoryGroupPage from "../pages/CategoryGroupPage";
+import DashboardPage from "../pages/Dashboard";
+import { ProtectedRoute } from "./ProtectedRoute";
 
-const NotFound = () => <h2>404 - Page Not Found ----</h2>;
+const NotFound = () => <h2>404 - Page Not Found</h2>;
 
 export const router = createBrowserRouter([
   {
@@ -25,11 +27,23 @@ export const router = createBrowserRouter([
           },
           {
             path: "brands/create",
-            element: <BrandPageEdit />,
+            element: <BrandEditPage />,
           },
           {
             path: "brands/edit",
-            element: <BrandPageEdit />,
+            element: <BrandEditPage />,
+          },
+          {
+            path: "category-groups",
+            element: <CategoryGroupPage />,
+          },
+          {
+            path: "category-groups/create",
+            element: <CategoryGroupEditPage />,
+          },
+          {
+            path: "category-groups/edit",
+            element: <CategoryGroupEditPage />,
           },
         ],
       },

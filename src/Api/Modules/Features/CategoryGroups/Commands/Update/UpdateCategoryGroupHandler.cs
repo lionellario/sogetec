@@ -18,6 +18,7 @@ public sealed class UpdateCategoryGroupHandler(SogetecDbContext db) : ICommandHa
         }
 
         group.Name = command.Name;
+        group.NameFr = command.NameFr;
         group.ImageUrl = command.ImageUrl;
         group.IsActive = command.IsActive;
 
@@ -30,13 +31,7 @@ public sealed class UpdateCategoryGroupHandler(SogetecDbContext db) : ICommandHa
         await db.SaveChangesAsync(cancellationToken);
 
         return new(
-            Id: group.Id,
-            Name: group.Name,
-            ImageUrl: group.ImageUrl,
-            SortOrder: group.SortOrder,
-            IsActive: group.IsActive,
-            CreatedAt: group.CreatedOn,
-            LastModifiedAt: group.LastModifiedOn
+            Id: group.Id
         );
     }
 }

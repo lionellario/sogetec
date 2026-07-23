@@ -5,16 +5,16 @@ public sealed class DeleteCategoryGroupHandler(SogetecDbContext db) : ICommandHa
     public async ValueTask<Unit> Handle(DeleteCategoryGroupCommand command, CancellationToken cancellationToken)
     {
 
-        var group = await db.CategoryGroups.FirstOrDefaultAsync(g => g.Id == command.Id, cancellationToken: cancellationToken);
+        var groups = await db.CategoryGroups.Where(g => command.Ids.Contains(g.Id)).ToListAsync(cancellationToken);
 
-        if (group is null)
+        if (groups.Count == 0)
         {
             throw NotFoundException.For<CategoryGroup>(
-                command.Id,
+                "category groups",
                 CategoryErrorCode.CategoryGroupNotFound);
         }
 
-        db.Remove(group);
+        db.RemoveRange(groups);
 
         await db.SaveChangesAsync(cancellationToken);
 

@@ -1,14 +1,7 @@
 namespace Api.Modules.Features.CategoryGroups.Commands.Create;
 
 public record CreateCategoryGroupResponse(
-    Guid Id,
-    string Name,
-    string NameFr,
-    string? ImageUrl,
-    int SortOrder,
-    bool IsActive,
-    DateTimeOffset CreatedAt,
-    DateTimeOffset LastModifiedAt
+    Guid Id
 );
 
 public record CreateCategoryGroupCommand(
@@ -16,5 +9,6 @@ public record CreateCategoryGroupCommand(
     string Name,
     string NameFr,
     string ImageUrl,
-    int SortOrder
+    int SortOrder,
+    bool IsActive
 ) : ICommand<CreateCategoryGroupResponse>;

@@ -10,6 +10,7 @@ public sealed class CreateCategoryGroupHandler(SogetecDbContext db) : ICommandHa
             name: command.Name,
             nameFr: command.NameFr,
             image: command.ImageUrl,
+            isActive: command.IsActive,
             order: count + 1
         );
 
@@ -18,14 +19,7 @@ public sealed class CreateCategoryGroupHandler(SogetecDbContext db) : ICommandHa
         await db.SaveChangesAsync(cancellationToken);
 
         return new(
-            Id: group.Id,
-            Name: group.Name,
-            NameFr: group.NameFr,
-            ImageUrl: group.ImageUrl,
-            SortOrder: group.SortOrder,
-            IsActive: group.IsActive,
-            CreatedAt: group.CreatedOn,
-            LastModifiedAt: group.LastModifiedOn
+            Id: group.Id
         );
     }
 }

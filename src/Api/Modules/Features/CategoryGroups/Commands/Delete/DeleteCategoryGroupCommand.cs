@@ -1,3 +1,3 @@
 namespace Api.Modules.Features.CategoryGroups.Commands.Delete;
 
-public record DeleteCategoryGroupCommand(Guid Id) : ICommand;
+public record DeleteCategoryGroupCommand(List<Guid> Ids) : ICommand;
